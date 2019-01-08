@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tree-table</title>
+    <!--<link rel="stylesheet" href="assets/common.css"/>-->
+    <link rel="stylesheet" href="/plugins/layui/css/layui.css" media="all">
+    <script src="/plugins/layui/layui.js"></script>
+    <script src="/plugins/jquery/jquery.min.js?v=1.12.4"></script>
+
+    <script src="/plugins/layui/layui.js"></script>
+    <script src="/plugins/layui/layui.all.js"></script>
+    <script src="/plugins/jquery/jquery.min.js?v=1.12.4"></script>
+    <script src="/common/js/common.js"></script>
+</head>
+<body>
+<div class="layui-container layui-text" style="width: 100%;">
+ <!--   <br>
+    <h1>
+        Layui树形表格treetable -
+        <small><a href="https://gitee.com/whvse/treetable-lay" target="_blank">项目地址</a></small>
+    </h1>
+    <br>-->
+<!--    <div class="layui-btn-group">
+        <button class="layui-btn" id="btn-expand">全部展开</button>
+        <button class="layui-btn" id="btn-fold">全部折叠</button>
+        <button class="layui-btn" id="btn-refresh">刷新表格</button>
+    </div>
+    &nbsp;
+    <div class="layui-btn-group">
+        <a class="layui-btn layui-btn-normal" href="menu.html">菜单管理</a>
+        <a class="layui-btn layui-btn-normal" href="test.html">深度测试</a>
+        <a class="layui-btn layui-btn-normal" href="test2.html">自定义图标</a>
+        <a class="layui-btn layui-btn-normal" href="test3.html">多表格</a>
+        <a class="layui-btn layui-btn-normal" href="test5.html">搜索功能</a>
+    </div>-->
+    &emsp;
+   <!-- <a class="layui-btn layui-btn-primary" href="https://whvse.gitee.io/treetable/" target="_blank">BOM树形表格</a>-->
+
+    <table id="table1" class="layui-table" lay-filter="table1"></table>
+</div>
+<!-- 操作列 -->
+<script type="text/html" id="oper-col">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script>
+    layui.config({
+        base: '/plugins/layui/'
+    }).extend({
+        treetable: '/treetable-lay/treetable'
+    }).use(['layer', 'table', 'treetable'], function () {
+        var $ = layui.jquery;
+        var table = layui.table;
+        var layer = layui.layer;
+        var treetable = layui.treetable;
+
+        // 渲染表格
+        var renderTable = function () {
+            layer.load(2);
+            treetable.render({
+                treeColIndex: 1, //树形图标显示在第几列
+                treeSpid: -1,    //最上级的父级id
+                treeIdName: 'id',
+                treePidName: 'parentId',
+                treeDefaultClose: true,
+                treeLinkage: false,  //父级展开时是否自动展开所有子级
+                elem: '#table1',
+                url: '/menu/list.json',
+                response: {statusCode: 200},//200为成功状态码
+                page: false,
+                cols: [[
+                    {type: 'numbers'},
+                    {field: 'name', title: 'name'},
+                    {field: 'id', title: 'id'},
+                    {field: 'code', title: 'code'},
+                    {field: 'sort', title: 'sort'},
+                    {templet: '#oper-col', title: 'oper'}
+                ]],
+                done: function () {
+                    layer.closeAll('loading');
+                }
+            });
+        };
+
+        renderTable();
+
+        $('#btn-expand').click(function () {
+            treetable.expandAll('#table1');
+        });
+
+        $('#btn-fold').click(function () {
+            treetable.foldAll('#table1');
+        });
+
+        $('#btn-refresh').click(function () {
+            renderTable();
+        });
+
+        //监听工具条
+        table.on('tool(table1)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+
+            if (layEvent === 'del') {
+                layer.msg('删除' + data.id);
+            } else if (layEvent === 'edit') {
+                layer.msg('修改' + data.id);
+            }
+        });
+    });
+</script>
+</body>
+</html>

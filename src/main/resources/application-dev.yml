@@ -1,0 +1,45 @@
+server:
+    port: 8080
+#spring
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.141.128:3309/snow?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT
+    username: test
+    password: 123456
+    druid:
+      initial-size: 1
+      max-active: 20
+      min-idle: 1
+      max-wait: 60000
+      validation-query: select 'x'
+      validationQueryTimeout: 5
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+#      filters: log4j
+#      web-stat-filter:
+#        enabled: true
+#        url-pattern: /*
+#        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+#        #你可以配置principalSessionName，使得druid能够知道当前的cookie的用户是谁
+#        #principal-cookie-name: admin
+#        #你可以配置principalSessionName，使得druid能够知道当前的session的用户是谁
+#        #principal-session-name: admin
+#        #设置profileEnable能够监控单个url调用的sql列表。
+#        profile-enable: true
+#        #session统计功能
+#        session-stat-enable: false
+#        #最大session数
+#        session-stat-max-count: 100000
+#      stat-view-servlet:
+#        #allow: ${GATEWAY_HOST:172.26.114.241}
+#        enabled: true
+#        login-username: ${DRUID_USER:admin}
+#        login-password: ${DRUID_PWD:admin}
+#        url-pattern: /druid/*
+#        #允许清除记录
+#        reset-enable: false
+#      aop-patterns: com.tdx.account_service.service.*

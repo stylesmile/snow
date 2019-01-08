@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>layui在线调试</title>
+    <!--<link rel="stylesheet" href="//res.layui.com/layui/dist/css/layui.css?t=1542630986927" media="all">-->
+    <link rel="stylesheet" href="/plugins/layui/css/layui.css" media="all">
+    <script src="/plugins/layui/layui.js"></script>
+    <script src="/plugins/jquery/jquery.min.js?v=1.12.4"></script>
+    <script src="/common/js/my-jquery.js?v=1.12.4"></script>
+
+    <script src="/common/js/common.js?v=1.12.4"></script>
+
+    <script src="/common/js/page.js?v=1.12.4"></script>
+    <style>
+        body {
+            margin: 10px;
+        }
+
+        .demo-carousel {
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form" action="" id="searchForm">
+    <div class="layui-row">
+        <div class="layui-inline">
+            <div class="layui-input-inline">
+                <input type="tel" name="username" autocomplete="off" class="layui-input" placeholder="用户名">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <div class="layui-input-inline">
+                <input type="tel" name="nickname" autocomplete="off" class="layui-input" placeholder="昵称">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-normal" type="button" id="searchButton">搜索</button>
+        </div>
+    </div>
+</form>
+<table class="layui-hide" id="list" lay-filter="test"></table>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<blockquote class="layui-elem-quote layui-quote-nm layui-hide" id="footer">layui {{ layui.v }} 提供强力驱动</blockquote>
+
+
+<script>
+    layui.use(['laydate', 'layer', 'table', 'carousel', 'upload', 'form'], function () {
+        var laydate = layui.laydate //日期
+            , table = layui.table //表格
+            , form = layui.form;//表单
+        var usertTable = null;
+
+        //执行一个 table 实例
+        usertTable = table.render({
+            elem: '#list'
+            , height: 620
+            , url: '/user/list.json' //数据接口
+            //, where: $("#form").serializeJson() //参数
+            ,response: {statusCode: 200}//200为成功状态码
+            , parseData: function (res) { //res 即为原始返回的数据
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": res.data.total, //解析数据长度
+                    "data": res.data.records //解析数据列表
+                };
+            }
+            , request: {
+                pageName: 'current' //页码的参数名称，默认：page
+                , limitName: 'size' //每页数据量的参数名，默认：limit
+            }
+            , title: '用户表'
+            , page: true //开启分页
+            //, page: {"layout": ['count', 'prev', 'page', 'next']} //开启分页
+            , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            //, totalRow: true //开启合计行
+            , limit: 10
+            , cols: [[ //表头
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'id', title: 'ID', width: 120, sort: true, fixed: 'left', totalRowText: '合计：'}
+                , {field: 'username', title: '用户名', width: 120}
+                , {field: 'nickname', title: '昵称', width: 120, sort: true, totalRow: true}
+                , {field: 'phone', title: '电话', width: 120}
+                , {field: 'email', title: '邮箱', width: 120}
+            ]]
+        });
+        //初始化搜索
+        Page.initSearchForm($("#searchButton"), $("#searchForm"), usertTable, form);
+        //监听头工具栏事件
+        table.on('toolbar(test)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id)
+                , data = checkStatus.data; //获取选中的数据
+            switch (obj.event) {
+                case 'add':
+                    var url = "/user/add.html";
+                    Common.topOpenDlg(url, "用户管理>新增", '25%', '42%');
+                    break;
+                case 'update':
+                    if (data.length === 0) {
+                        layer.msg('请选择一行');
+                    } else if (data.length > 1) {
+                        layer.msg('只能同时编辑一个');
+                    } else {
+                        var data = Common.getOneFromTable(table, "list");
+                        var url = "/user/edit.html?id=" + data.id;
+                        Common.topOpenDlg(url, "用户管理>新增", '25%', '42%');
+                        //layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
+                    }
+                    break;
+                case 'delete':
+                    debugger
+                    if (data.length === 0) {
+                        layer.msg('请选择一行');
+                    } else {
+                        Common.openConfirm("确认要删除这些用户?", function () {
+                            debugger;
+                            Common.post("/user/delete.json", {id: data.id}, '/user/index.html');
+                        })
+                    }
+                    break;
+            }
+            ;
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data //获得当前行数据
+                , layEvent = obj.event; //获得 lay-event 对应的值
+            if (layEvent === 'detail') {
+                layer.msg('查看操作');
+            } else if (layEvent === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del(); //删除对应行（tr）的DOM结构
+                    layer.close(index);
+                    //向服务端发送删除指令
+                });
+            } else if (layEvent === 'edit') {
+                layer.msg('编辑操作');
+            }
+        });
+
+    });
+</script>
+</body>
+</html>
