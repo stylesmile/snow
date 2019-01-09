@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stylesmile.system.dao.SysMenuMapper">
+    <resultMap id="menu" type="com.stylesmile.system.entity.SysMenu"/>
+    <parameterMap id="menu2" type="com.stylesmile.system.entity.SysMenu"/>
+    <select id="getMenuList" resultMap="menu">
+        SELECT * FROM sys_menu
+        where del_flag = 0
+        <if test="parentId!=null and parentId !=''">and parentId=#{parentId},</if>
+        <if test="name!=null and name !=''">and name=#{name},</if>
+        <if test="code!=null and code !=''">and code=#{code},</if>
+        <if test="parentCode!=null and parentCode !=''">and parentCode=#{parentCode},</if>
+        <if test="sort!=null and sort !=''">and sort=#{sort}</if>
+        order by sort desc
+    </select>
+    <update id="updateMenu" parameterMap="menu2">
+        UPDATE sys_menu
+        <set>
+            <if test="parentId!=null and parentId !=''">parentId=#{parentId},</if>
+            <if test="name!=null and name !=''">name=#{name},</if>
+            <if test="code!=null and code !=''">code=#{code},</if>
+            <if test="parentCode!=null and parentCode !=''">parentCode=#{parentCode},</if>
+            <if test="sort!=null and sort !=''">sort=#{sort}</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+    <update id="deleteMenu">
+        update sys_menu set del_flag=1 where id=#{id}
+    </update>
+</mapper>

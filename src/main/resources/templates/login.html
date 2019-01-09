@@ -49,14 +49,10 @@
             $.post("/login.json",
                 {loginName:loginName,password:password},
                 function(data){
-                    if(data.code==0){
+                    if(data.code==200){
                         location="/index.html"
                     }else{
                         layer.msg(data.msg);
-                        // layer.open({
-                        //     title: '登陆'
-                        //     ,content: data.data
-                        // });
                     }
                 }
             );

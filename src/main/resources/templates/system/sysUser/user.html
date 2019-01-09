@@ -46,8 +46,8 @@
 </form>
 <table class="layui-hide" id="list" lay-filter="test"></table>
 
-<script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+<script type="text/html" id="oper-col">
+    <!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
@@ -61,7 +61,9 @@
             , table = layui.table //表格
             , form = layui.form;//表单
         var usertTable = null;
-
+        window.dataReload = function(){
+            Page.initSearchForm($("#searchButton"), $("#searchForm"), usertTable, form)
+        }
         //执行一个 table 实例
         usertTable = table.render({
             elem: '#list'
@@ -94,12 +96,13 @@
                 , {field: 'nickname', title: '昵称', width: 120, sort: true, totalRow: true}
                 , {field: 'phone', title: '电话', width: 120}
                 , {field: 'email', title: '邮箱', width: 120}
+                , {templet: '#oper-col', title: '操作'}
             ]]
         });
         //初始化搜索
         Page.initSearchForm($("#searchButton"), $("#searchForm"), usertTable, form);
         //监听头工具栏事件
-        table.on('toolbar(test)', function (obj) {
+        table.on('toolbar(barDemo)', function (obj) {
             var checkStatus = table.checkStatus(obj.config.id)
                 , data = checkStatus.data; //获取选中的数据
             switch (obj.event) {
@@ -115,8 +118,7 @@
                     } else {
                         var data = Common.getOneFromTable(table, "list");
                         var url = "/user/edit.html?id=" + data.id;
-                        Common.topOpenDlg(url, "用户管理>新增", '25%', '42%');
-                        //layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
+                        Common.topOpenDlg(url, "用户管理>新增", '25%', '39%');
                     }
                     break;
                 case 'delete':
@@ -124,9 +126,9 @@
                     if (data.length === 0) {
                         layer.msg('请选择一行');
                     } else {
-                        Common.openConfirm("确认要删除这些用户?", function () {
+                        Common.openConfirm("确认要删除这个用户?", function () {
                             debugger;
-                            Common.post("/user/delete.json", {id: data.id}, '/user/index.html');
+                            Common.delete("/user/delete.json", {id: data.id}, '/user/index.html');
                         })
                     }
                     break;
@@ -138,14 +140,13 @@
         table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
             var data = obj.data //获得当前行数据
                 , layEvent = obj.event; //获得 lay-event 对应的值
-            if (layEvent === 'detail') {
-                layer.msg('查看操作');
+            if (layEvent === 'edit') {
+                var url = "/user/edit.html?id=" + obj.data.id;
+                Common.topOpenDlg(url, "用户管理>编辑", '25%', '39%');
             } else if (layEvent === 'del') {
-                layer.confirm('真的删除行么', function (index) {
-                    obj.del(); //删除对应行（tr）的DOM结构
-                    layer.close(index);
-                    //向服务端发送删除指令
-                });
+                Common.openConfirm("确认要删除这个用户?", function () {
+                    Common.post("/user/delete.json", {id: obj.data.id}, '/user/index.html');
+                })
             } else if (layEvent === 'edit') {
                 layer.msg('编辑操作');
             }

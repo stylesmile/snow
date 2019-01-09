@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>springboot-mybatisplus-freemarker</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>snow</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>springboot-mybatisplus-freemarker</name>
+    <name>snow</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>

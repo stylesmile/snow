@@ -33,19 +33,45 @@ var Common = {
             type:"POST",
             data:paras,
             success:function(rsp){
-                if(rsp.code!=0){
-                    Common.error(rsp.msg);
-                }else{
+                debugger;
+                if(rsp.code!=200){
                     //成功
+                    parent.window.dataReload();
+                    dataReload();
                     Common.info("删除成功");
-                    location.href=nextUrl;
+                    location.reload()
+                    //location.href=nextUrl;
+                }else{
+                    Common.error(rsp.msg);
                 }
             },
             error:function(rsp){
                 Common.error(rsp.responseJSON.msg);
             }
         })
-
+    },
+    delete: function (url, paras, nextUrl) {
+        $.ajax({
+            url:Common.ctxPath+url,
+            type:"POST",
+            data:paras,
+            success:function(rsp){
+                debugger;
+                if(rsp.code!=200){
+                    //成功
+                    parent.window.dataReload();
+                    dataReload();
+                    Common.info("删除成功");
+                    location.reload()
+                    //location.href=nextUrl;
+                }else{
+                    Common.error(rsp.msg);
+                }
+            },
+            error:function(rsp){
+                Common.error(rsp.responseJSON.msg);
+            }
+        })
     },
     getOneFromTable:function(layuiTable,tableId){
         var checkStatus = layuiTable.checkStatus(tableId)
