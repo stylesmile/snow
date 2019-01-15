@@ -19,11 +19,14 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class SysRoleController {
 
-    final String BASE_URL_PATH = "/role";
-    final String BASE_HTML_PATH = "/system/sysRole";
+    private final String BASE_URL_PATH = "/role";
+    private final String BASE_HTML_PATH = "/system/sysRole";
     @Autowired
     private SysRoleService sysRoleService;
 
+    /**
+     * 角色管理首页
+     */
     @GetMapping(BASE_URL_PATH + "/index.html")
     @ResponseBody
     public ModelAndView index() {
@@ -31,7 +34,21 @@ public class SysRoleController {
         return view;
     }
 
+    /**
+     * 角色管理首页数据
+     *
+     * @param sysRoleQuery 角色查询对象
+     * @return Result
+     */
+    @RequestMapping(BASE_URL_PATH + "/list.json")
+    public Result selectRolePage(SysRoleQuery sysRoleQuery) {
+        Page<SysRole> ipage = sysRoleService.getRoleList(sysRoleQuery);
+        return Result.success(ipage);
+    }
 
+    /**
+     * 进入角色添加页面
+     */
     @GetMapping(BASE_URL_PATH + "/add.html")
     @ResponseBody
     public ModelAndView add() {
@@ -39,6 +56,11 @@ public class SysRoleController {
         return view;
     }
 
+    /**
+     * 角色添加
+     *
+     * @param role 角色信息
+     */
     @RequestMapping(BASE_URL_PATH + "/add.json")
     @ResponseBody
     public Result add(SysRole role) {
@@ -56,6 +78,9 @@ public class SysRoleController {
         }
     }
 
+    /**
+     * 进入角色编辑页面
+     */
     @GetMapping(BASE_URL_PATH + "/edit.html")
     public ModelAndView edit(String id) {
         ModelAndView view = new ModelAndView(BASE_HTML_PATH + "/role_edit");
@@ -64,6 +89,12 @@ public class SysRoleController {
         return view;
     }
 
+    /**
+     * 角色编辑
+     *
+     * @param role 角色信息
+     * @return   Result
+     */
     @PostMapping(BASE_URL_PATH + "/edit.json")
     @ResponseBody
     public Result edit(SysRole role) {
@@ -75,6 +106,12 @@ public class SysRoleController {
         }
     }
 
+    /**
+     * 删除角色
+     *
+     * @param id 主键
+     * @return Result
+     */
     @PostMapping(BASE_URL_PATH + "/delete.json")
     @ResponseBody
     public Result delete(String id) {
@@ -85,13 +122,6 @@ public class SysRoleController {
             return Result.fail();
         }
     }
-
-    @RequestMapping(BASE_URL_PATH + "/list.json")
-    public Result selectRolePage(SysRoleQuery sysRoleQuery) {
-        Page<SysRole> ipage = sysRoleService.getRoleList(sysRoleQuery);
-        return Result.success(ipage);
-    }
-
 
 }
 

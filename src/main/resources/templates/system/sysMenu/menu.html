@@ -6,37 +6,21 @@
     <!--<link rel="stylesheet" href="assets/common.css"/>-->
     <link rel="stylesheet" href="/plugins/layui/css/layui.css" media="all">
     <script src="/plugins/layui/layui.js"></script>
-    <script src="/plugins/jquery/jquery.min.js?v=1.12.4"></script>
-
-    <script src="/plugins/layui/layui.js"></script>
     <script src="/plugins/layui/layui.all.js"></script>
     <script src="/plugins/jquery/jquery.min.js?v=1.12.4"></script>
     <script src="/common/js/common.js"></script>
+    <script src="/common/js/page.js?v=1.12.4"></script>
 </head>
 <body>
 <div class="layui-container layui-text" style="width: 100%;">
- <!--   <br>
-    <h1>
-        Layui树形表格treetable -
-        <small><a href="https://gitee.com/whvse/treetable-lay" target="_blank">项目地址</a></small>
-    </h1>
-    <br>-->
-<!-- -->
+    <br>
+    <!-- -->
     <div class="layui-btn-group">
         <button class="layui-btn" id="btn-expand">全部展开</button>
         <button class="layui-btn" id="btn-fold">全部折叠</button>
         <button class="layui-btn" id="btn-refresh">刷新表格</button>
     </div>
-
-    <div class="layui-btn-group">
-        <a class="layui-btn layui-btn-normal" href="menu.html">菜单管理</a>
-        <a class="layui-btn layui-btn-normal" href="test.html">深度测试</a>
-        <a class="layui-btn layui-btn-normal" href="test2.html">自定义图标</a>
-        <a class="layui-btn layui-btn-normal" href="test3.html">多表格</a>
-        <a class="layui-btn layui-btn-normal" href="test5.html">搜索功能</a>
-    </div>
-    &emsp;
-   <!-- <a class="layui-btn layui-btn-primary" href="https://whvse.gitee.io/treetable/" target="_blank">BOM树形表格</a>-->
+    <!-- <a class="layui-btn layui-btn-primary" href="https://whvse.gitee.io/treetable/" target="_blank">BOM树形表格</a>-->
     <script type="text/html" id="barDemo">
         <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
@@ -57,13 +41,17 @@
     }).extend({
         treetable: '/treetable-lay/treetable'
     }).use(['layer', 'table', 'treetable'], function () {
-        var $ = layui.jquery;
-        var table = layui.table;
-        var layer = layui.layer;
-        var treetable = layui.treetable;
-
+        var $ = layui.jquery
+            , table = layui.table
+            , layer = layui.layer
+            , treetable = layui.treetable
+            , renderTable = null
+            , form = layui.form;//表单
+        window.dataReload = function () {
+            Page.initSearchForm($("#btn-refresh"), null, renderTable, form)
+        };
         // 渲染表格
-        var renderTable = function () {
+        renderTable = function () {
             layer.load(2);
             treetable.render({
                 treeColIndex: 1, //树形图标显示在第几列
@@ -73,7 +61,7 @@
                 treeDefaultClose: true,
                 treeLinkage: false,  //父级展开时是否自动展开所有子级
                 elem: '#table1',
-                type:'POST',
+                type: 'POST',
                 url: '/menu/list.json',
                 response: {statusCode: 200},//200为成功状态码
                 page: false,
@@ -112,14 +100,14 @@
 
             if (layEvent === 'add') {
                 var url = "/menu/add.html";
-                Common.topOpenDlg(url, "菜单管理>新增", '25%', '44%');
-            }else if (layEvent === 'edit') {
-                var url = "/menu/edit.html?id=" + obj.data.id;
+                Common.topOpenDlg(url, "菜单管理>新增", '27%', '52%');
+            } else if (layEvent === 'edit') {
+                var url = "/menu/edit.html?id=" + data.id;
                 Common.topOpenDlg(url, "菜单管理>编辑", '25%', '44%');
             } else if (layEvent === 'del') {
                 Common.openConfirm("确认要删除这个用户?", function () {
-                    Common.post("/menu/delete.json", {id: obj.data.id}, '/menu/index.html');
-                })
+                    Common.post("/menu/delete.json", {id: data.id}, '/menu/index.html');
+                });
             }
         });
     });

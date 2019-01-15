@@ -57,35 +57,7 @@
 <script>
     layui.use(['form'], function () {
         var url = '/menu/edit.json';
-        $("#submit").click(function () {
-            // $.ajax({
-            //     url: url,
-            //     type: 'POST',
-            //     data: $("#form").serializeJson(),
-            //     success(data){
-            //         if (data.code == 200) {
-            //             parent.window.dataReload();
-            //             layer.msg(data.msg);
-            //             Common.closeFrame();
-            //         } else {
-            //             layer.msg(data.msg);
-            //         }
-            //     }
-            // })
-
-            $.post(url, $("#form").serializeJson(),
-                function (data) {
-                    debugger
-                    if (data.code == 200) {
-                        parent.window.dataReload();
-                        layer.msg(data.msg);
-                        Common.closeFrame();
-                    } else {
-                        layer.msg(data.msg);
-                    }
-                }
-            )
-        })
+        Common.updateData(url,"form","#submit");
         $("#cancel").click(function () {
             Common.closeFrame();
         })

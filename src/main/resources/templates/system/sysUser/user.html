@@ -10,9 +10,7 @@
     <script src="/plugins/layui/layui.js"></script>
     <script src="/plugins/jquery/jquery.min.js?v=1.12.4"></script>
     <script src="/common/js/my-jquery.js?v=1.12.4"></script>
-
     <script src="/common/js/common.js?v=1.12.4"></script>
-
     <script src="/common/js/page.js?v=1.12.4"></script>
     <style>
         body {
@@ -62,7 +60,7 @@
             , form = layui.form;//表单
         var usertTable = null;
         window.dataReload = function(){
-            Page.initSearchForm($("#searchButton"), $("#searchForm"), usertTable, form)
+            Page.initSearchForm($("#searchButton"), $("#searchForm"), usertTable, form);
         }
         //执行一个 table 实例
         usertTable = table.render({

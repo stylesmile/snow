@@ -50,6 +50,7 @@ public class SysUserController {
 
     /**
      * 进入新增用户页面
+     *
      * @return
      */
     @RequestMapping(BASE_URL_PATH + "/add.html")
@@ -61,6 +62,7 @@ public class SysUserController {
 
     /**
      * 新增用户
+     *
      * @param user
      * @return
      */
@@ -78,8 +80,8 @@ public class SysUserController {
 
     /**
      * 进入编辑用户页面
-     * @param id
-     * @return
+     *
+     * @param id 主键
      */
     @RequestMapping(BASE_URL_PATH + "/edit.html")
     public ModelAndView edit(String id) {
@@ -91,6 +93,7 @@ public class SysUserController {
 
     /**
      * 编辑用户
+     *
      * @param user
      * @return
      */
@@ -107,6 +110,7 @@ public class SysUserController {
 
     /**
      * 删除用户
+     *
      * @param id
      * @return
      */

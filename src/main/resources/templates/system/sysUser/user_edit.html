@@ -23,17 +23,17 @@
         <div class="layui-inline">
             <label class="layui-form-label">昵称</label>
             <div class="layui-input-inline">
-                <input type="login" name="name" lay-verify="required" autocomplete="off" class="layui-input"
-                       placeholder="名称" value="${(user.name)!''}">
+                <input type="login" name="nickname" lay-verify="required" autocomplete="off" class="layui-input"
+                       placeholder="昵称" value="${(user.nickname)!''}">
             </div>
         </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-inline">
-            <label class="layui-form-label">名称</label>
+            <label class="layui-form-label">用户名</label>
             <div class="layui-input-inline">
-                <input type="text" name="loginName" lay-verify="required" autocomplete="off" class="layui-input"
-                       placeholder="登录名称" value="${(user.username)!''}">
+                <input type="text" name="username" lay-verify="required" autocomplete="off" class="layui-input" readonly="readonly"
+                       placeholder="用户名" value="${(user.username)!''}">
             </div>
         </div>
     </div>
@@ -65,20 +65,7 @@
 <script>
     layui.use(['form'], function () {
         var url = '/user/edit.json';
-        $("#submit").click(function () {
-            $.post(url, $("#form").serializeJson(),
-                function (data) {
-                    debugger
-                    if (data.code == 200) {
-                        parent.window.dataReload();
-                        layer.msg(data.msg);
-                        Common.closeFrame();
-                    } else {
-                        layer.msg(data.msg);
-                    }
-                }
-            )
-        })
+        Common.updateData(url,"form","#submit");
         $("#cancel").click(function () {
             Common.closeFrame();
         })

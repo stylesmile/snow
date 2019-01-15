@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>layui.form小例子</title>
+    <title>登录</title>
     <link rel="stylesheet" href="/plugins/layui/css/layui.css" media="all">
 </head>
 <body>
@@ -15,7 +15,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">用户名</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="loginName" name="loginName" lay-verify="required" autocomplete="off" class="layui-input">
+                    <input type="text" id="username" name="username" lay-verify="required" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -44,12 +44,13 @@
     });
     $(function(){
         $("#login").click(function(){
-            var loginName = $("#loginName").val();
+            var username = $("#username").val();
             var password = $("#password").val();
             $.post("/login.json",
-                {loginName:loginName,password:password},
+                {username:username,password:password},
                 function(data){
-                    if(data.code==200){
+                debugger
+                    if(200==data.code){
                         location="/index.html"
                     }else{
                         layer.msg(data.msg);

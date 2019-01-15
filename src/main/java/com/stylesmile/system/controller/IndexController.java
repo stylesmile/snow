@@ -7,12 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 首页
@@ -38,15 +34,14 @@ public class IndexController {
     /**
      * 登陆方法
      *
-     * @param username
-     * @param password
-     * @return
+     * @param username 登陆用户名称
+     * @param password 密码
+     * @return Result
      */
     @PostMapping("/login.json")
     @ResponseBody
     public Result<String> login(String username, String password) {
-        Result<String> result = sysUserService.getSysUserByNameAndPassword(username, password);
-        return result;
+        return sysUserService.getSysUserByNameAndPassword(username, password);
     }
 
     /**
@@ -55,9 +50,7 @@ public class IndexController {
     @GetMapping("/index.html")
     public ModelAndView index() {
         ModelAndView view = new ModelAndView("/index");
-        Map map = new HashMap();
-        map.put("name", "张三");
-        view.addObject("data", map);
+        view.addObject("menu", "菜单");
         return view;
     }
 }

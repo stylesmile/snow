@@ -24,8 +24,6 @@ public class SysMenuController {
 
     /**
      * 菜单首页
-     *
-     * @return
      */
     @GetMapping(BASE_URL_PATH + "/index.html")
     @ResponseBody
@@ -37,7 +35,7 @@ public class SysMenuController {
     /**
      * 首页数据
      *
-     * @return
+     * @return List
      */
     @RequestMapping(BASE_URL_PATH + "/list.json")
     @ResponseBody
@@ -48,8 +46,6 @@ public class SysMenuController {
 
     /**
      * 进入新增菜单页面
-     *
-     * @return
      */
     @GetMapping(BASE_URL_PATH + "/add.html")
     public ModelAndView add() {
@@ -60,13 +56,13 @@ public class SysMenuController {
     /**
      * 新增菜单
      *
-     * @param menu
-     * @return
+     * @param menu 菜单信息
+     * @return Result
      */
     @PostMapping(BASE_URL_PATH + "/add.json")
     @ResponseBody
     public Result add(SysMenu menu) {
-        Boolean b = sysMenuService.saveOrUpdate(menu);
+        boolean b = sysMenuService.saveOrUpdate(menu);
         if (b) {
             return Result.success();
         } else {
@@ -77,8 +73,7 @@ public class SysMenuController {
     /**
      * 进入编辑菜单页面
      *
-     * @param id
-     * @return
+     * @param id 主键
      */
     @GetMapping(BASE_URL_PATH + "/edit.html")
     public ModelAndView edit(int id) {
@@ -91,8 +86,7 @@ public class SysMenuController {
     /**
      * 编辑菜单
      *
-     * @param sysMenu
-     * @return
+     * @param sysMenu 菜单
      */
     @PostMapping(BASE_URL_PATH + "/edit.json")
     @ResponseBody
@@ -108,8 +102,7 @@ public class SysMenuController {
     /**
      * 删除菜单
      *
-     * @param id
-     * @return
+     * @param id 主键
      */
     @PostMapping(BASE_URL_PATH + "/delete.json")
     @ResponseBody

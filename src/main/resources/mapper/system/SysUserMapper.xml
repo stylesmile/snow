@@ -22,7 +22,7 @@
         <set>
             <if test="username!=null and username !=''">username=#{username},</if>
             <if test="password!=null and password !=''">password=#{password},</if>
-            <if test="nickname!=null and nickname !=''">nickname=#{nickname,</if>
+            <if test="nickname!=null and nickname !=''">nickname=#{nickname},</if>
             <if test="phone!=null and phone !=''">phone=#{phone},</if>
             <if test="email!=null and email !=''">email=#{email}</if>
         </set>

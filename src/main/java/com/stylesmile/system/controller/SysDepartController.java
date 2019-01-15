@@ -7,7 +7,10 @@ import com.stylesmile.system.service.SysUserService;
 import com.stylesmile.util.Result;
 import com.stylesmile.util.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -21,6 +24,7 @@ public class SysDepartController {
 
     private final String BASE_URL_PATH = "/depart";
     private final String BASE_HTML_PATH = "/system/sysUser";
+
     @Autowired
     private SysUserService sysUserService;
 
