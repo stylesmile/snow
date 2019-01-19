@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stylesmile.system.dao.SysUserMapper">
+    <resultMap id="user" type="com.stylesmile.system.entity.SysUser"/>
+    <parameterMap id="user2" type="com.stylesmile.system.entity.SysUser"/>
+    <select id="getSysUserByNameAndPassword" resultMap="user">
+        SELECT  * FROM sys_user WHERE  username=#{username} AND password=#{password} limit 1
+    </select>
+    <select id="getUserList" resultMap="user">
+        SELECT id,username,nickname,phone,email FROM sys_user
+        WHERE del_flag = 0
+        <if test="username!=null and username !=''">and username like"%"#{username}"%" </if>
+        <if test="nickname!=null and nickname !=''">and nickname like concat(concat(#{nickname},'%'),'%')</if>
+        <if test="phone!=null and phone !=''">and phone like '%${phone}%'</if>
+        <if test="email!=null and email !=''">and email=#{email}</if>
+    </select>
+    <update id="updateUser">
+        UPDATE sys_user
+        <set>
+            <if test="username!=null and username !=''">username=#{username},</if>
+            <if test="password!=null and password !=''">password=#{password},</if>
+            <if test="nickname!=null and nickname !=''">nickname=#{nickname},</if>
+            <if test="phone!=null and phone !=''">phone=#{phone},</if>
+            <if test="email!=null and email !=''">email=#{email}</if>
+        </set>
+
+        WHERE id=#{id}
+    </update>
+    <update id="deleteUser">
+        update sys_user set del_flag=1 where id=#{id}
+    </update>
+
+</mapper>
