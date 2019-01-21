@@ -2,30 +2,42 @@ package com.stylesmile.system.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.common.service.BaseServiceImpl;
-import com.stylesmile.system.dao.SysUserMapper;
+import com.stylesmile.system.constant.UserConstant;
 import com.stylesmile.system.entity.SysUser;
+import com.stylesmile.system.entity.SysUserRole;
+import com.stylesmile.system.mapper.SysUserMapper;
+import com.stylesmile.system.mapper.SysUserRoleMapper;
 import com.stylesmile.system.query.SysUserQuery;
 import com.stylesmile.util.Result;
+import com.stylesmile.util.UUIDUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
+
 /**
- * @Description: 用户管理
- * @Author: chenye
- * @Date: 2019/1/8
+ * 用户管理
+ *
+ * @author chenye
+ * @date 2019/1/8
  */
 @Service("sysUserService")
 public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> implements SysUserService {
+    @Autowired
+    SysUserRoleMapper sysUserRoleMapper;
+
     /**
      * 通过用户名密码查询用户
      *
-     * @param username
-     * @param password
-     * @return
+     * @param username 用户名
+     * @param password 密码
+     * @return Result
      */
     @Override
-    public Result<String> getSysUserByNameAndPassword(String username, String password) {
+    public Result<String> getSysUserByNameAndPassword(String username, String password, HttpSession session) {
         SysUser user = baseMapper.getSysUserByNameAndPassword(username, password);
         if (user != null) {
+            session.setAttribute(UserConstant.LOGIN_USER, user);
             return Result.success("登陆成功");
         } else {
             return Result.fail("用户名或者密码错误");
@@ -35,8 +47,8 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
     /**
      * 查询用户
      *
-     * @param sysUserQuery
-     * @return
+     * @param sysUserQuery 条件
+     * @return Page
      */
     @Override
     public Page<SysUser> getUserList(SysUserQuery sysUserQuery) {
@@ -46,8 +58,8 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
     /**
      * 修改用户
      *
-     * @param user
-     * @return
+     * @param user 用户
+     * @return Boolean
      */
     @Override
     public Boolean updateUser(SysUser user) {

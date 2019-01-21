@@ -2,15 +2,16 @@ package com.stylesmile.system.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.common.service.BaseServiceImpl;
-import com.stylesmile.system.dao.SysRoleMapper;
 import com.stylesmile.system.entity.SysRole;
+import com.stylesmile.system.mapper.SysRoleMapper;
 import com.stylesmile.system.query.SysRoleQuery;
 import org.springframework.stereotype.Service;
 
 /**
- * @Description: 修改
- * @Author: StyleSmile
- * @Date: 2019/1/8
+ * 角色 RoleService
+ *
+ * @author StyleSmile
+ * @date 2019/1/8
  */
 @Service("sysRoleService")
 public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
@@ -28,8 +29,8 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> 
     /**
      * 删除
      *
-     * @param id
-     * @return
+     * @param id 主键
+     * @return Boolean
      */
     @Override
     public Boolean deleteRole(String id) {
@@ -39,12 +40,12 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> 
     /**
      * 检查code是否重复
      *
-     * @param code
-     * @return
+     * @param code 编号
+     * @return Integer
      */
     @Override
-    public Integer CheckDuplicate(String code) {
-        return baseMapper.CheckDuplicate(code);
+    public Integer checkDuplicate(String code) {
+        return baseMapper.checkDuplicate(code);
     }
 
 }

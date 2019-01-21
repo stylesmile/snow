@@ -13,9 +13,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class SysRole {
+    /**
+     * 主键
+     */
     private String id;
+    /**
+     * 名称
+     */
     private String name;
+    /**
+     * 编号
+     */
     private String code;
+    /**
+     * 排序
+     */
     private Integer sort;
+    /**
+     * 删除标识 0.未删除，1.删除
+     */
     private Integer delFlag;
 }

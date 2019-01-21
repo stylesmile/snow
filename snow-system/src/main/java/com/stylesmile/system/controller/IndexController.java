@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * 首页
  *
@@ -40,8 +42,8 @@ public class IndexController {
      */
     @PostMapping("/login.json")
     @ResponseBody
-    public Result<String> login(String username, String password) {
-        return sysUserService.getSysUserByNameAndPassword(username, password);
+    public Result<String> login(String username, String password, HttpSession session) {
+        return sysUserService.getSysUserByNameAndPassword(username, password,session);
     }
 
     /**

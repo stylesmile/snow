@@ -13,12 +13,32 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SysMenu {
+    /**
+     * 主键
+     */
     private int id;
+    /**
+     * 父级id
+     */
     private String parentId;
+    /**
+     * 名称
+     */
     private String name;
+    /**
+     * 编号
+     */
     private String code;
+    /**
+     * 地址
+     */
     private String url;
+    /**
+     * 类型
+     */
     private String type;
-    private String parentCode;
+    /**
+     * 排序
+     */
     private String sort;
 }

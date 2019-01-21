@@ -7,35 +7,40 @@ import com.stylesmile.system.query.SysRoleQuery;
 
 /**
  * @Description: 角色管理
- * @Author:       StyleSmile
- * @Date:         2019/1/8
- */ 
+ * @Author: StyleSmile
+ * @Date: 2019/1/8
+ */
 public interface SysRoleService extends BaseService<SysRole> {
     /**
      * 查询角色
-     * @param sysRoleQuery
-     * @return
+     *
+     * @param sysRoleQuery 条件
+     * @return Page
      */
     Page<SysRole> getRoleList(SysRoleQuery sysRoleQuery);
 
     /**
      * 修改角色
-     * @param user
-     * @return
+     *
+     * @param role 角色信息
+     * @return Boolean
      */
-    Boolean updateRole(SysRole user);
+    Boolean updateRole(SysRole role);
+
     /**
      * 删除角色
-     * @param id
-     * @return
+     *
+     * @param id 主键
+     * @return Boolean
      */
     Boolean deleteRole(String id);
 
     /**
      * 检查code是否重复
-     * @param code
-     * @return
+     *
+     * @param code 编号
+     * @return Integer
      */
-    Integer CheckDuplicate(String code);
+    Integer checkDuplicate(String code);
 
 }

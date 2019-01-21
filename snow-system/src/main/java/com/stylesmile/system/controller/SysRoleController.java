@@ -69,7 +69,7 @@ public class SysRoleController {
     public Result add(SysRole role) {
         role.setId(UUIDUtil.getUUID());
         //判断编号code是否重复
-        Integer count = sysRoleService.CheckDuplicate(role.getCode());
+        Integer count = sysRoleService.checkDuplicate(role.getCode());
         if (count > 0) {
             return Result.fail("编号重复!");
         }
@@ -83,6 +83,8 @@ public class SysRoleController {
 
     /**
      * 进入角色编辑页面
+     *
+     * @param id 主键
      */
     @GetMapping(BASE_URL_PATH + "/edit.html")
     public ModelAndView edit(String id) {
@@ -96,7 +98,7 @@ public class SysRoleController {
      * 角色编辑
      *
      * @param role 角色信息
-     * @return   Result
+     * @return Result
      */
     @PostMapping(BASE_URL_PATH + "/edit.json")
     @ResponseBody

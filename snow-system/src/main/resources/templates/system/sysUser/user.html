@@ -36,11 +36,21 @@
         </div>
     </div>
 </form>
-<table class="layui-hide" id="list" lay-filter="barDemo"></table>
+<table class="layui-hide" id="table-list" lay-filter="table-bar"></table>
+<!-- 头部工具栏模板： -->
+<script type="text/html" id="head-toolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+        <button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
+        <button class="layui-btn layui-btn-sm" lay-event="update">编辑</button>
+    </div>
+</script>
+<!-- 行工具栏模板 table 中操作按钮-->
 <script type="text/html" id="oper-col">
     <!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-xs" lay-event="update">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="userRole">用户角色管理</a>
 </script>
 <script>
     layui.use(['laydate', 'layer', 'table', 'carousel', 'upload', 'form'], function () {
@@ -53,7 +63,7 @@
         };
         //执行一个 table 实例
         usertTable = table.render({
-            elem: '#list'
+            elem: '#table-list'
             , height: 620
             , url: '/user/list.json' //数据接口
             //, where: $("#form").serializeJson() //参数
@@ -73,7 +83,8 @@
             , title: '用户表'
             , page: true //开启分页
             //, page: {"layout": ['count', 'prev', 'page', 'next']} //开启分页
-            , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            , toolbar: '#head-toolbar' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            , defaultToolbar: []
             //, totalRow: true //开启合计行
             , limit: 10
             , cols: [[ //表头
@@ -89,7 +100,7 @@
         //初始化搜索
         Page.initSearchForm($("#searchButton"), $("#searchForm"), usertTable, form);
         //监听头工具栏事件
-        table.on('toolbar(barDemo)', function (obj) {
+        table.on('toolbar(table-bar)', function (obj) { //注：toolbar 是工具条事件名，table-bar 是 table 原始容器的属性 lay-filter="对应的值"
             var checkStatus = table.checkStatus(obj.config.id)
                 , data = checkStatus.data; //获取选中的数据
             switch (obj.event) {
@@ -113,7 +124,6 @@
                         layer.msg('请选择一行');
                     } else {
                         Common.openConfirm("确认要删除这个用户?", function () {
-                            debugger;
                             Common.delete("/user/delete.json", {id: data.id}, '/user/index.html');
                         })
                     }
@@ -122,18 +132,19 @@
         });
 
         //监听行工具事件
-        table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+        table.on('tool(table-bar)', function (obj) { //注：tool 是工具条事件名，barDemo 是 table 原始容器的属性 lay-filter="对应的值"
             var data = obj.data //获得当前行数据
                 , layEvent = obj.event; //获得 lay-event 对应的值
-            if (layEvent === 'edit') {
-                var url = "/user/edit.html?id=" + obj.data.id;
+            if (layEvent === 'update') {
+                var url = "/user/edit.html?id=" + data.id;
                 Common.topOpenDlg(url, "用户管理>编辑", '25%', '42%');
             } else if (layEvent === 'del') {
                 Common.openConfirm("确认要删除这个用户?", function () {
-                    Common.post("/user/delete.json", {id: obj.data.id}, '/user/index.html');
+                    Common.deleteData("/user/delete.json", {id: data.id}, '/user/index.html');
                 })
-            } else if (layEvent === 'else') {
-                layer.msg('编辑操作');
+            } else if (layEvent === 'userRole') {
+                var url = "/userRole/userRole.html?userId=" + data.id;
+                Common.topOpenDlg(url, "用户管理>用户角色管理", '40%', '60%');
             }
         });
 

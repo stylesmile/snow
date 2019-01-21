@@ -1,4 +1,4 @@
-package com.stylesmile.system.dao;
+package com.stylesmile.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -25,6 +25,7 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
 
     Boolean deleteRole(@Param("id") String id);
 
-    Integer CheckDuplicate(@Param("code") String code);
+    Integer checkDuplicate(@Param("code") String code);
+
 
 }

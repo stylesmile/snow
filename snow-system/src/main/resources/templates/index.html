@@ -5,7 +5,7 @@
     <title>layui</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">-->
     <link rel="stylesheet" href="/plugins/layui/css/layui.css">
     <style>
         .allwidth_height {
@@ -59,7 +59,7 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">系统管理</a>
                     <dl class="layui-nav-child">
-                        <dd url="/user/index.html"><a href="javascript:;">用户管理</a></dd>
+                        <dd class="layui-this" url="/user/index.html"><a href="javascript:;">用户管理</a></dd>
                         <dd url="/menu/index.html"><a href="javascript:;">菜单管理</a></dd>
                         <dd url="/role/index.html"><a href="javascript:;">角色管理</a></dd>
                         <dd url="/role/index.html"><a href="javascript:;">组织机构管理</a></dd>
@@ -97,14 +97,18 @@
                                 class="layui-icon"></i>
                             菜单项
                         </a></dd>
-                        <dd class=""><a href="javascript:;" menuid="14" dataurl="/admin/function/index.do"><i
-                                class="layui-icon"></i>
-                            功能点管理
-                        </a></dd>
-                        <dd class=""><a href="javascript:;" menuid="15" dataurl="/admin/dict/index.do"><i
-                                class="layui-icon"></i>
-                            字典数据管理
-                        </a></dd>
+                        <dd class="">
+                            <a href="javascript:;" menuid="14" dataurl="/admin/function/index.do">
+                                <i class="layui-icon"></i>
+                                功能点管理
+                            </a>
+                        </dd>
+                        <dd class="">
+                            <a href="javascript:;" menuid="15" dataurl="/admin/dict/index.do">
+                                <i class="layui-icon"></i>
+                                字典数据管理
+                            </a>
+                        </dd>
                         <dd class=""><a href="javascript:;" menuid="21" dataurl="/admin/role/function.do"><i
                                 class="layui-icon"></i>
                             角色功能授权

@@ -1,28 +1,35 @@
 package com.stylesmile.system.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author chenye
  * @date 2018/12/10
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class SysDepart {
+    /**
+     * 主键
+     */
     private int id;
+    /**
+     * 父级id
+     */
     private String parentId;
+    /**
+     * 名称
+     */
     private String name;
+    /**
+     * 编号
+     */
     private String code;
-    private String parentCode;
+    /**
+     * 排序
+     */
     private String sort;
-
-    public SysDepart() {}
-
-    public SysDepart(int id, String parentId, String name, String code, String parentCode, String sort) {
-        this.id = id;
-        this.parentId = parentId;
-        this.name = name;
-        this.code = code;
-        this.parentCode = parentCode;
-        this.sort = sort;
-    }
 }

@@ -3,6 +3,7 @@ package com.stylesmile.system.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.system.entity.SysUser;
 import com.stylesmile.system.query.SysUserQuery;
+import com.stylesmile.system.service.SysRoleService;
 import com.stylesmile.system.service.SysUserService;
 import com.stylesmile.util.Result;
 import com.stylesmile.util.UUIDUtil;
@@ -26,6 +27,8 @@ public class SysUserController {
     private final String BASE_HTML_PATH = "/system/sysUser";
     @Autowired
     private SysUserService sysUserService;
+    @Autowired
+    private SysRoleService sysRoleService;
 
     /**
      * 菜单管理

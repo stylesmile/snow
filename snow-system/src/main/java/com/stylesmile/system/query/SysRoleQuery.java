@@ -15,5 +15,6 @@ public class SysRoleQuery extends Page<SysUser> {
     private String name;
     private String code;
     private String sort;
+    private String userId;
 
 }

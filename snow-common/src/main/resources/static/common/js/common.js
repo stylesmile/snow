@@ -27,30 +27,7 @@ var Common = {
     error: function (info) {
         Common.openConfirm(info)
     },
-    post: function (url, paras, nextUrl) {
-        $.ajax({
-            url: Common.ctxPath + url,
-            type: "POST",
-            data: paras,
-            success: function (rsp) {
-                debugger;
-                if (rsp.code != 200) {
-                    //成功
-                    parent.window.dataReload();
-                    dataReload();
-                    Common.info("删除成功");
-                    location.reload()
-                    //location.href=nextUrl;
-                } else {
-                    Common.error(rsp.msg);
-                }
-            },
-            error: function (rsp) {
-                Common.error(rsp.responseJSON.msg);
-            }
-        })
-    },
-    delete: function (url, paras, nextUrl) {
+    deleteData: function (url, paras, nextUrl) {
         $.ajax({
             url: Common.ctxPath + url,
             type: "POST",
@@ -180,8 +157,8 @@ var Common = {
             layer.close(index);
             callback(value);
         });
-    }
-    ,
+    },
+    //获取table选中的属性
     concatBatchId: function (data, idField) {
         var ids = ""
         var name = idField == null ? "id" : idField;

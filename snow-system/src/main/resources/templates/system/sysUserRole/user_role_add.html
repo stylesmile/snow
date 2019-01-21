@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, role-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>layui在线调试</title>
+    <!--<link rel="stylesheet" href="//res.layui.com/layui/dist/css/layui.css?t=1542630986927" media="all">-->
+    <link rel="stylesheet" href="/plugins/layui/css/layui.css" media="all">
+    <script src="/plugins/layui/layui.js"></script>
+    <script src="/plugins/jquery/jquery.min.js?v=1.12.4"></script>
+    <script src="/common/js/my-jquery.js?v=1.12.4"></script>
+    <script src="/common/js/common.js?v=1.12.4"></script>
+    <script src="/common/js/page.js?v=1.12.4"></script>
+    <style>
+        body {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<table class="layui-hide" id="table-list" lay-filter="table-bar"></table>
+<!-- 头部工具栏模板： -->
+<script type="text/html" id="head-toolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+    </div>
+</script>
+
+<blockquote class="layui-elem-quote layui-quote-nm layui-hide" id="footer">layui {{ layui.v }} 提供强力驱动</blockquote>
+
+
+<script>
+    layui.use(['laydate', 'layer', 'table', 'carousel', 'upload', 'form'], function () {
+        table = layui.table //表格
+            , form = layui.form;//表单
+        var roletTable = null;
+
+        //执行一个 table 实例
+        roletTable = table.render({
+            elem: '#table-list'
+            , height: 620
+            , url: '/role/list.json' //数据接口
+            //, where: $("#form").serializeJson() //参数
+            , response: {statusCode: 200}//200为成功状态码
+            , parseData: function (res) { //res 即为原始返回的数据
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": res.data.total, //解析数据长度
+                    "data": res.data.records //解析数据列表
+                };
+            }
+            , request: {
+                pageName: 'current' //页码的参数名称，默认：page
+                , limitName: 'size' //每页数据量的参数名，默认：limit
+            }
+            , title: '用户表'
+            , page: true //开启分页
+            //, page: {"layout": ['count', 'prev', 'page', 'next']} //开启分页
+            , toolbar: '#head-toolbar' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            , defaultToolbar: []
+            //, totalRow: true //开启合计行
+            , limit: 10
+            , cols: [[ //表头
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'code', title: '编号', width: 120}
+                , {field: 'name', title: '名称', width: 120, sort: true, totalRow: true}
+            ]]
+        });
+        //初始化搜索
+        Page.initSearchForm($("#searchButton"), $("#searchForm"), roletTable, form);
+        //监听头工具栏事件
+        table.on('toolbar(table-bar)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id)
+                , data = checkStatus.data; //获取选中的数据
+            switch (obj.event) {
+                case 'add':
+                    if (data.length === 0) {
+                        layer.msg('请选择一行');
+                        return;
+                    }
+                    var ids = Common.concatBatchId(data, "id");
+                    var url = "/userRole/addRole.json";
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {roleIds: ids},
+                        success(data) {
+                            if (data.code == 200) {
+                                layer.msg(data.msg);
+                                Common.closeFrame();
+                                parent.location.reload();
+                            } else {
+                                layer.msg(data.msg);
+                            }
+                        }
+                    })
+
+                    break;
+            }
+            ;
+        });
+    });
+</script>
+</body>
+</html>

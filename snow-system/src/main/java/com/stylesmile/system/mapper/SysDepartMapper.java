@@ -1,4 +1,4 @@
-package com.stylesmile.system.dao;
+package com.stylesmile.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.stylesmile.system.entity.SysDepart;

@@ -12,6 +12,8 @@
     <script src="/common/js/page.js?v=1.12.4"></script>
 </head>
 <body>
+<include src="/common/container.html"></include>
+
 <div class="layui-container layui-text" style="width: 100%;">
     <br>
     <!-- -->
@@ -26,9 +28,17 @@
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
-    <table id="table1" class="layui-table" lay-filter="table1"></table>
+    <table id="table-list" class="layui-table" lay-filter="table-bar"></table>
 </div>
-<!-- table 中操作按钮 -->
+<!-- 头部工具栏模板： -->
+<script type="text/html" id="head-toolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+        <button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
+        <button class="layui-btn layui-btn-sm" lay-event="update">编辑</button>
+    </div>
+</script>
+<!-- 行工具栏模板, table 中操作按钮 -->
 <script type="text/html" id="oper-col">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="add">新增</a>
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
@@ -60,7 +70,7 @@
                 treePidName: 'parentId',
                 treeDefaultClose: true,
                 treeLinkage: false,  //父级展开时是否自动展开所有子级
-                elem: '#table1',
+                elem: '#table-list',
                 type: 'POST',
                 url: '/menu/list.json',
                 response: {statusCode: 200},//200为成功状态码
@@ -93,7 +103,7 @@
             renderTable();
         });
         //监听工具条
-        table.on('tool(table1)', function (obj) {
+        table.on('tool(table-bar)', function (obj) {
             var data = obj.data;
             var layEvent = obj.event;
 
@@ -105,7 +115,7 @@
                 Common.topOpenDlg(url, "菜单管理>编辑", '25%', '44%');
             } else if (layEvent === 'del') {
                 Common.openConfirm("确认要删除这个用户?", function () {
-                    Common.post("/menu/delete.json", {id: data.id}, '/menu/index.html');
+                    Common.deleteData("/menu/delete.json", {id: data.id}, '/menu/index.html');
                 });
             }
         });
