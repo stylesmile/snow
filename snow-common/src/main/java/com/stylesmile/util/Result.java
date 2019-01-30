@@ -6,11 +6,12 @@ import java.util.List;
 
 /**
  * 描述: json格式数据返回对象，使用CustomResultSerializer 来序列化
+ *
  * @author : lijiazhi
  */
 @Data
 public class Result<T> {
-  
+
     private String code;
     private String msg;
     private T data;
@@ -20,6 +21,7 @@ public class Result<T> {
     public T getData() {
         return data;
     }
+
     public void setData(T data) {
         this.data = data;
     }
@@ -31,72 +33,64 @@ public class Result<T> {
 
     public static <T> Result<T> fail() {
         Result<T> ret = new Result<T>();
-    	ret.setCode(ReturnCode.FAIL.getCode());
-    	ret.setMsg(ReturnCode.FAIL.getDesc());
+        ret.setCode(ReturnCode.FAIL.getCode());
+        ret.setMsg(ReturnCode.FAIL.getDesc());
         return ret;
     }
-    
-    public static <T>  Result<T> fail(T data) {
+
+    public static <T> Result<T> fail(T data) {
         Result<T> ret = Result.fail();
-	    	ret.setData(data);
+        ret.setData(data);
         return ret;
     }
-    
-    public static <T>  Result<T> failMessage(String msg) {
-	    	Result<T> ret = Result.fail();
-	    	ret.setMsg(msg);
+
+    public static <T> Result<T> failMessage(String msg) {
+        Result<T> ret = Result.fail();
+        ret.setMsg(msg);
         return ret;
     }
-    public static <T>  Result<T> successMessage(String msg) {
-	    	Result<T> ret = Result.success();
-	    	ret.setMsg(msg);
-	    return ret;
+
+    public static <T> Result<T> successMessage(String msg) {
+        Result<T> ret = Result.success();
+        ret.setMsg(msg);
+        return ret;
     }
 
     public static <T> Result<T> success() {
-    	Result<T> ret = new Result<T>();
-    	ret.setCode(ReturnCode.SUCCESS.getCode());
-    	ret.setMsg(ReturnCode.SUCCESS.getDesc());
+        Result<T> ret = new Result<T>();
+        ret.setCode(ReturnCode.SUCCESS.getCode());
+        ret.setMsg(ReturnCode.SUCCESS.getDesc());
         return ret;
     }
-//    public static <T> Result<T> successData(Integer count,List<T> data) {
-//        Result<T> ret = new Result<T>();
-//        ret.setCode(ReturnCode.SUCCESS.getCode());
-//        ret.setMsg(ReturnCode.SUCCESS.getDesc());
-//        ret.setCount(10L);
-//        ret.setList(data);
-//        return ret;
-//    }
-// public static <T> Result<T> success(IPage iPage) {
-//        Result<T> ret = new Result<T>();
-//        ret.setCode(ReturnCode.SUCCESS.getCode());
-//        ret.setMsg(ReturnCode.SUCCESS.getDesc());
-//        ret.setCount(iPage.getTotal());
-//        ret.setData((T) iPage.getRecords());
-//        return ret;
-//    }
 
     public static <T> Result<T> success(T data) {
-	    	Result<T> ret = Result.success();
-	    	ret.setData(data);
-        return ret;
-    }
-    
-    public static <T> Result<T>  http404(T data) {
-	    	Result<T> ret = new Result<T>();
-	    	ret.setCode(ReturnCode.NOT_FOUND.getCode());
-	    	ret.setMsg(ReturnCode.NOT_FOUND.getDesc());
-	    	ret.setData(data);
-        return ret;
-    }
-    
-    public static <T> Result<T> http403(T data) {
-	    	Result<T> ret = new Result<T>();
-	    	ret.setCode(ReturnCode.ACCESS_ERROR.getCode());
-	    	ret.setMsg(ReturnCode.ACCESS_ERROR.getDesc());
-	    	ret.setData(data);
+        Result<T> ret = Result.success();
+        ret.setData(data);
         return ret;
     }
 
-  
+    public static <T> Result<T> http404(T data) {
+        Result<T> ret = new Result<T>();
+        ret.setCode(ReturnCode.NOT_FOUND.getCode());
+        ret.setMsg(ReturnCode.NOT_FOUND.getDesc());
+        ret.setData(data);
+        return ret;
+    }
+
+    public static <T> Result<T> http403(T data) {
+        Result<T> ret = new Result<T>();
+        ret.setCode(ReturnCode.ACCESS_ERROR.getCode());
+        ret.setMsg(ReturnCode.ACCESS_ERROR.getDesc());
+        ret.setData(data);
+        return ret;
+    }
+
+    public static<T> Result<T> bool(Boolean b) {
+        if (b) {
+            return Result.success();
+        } else {
+            return Result.fail();
+        }
+    }
+
 }

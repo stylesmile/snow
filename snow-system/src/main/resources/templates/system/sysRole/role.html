@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-   <!-- <meta name="viewport"
-          content="width=device-width, role-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+    <!-- <meta name="viewport"
+           content="width=device-width, role-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
     <title>layui在线调试</title>
     <!--<link rel="stylesheet" href="//res.layui.com/layui/dist/css/layui.css?t=1542630986927" media="all">-->
     <link rel="stylesheet" href="/plugins/layui/css/layui.css" media="all">
@@ -46,18 +46,18 @@
 </form>
 <table class="layui-hide" id="table-list" lay-filter="table-bar"></table>
 <!-- 头部工具栏模板： -->
-<!--<script type="text/html" id="head-toolbar">
+<script type="text/html" id="head-toolbar">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
         <button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
-        <button class="layui-btn layui-btn-sm" lay-event="update">编辑</button>
+        <button class="layui-btn layui-btn-sm" lay-event="edit">编辑</button>
     </div>
-</script>-->
+</script>=
 <!-- 行工具栏模板 table 中操作按钮-->
 <script type="text/html" id="oper-col">
-    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="roleMenu">角色菜单管理</a>
 </script>
 
 <blockquote class="layui-elem-quote layui-quote-nm layui-hide" id="footer">layui {{ layui.v }} 提供强力驱动</blockquote>
@@ -91,9 +91,7 @@
             }
             , title: '用户表'
             , page: true //开启分页
-            //, page: {"layout": ['count', 'prev', 'page', 'next']} //开启分页
-            , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
-            //, totalRow: true //开启合计行
+            , toolbar: '#head-toolbar' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
             , limit: 10
             , cols: [[ //表头
                 {type: 'checkbox', fixed: 'left'}
@@ -113,27 +111,21 @@
                     var url = "/role/add.html";
                     Common.topOpenDlg(url, "角色管理>新增", '25%', '42%');
                     break;
-                case 'update':
+                case 'edit':
                     if (data.length === 0) {
                         layer.msg('请选择一行');
                     } else if (data.length > 1) {
                         layer.msg('只能同时编辑一个');
                     } else {
-                        var data = Common.getOneFromTable(table, "list");
-                        var url = "/role/edit.html?id=" + data.id;
-                        Common.topOpenDlg(url, "用户管理>新增", '25%', '42%');
-                        //layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
+                        var url = "/role/edit.html?id=" + data[0].id;
+                        Common.topOpenDlg(url, "角色管管理>新增", '25%', '42%');
                     }
                     break;
                 case 'delete':
-                    debugger
                     if (data.length === 0) {
                         layer.msg('请选择一行');
                     } else {
-                        Common.openConfirm("确认要删除这些用户?", function () {
-                            debugger;
-                            Common.post("/role/delete.json", {id: data.id}, '/role/index.html');
-                        })
+                        Common.deleteData("/role/delete.json", {id: data[0].id}, '/role/index.html');
                     }
                     break;
             }
@@ -144,14 +136,15 @@
                 , layEvent = obj.event; //获得 lay-event 对应的值
             if (layEvent === 'add') {
                 var url = "/role/add.html?parentId=" + data.id;
-                Common.topOpenDlg(url, "菜单管理>新增", '27%', '52%');
+                Common.topOpenDlg(url, "角色管管理>新增", '27%', '52%');
             } else if (layEvent === 'edit') {
                 var url = "/role/edit.html?id=" + data.id;
-                Common.topOpenDlg(url, "菜单管理>编辑", '25%', '44%');
+                Common.topOpenDlg(url, "角色管管理>编辑", '25%', '44%');
             } else if (layEvent === 'del') {
-                Common.openConfirm("确认要删除这个用户?", function () {
-                    Common.deleteData("/role/delete.json", {id: data.id}, '/role/index.html');
-                });
+                Common.deleteData("/role/delete.json", {id: data.id}, '/role/index.html');
+            }else if (layEvent === 'roleMenu') {
+                var url = "/roleMenu/roleMenu.html?roleId=" + data.id;
+                Common.topOpenDlg(url, "角色管理>角色菜单管理", '400px', '400px');
             }
         });
     });

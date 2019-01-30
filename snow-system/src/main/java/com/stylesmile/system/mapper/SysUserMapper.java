@@ -2,7 +2,6 @@ package com.stylesmile.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.stylesmile.system.entity.SysRole;
 import com.stylesmile.system.entity.SysUser;
 import com.stylesmile.system.query.SysUserQuery;
 import org.apache.ibatis.annotations.Mapper;
@@ -10,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * 用户mapper
+ *
  * @author chenye
  * @date 2018/11/18
  */

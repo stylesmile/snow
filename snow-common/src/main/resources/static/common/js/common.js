@@ -28,26 +28,29 @@ var Common = {
         Common.openConfirm(info)
     },
     deleteData: function (url, paras, nextUrl) {
-        $.ajax({
-            url: Common.ctxPath + url,
-            type: "POST",
-            data: paras,
-            success: function (rsp) {
-                debugger;
-                if (rsp.code != 200) {
-                    //成功
-                    parent.window.dataReload();
-                    dataReload();
-                    Common.info("删除成功");
-                    location.reload()
-                    //location.href=nextUrl;
-                } else {
-                    Common.error(rsp.msg);
+        Common.openConfirm("确认要删除这个用户?", function () {
+            $.ajax({
+                url: Common.ctxPath + url,
+                type: "POST",
+                data: paras,
+                success: function (rsp) {
+                    debugger;
+                    if (rsp.code == 200) {
+                        //成功
+                        Common.info("删除成功");
+                        if(nextUrl){
+                            window.location.href = nextUrl;
+                        }else {
+                            window.location.reload();
+                        }
+                    } else {
+                        Common.error(rsp.msg);
+                    }
+                },
+                error: function (rsp) {
+                    Common.error(rsp.responseJSON.msg);
                 }
-            },
-            error: function (rsp) {
-                Common.error(rsp.responseJSON.msg);
-            }
+            })
         })
     },
     getOneFromTable: function (layuiTable, tableId) {
@@ -235,12 +238,12 @@ var Common = {
                     if (next != null) {
                         next(rsp.data);
                     } else {
-                        Common.success(rsp.responseJSON.msg);
+                        Common.success(rsp.msg);
                     }
                 }
             },
             error: function (rsp) {
-                Common.error(rsp.responseJSON.msg);
+                Common.error(rsp.msg);
             }
         })
     },

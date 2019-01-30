@@ -89,10 +89,7 @@
                     if (data.length === 0) {
                         layer.msg('只能同时删除一个');
                     } else {
-                        Common.openConfirm("确认要删除这些用户?", function () {
-                            debugger;
-                            Common.post("/role/delete.json", {id: data.id}, '/role/index.html');
-                        })
+                        Common.deleteData("/role/delete.json", {id: data.id}, '/role/index.html');
                     }
                     break;
             }
@@ -105,9 +102,7 @@
                 var url = "/userRole/userRoleAdd.html?id=" + data.id;
                 Common.topOpenDlg(url, "用户角色管理>新增", '70%', '90%')
             } else if (layEvent === 'del') {
-                Common.openConfirm("确认要删除这个用户?", function () {
-                    Common.deleteData("/userRole/deleteRole.json", {id: data.id}, '/user/userRole..html');
-                });
+                Common.deleteData("/userRole/deleteRole.json", {id: data.id}, '/user/userRole..html');
             }
         })
     });

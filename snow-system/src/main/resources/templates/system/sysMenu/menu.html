@@ -88,15 +88,14 @@
                 }
             });
         };
-
         renderTable();
         //张开
         $('#btn-expand').click(function () {
-            treetable.expandAll('#table1');
+            treetable.expandAll('#table-list');
         });
         //收缩
         $('#btn-fold').click(function () {
-            treetable.foldAll('#table1');
+            treetable.foldAll('#table-list');
         });
         //刷新
         $('#btn-refresh').click(function () {
@@ -106,17 +105,14 @@
         table.on('tool(table-bar)', function (obj) {
             var data = obj.data;
             var layEvent = obj.event;
-
             if (layEvent === 'add') {
                 var url = "/menu/add.html?parentId=" + data.id;
-                Common.topOpenDlg(url, "菜单管理>新增", '27%', '52%');
+                Common.topOpenDlg(url, "菜单管理>新增", '460px', '400px');
             } else if (layEvent === 'edit') {
                 var url = "/menu/edit.html?id=" + data.id;
-                Common.topOpenDlg(url, "菜单管理>编辑", '25%', '44%');
+                Common.topOpenDlg(url, "菜单管理>编辑", '460px', '400px');
             } else if (layEvent === 'del') {
-                Common.openConfirm("确认要删除这个用户?", function () {
-                    Common.deleteData("/menu/delete.json", {id: data.id}, '/menu/index.html');
-                });
+                Common.deleteData("/menu/delete.json", {id: data.id}, '/menu/index.html');
             }
         });
     });

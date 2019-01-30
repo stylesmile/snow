@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tree-table</title>
+    <!--<link rel="stylesheet" href="assets/common.css"/>-->
+    <link rel="stylesheet" href="/plugins/layui/css/layui.css" media="all">
+
+    <script src="/plugins/layui/layui.js"></script>
+    <script src="/plugins/layui/layui.all.js"></script>
+    <script src="/plugins/jquery/jquery.min.js?v=1.12.4"></script>
+
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/page.js?v=1.12.4"></script>
+
+    <!-- tree -->
+    <script src="/plugins/ztree/js/tree.js"></script>
+    <script src="/plugins/ztree/js/jquery.ztree.all.min.js"></script>
+    <link rel="stylesheet" href="/plugins/ztree/css/metroStyle.css" media="all">
+    <link rel="stylesheet" href="/plugins/ztree/css/zTreeStyle.css" media="all">
+
+</head>
+<body>
+<div class="layui-col-xs8">
+    <div class="site-block" style="height:400px;overflow:auto; ">
+        <div id="menuTree" class='ztree'></div>
+    </div>
+</div>
+<div class="layui-form-item" style="position:absolute;left:20px;bottom:0px;">
+    <button class="layui-btn layui-btn-danger" type="button" lay-submit lay-filter="form" id="submit">保存</button>
+</div>
+<script>
+
+    layui.use(['form'], function () {
+        var form = layui.form;
+        var zTreeObj = null;
+        var curentRoleId = "${roleId}";
+        $.get("/menu/list.json", {}, function (data) {
+            var setting = {
+                check: {radioType: true, enable: true},
+                data: { simpleData: { enable: true, idKey: "id", pIdKey: "parentId", rootPId: 0 } }
+            };
+            zTreeObj = $.fn.zTree.init($("#menuTree"), setting, data.data);
+            //加载该角色的菜单
+            loadMenuByRole(curentRoleId);
+        });
+
+        //根据角色加载子菜单
+        function loadMenuByRole(roleId) {
+            queryMenuByRole(roleId, function (menuIds) {
+                var node2 = zTreeObj.getNodesByParam("id", 1);
+                for (var i = 0; i < menuIds.length; i++) {
+                    var node = zTreeObj.getNodesByParam("id", menuIds[i]);
+
+                    //如果有子菜单，不选中该菜单
+                    if (node[0].children) {
+                        continue;
+                    }
+
+                    zTreeObj.checkNode(node[0], true, true);
+                }
+            });
+        }
+        //获取该用户的menu
+        function queryMenuByRole(roleId, callback) {
+            $.post("/roleMenu/roleMenu.json", {"roleId": roleId}, function (data) {
+                callback(data.data);
+            })
+        }
+        //保存
+        $("#save").click(function () {
+            //获取已选择的树节点
+            var nodes = zTreeObj.getCheckedNodes(true);
+            //获取已选择的树节点 id
+            var ids = Common.concatBatchId(nodes, "id");
+            //保存
+            saveFunctions(curentRoleId, ids)
+        });
+        //保存
+        function saveFunctions(roleId, ids) {
+            Common.post("/roleMenu/saveRoleMenu.json", {"roleId": this.roleId, "ids": ids}, function (data) {
+                Common.info("保存功能成功")
+            })
+        }
+    });
+
+</script>
+</body>
+</html>

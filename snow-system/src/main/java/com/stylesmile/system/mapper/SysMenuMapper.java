@@ -13,7 +13,7 @@ import java.util.List;
 @Mapper
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
     /**
-     * 删除
+     * 查询全部菜单
      *
      * @return list
      */

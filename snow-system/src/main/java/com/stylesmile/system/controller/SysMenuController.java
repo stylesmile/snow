@@ -66,12 +66,7 @@ public class SysMenuController {
     @PostMapping(BASE_URL_PATH + "/add.json")
     @ResponseBody
     public Result add(SysMenu menu) {
-        boolean b = sysMenuService.saveOrUpdate(menu);
-        if (b) {
-            return Result.success();
-        } else {
-            return Result.fail();
-        }
+        return Result.bool(sysMenuService.save(menu));
     }
 
     /**
@@ -80,7 +75,7 @@ public class SysMenuController {
      * @param id 主键
      */
     @GetMapping(BASE_URL_PATH + "/edit.html")
-    public ModelAndView edit(int id) {
+    public ModelAndView edit(Long id) {
         ModelAndView view = new ModelAndView(BASE_HTML_PATH + "/menu_edit");
         SysMenu menu = sysMenuService.getById(id);
         view.addObject("menu", menu);
@@ -95,12 +90,7 @@ public class SysMenuController {
     @PostMapping(BASE_URL_PATH + "/edit.json")
     @ResponseBody
     public Result edit(SysMenu sysMenu) {
-        Boolean b = sysMenuService.updateMenu(sysMenu);
-        if (b) {
-            return Result.success();
-        } else {
-            return Result.fail();
-        }
+        return Result.bool(sysMenuService.updateById(sysMenu));
     }
 
     /**
@@ -111,12 +101,7 @@ public class SysMenuController {
     @PostMapping(BASE_URL_PATH + "/delete.json")
     @ResponseBody
     public Result delete(String id) {
-        Boolean b = sysMenuService.deleteMenu(id);
-        if (b) {
-            return Result.success();
-        } else {
-            return Result.fail();
-        }
+        return Result.bool(sysMenuService.deleteMenu(id));
     }
 
 }

@@ -22,8 +22,10 @@ import java.util.List;
  * @author chenye
  * @date 2019/1/8
  */
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @Service("sysUserRoleService")
 public class SysUserRoleServiceImpl extends BaseServiceImpl<SysUserRoleMapper, SysUserRole> implements SysUserRoleService {
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     SysUserRoleMapper sysUserRoleMapper;
 
@@ -32,7 +34,7 @@ public class SysUserRoleServiceImpl extends BaseServiceImpl<SysUserRoleMapper, S
      *
      * @param roleIds 以逗号分隔的角色id字符串
      * @param session session
-     * @return
+     * @return Boolean
      */
     @Override
     public Boolean addRole(String roleIds, HttpSession session) {
@@ -60,7 +62,7 @@ public class SysUserRoleServiceImpl extends BaseServiceImpl<SysUserRoleMapper, S
      * 通过用户id 查询 该用户拥有的角色
      *
      * @param sysRoleQuery 用户id
-     * @return
+     * @return Page<SysRole>
      */
     @Override
     public Page<SysRole> getUserRoleList(SysRoleQuery sysRoleQuery) {

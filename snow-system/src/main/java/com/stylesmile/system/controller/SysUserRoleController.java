@@ -2,12 +2,10 @@ package com.stylesmile.system.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.system.entity.SysRole;
-import com.stylesmile.system.entity.SysUser;
-import com.stylesmile.system.entity.SysUserRole;
 import com.stylesmile.system.query.SysRoleQuery;
 import com.stylesmile.system.service.SysUserRoleService;
+import com.stylesmile.util.ConvertUtil;
 import com.stylesmile.util.Result;
-import com.stylesmile.util.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 用户管理
@@ -71,13 +71,7 @@ public class SysUserRoleController {
     @PostMapping(BASE_URL_PATH + "/addRole.json")
     @ResponseBody
     public Result addRole(String roleIds, HttpSession session) {
-
-        Boolean b = sysUserRoleService.addRole(roleIds, session);
-        if (b) {
-            return Result.success();
-        } else {
-            return Result.fail();
-        }
+        return Result.bool(sysUserRoleService.addRole(roleIds, session));
     }
 
     /**
@@ -86,12 +80,7 @@ public class SysUserRoleController {
     @PostMapping(BASE_URL_PATH + "/deleteRole.json")
     @ResponseBody
     public Result deleteRole(String id) {
-        Boolean b = sysUserRoleService.deleteRole(id);
-        if (b) {
-            return Result.success();
-        } else {
-            return Result.fail();
-        }
+        return Result.bool(sysUserRoleService.deleteRole(id));
     }
 
 }

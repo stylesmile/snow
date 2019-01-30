@@ -42,13 +42,13 @@
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
         <button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
-        <button class="layui-btn layui-btn-sm" lay-event="update">编辑</button>
+        <button class="layui-btn layui-btn-sm" lay-event="edit">编辑</button>
     </div>
 </script>
 <!-- 行工具栏模板 table 中操作按钮-->
 <script type="text/html" id="oper-col">
     <!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
-    <a class="layui-btn layui-btn-xs" lay-event="update">编辑</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="userRole">用户角色管理</a>
 </script>
@@ -108,24 +108,21 @@
                     var url = "/user/add.html";
                     Common.topOpenDlg(url, "用户管理>新增", '27%', '42%');
                     break;
-                case 'update':
+                case 'edit':
                     if (data.length === 0) {
                         layer.msg('请选择一行');
                     } else if (data.length > 1) {
                         layer.msg('只能同时编辑一个');
                     } else {
-                        var data = Common.getOneFromTable(table, "list");
-                        var url = "/user/edit.html?id=" + data.id;
-                        Common.topOpenDlg(url, "用户管理>新增", '25%', '42%');
+                        var url = "/user/edit.html?id=" + data[0].id;
+                        Common.topOpenDlg(url, "用户管理>编辑", '25%', '42%');
                     }
                     break;
                 case 'delete':
                     if (data.length === 0) {
                         layer.msg('请选择一行');
                     } else {
-                        Common.openConfirm("确认要删除这个用户?", function () {
-                            Common.delete("/user/delete.json", {id: data.id}, '/user/index.html');
-                        })
+                        Common.deleteData("/user/delete.json", {id: data[0].id}, '/user/index.html');
                     }
                     break;
             }
@@ -135,13 +132,11 @@
         table.on('tool(table-bar)', function (obj) { //注：tool 是工具条事件名，barDemo 是 table 原始容器的属性 lay-filter="对应的值"
             var data = obj.data //获得当前行数据
                 , layEvent = obj.event; //获得 lay-event 对应的值
-            if (layEvent === 'update') {
+            if (layEvent === 'edit') {
                 var url = "/user/edit.html?id=" + data.id;
                 Common.topOpenDlg(url, "用户管理>编辑", '25%', '42%');
             } else if (layEvent === 'del') {
-                Common.openConfirm("确认要删除这个用户?", function () {
-                    Common.deleteData("/user/delete.json", {id: data.id}, '/user/index.html');
-                })
+                Common.deleteData("/user/delete.json", {id: data.id}, '');
             } else if (layEvent === 'userRole') {
                 var url = "/userRole/userRole.html?userId=" + data.id;
                 Common.topOpenDlg(url, "用户管理>用户角色管理", '40%', '60%');

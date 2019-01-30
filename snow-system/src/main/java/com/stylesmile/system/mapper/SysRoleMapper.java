@@ -21,10 +21,28 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
      */
     Page<SysRole> getRoleList(SysRoleQuery sysRoleQuery);
 
+    /**
+     * 修改角色
+     *
+     * @param role 角色信息
+     * @return Boolean
+     */
     Boolean updateRole(SysRole role);
 
+    /**
+     * 删除角色
+     *
+     * @param id 主键
+     * @return Boolean
+     */
     Boolean deleteRole(@Param("id") String id);
 
+    /**
+     * 检查角色编号是否重复角色
+     *
+     * @param code 角色编号
+     * @return Boolean
+     */
     Integer checkDuplicate(@Param("code") String code);
 
 

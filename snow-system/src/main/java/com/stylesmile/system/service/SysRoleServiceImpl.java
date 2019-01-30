@@ -38,9 +38,9 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> 
     }
 
     /**
-     * 检查code是否重复
+     * 检查角色编号是否重复角色
      *
-     * @param code 编号
+     * @param code 角色编号
      * @return Integer
      */
     @Override

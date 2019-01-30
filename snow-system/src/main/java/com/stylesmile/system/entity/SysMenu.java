@@ -16,7 +16,7 @@ public class SysMenu {
     /**
      * 主键
      */
-    private int id;
+    private Long id;
     /**
      * 父级id
      */
@@ -30,7 +30,7 @@ public class SysMenu {
      */
     private String code;
     /**
-     * 地址
+     * 资源定位地址
      */
     private String url;
     /**

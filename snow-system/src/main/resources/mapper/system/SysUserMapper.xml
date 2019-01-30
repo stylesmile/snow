@@ -9,7 +9,7 @@
     <select id="getUserList" resultMap="user">
         SELECT id,username,nickname,phone,email FROM sys_user
         WHERE del_flag = 0
-        <if test="username!=null and username !=''">and username like"%"#{username}"%" </if>
+        <if test="username!=null and username !=''">and username like"%"#{username}"%"</if>
         <if test="nickname!=null and nickname !=''">and nickname like concat(concat(#{nickname},'%'),'%')</if>
         <if test="phone!=null and phone !=''">and phone like '%${phone}%'</if>
         <if test="email!=null and email !=''">and email=#{email}</if>
@@ -23,8 +23,10 @@
             <if test="phone!=null and phone !=''">phone=#{phone},</if>
             <if test="email!=null and email !=''">email=#{email}</if>
         </set>
-
         WHERE id=#{id}
+    </update>
+    <update id="deleteUser">
+        UPDATE sys_user set del_flag=1 WHERE id=#{id}
     </update>
 
 </mapper>
