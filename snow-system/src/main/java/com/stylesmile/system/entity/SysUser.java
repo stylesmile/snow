@@ -51,5 +51,8 @@ public class SysUser  {
         this.username = username;
         this.password = password;
     }
+    public SysUser(String username) {
+        this.username = username;
+    }
 
 }

@@ -1,4 +1,4 @@
-package com.stylesmile.system.constant;
+package com.stylesmile.constant;
 
 /**
  * 缓存相关常量
@@ -8,7 +8,7 @@ package com.stylesmile.system.constant;
  */
 public class CacheConstant {
     /**
-     * session中的用户
+     * 用户
      */
     public static final String CACHE_USER = "CACHE_USER";
 }

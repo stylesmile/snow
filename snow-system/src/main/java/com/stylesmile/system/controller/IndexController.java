@@ -28,7 +28,7 @@ public class IndexController {
     /**
      * 登陆页面
      */
-    @GetMapping("/")
+    @GetMapping(value = {"/","/login.html"})
     public String login() {
         return "/login";
     }

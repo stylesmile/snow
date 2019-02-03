@@ -22,7 +22,7 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @param password 密码
      * @return SysUser
      */
-    SysUser getSysUserByNameAndPassword(@Param("username") String username, @Param("password") String password);
+    SysUser getSysUserByNameAndPassword(@Param("username") String usernamed);
 
     /**
      * 用户i班级

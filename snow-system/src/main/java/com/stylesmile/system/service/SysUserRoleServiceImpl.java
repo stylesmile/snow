@@ -2,7 +2,7 @@ package com.stylesmile.system.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.common.service.BaseServiceImpl;
-import com.stylesmile.system.constant.UserConstant;
+import com.stylesmile.constant.SessionConstant;
 import com.stylesmile.system.entity.SysRole;
 import com.stylesmile.system.entity.SysUser;
 import com.stylesmile.system.entity.SysUserRole;
@@ -40,7 +40,7 @@ public class SysUserRoleServiceImpl extends BaseServiceImpl<SysUserRoleMapper, S
     public Boolean addRole(String roleIds, HttpSession session) {
         String[] roleIdss = roleIds.split(",");
         List<SysUserRole> sysUserRoleList = new ArrayList<>();
-        SysUser user = (SysUser) session.getAttribute(UserConstant.LOGIN_USER);
+        SysUser user = (SysUser) session.getAttribute(SessionConstant.LOGIN_USER);
         String userId = user.getId();
         for (String roleId : roleIdss) {
             SysUserRole userRole = new SysUserRole(UUIDUtil.getUUID(), userId, roleId);

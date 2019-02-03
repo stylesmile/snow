@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class SysDepartController {
 
     private final String BASE_URL_PATH = "/depart";
-    private final String BASE_HTML_PATH = "/system/sysUser";
+    private final String BASE_HTML_PATH = "/system/sysDepart";
 
     @Autowired
     private SysUserService sysUserService;
@@ -46,12 +46,7 @@ public class SysDepartController {
     @ResponseBody
     public Result add(SysUser user) {
         user.setId(UUIDUtil.getUUID());
-        Boolean b = sysUserService.saveOrUpdate(user);
-        if (b) {
-            return Result.success();
-        } else {
-            return Result.fail();
-        }
+        return Result.bool(sysUserService.saveOrUpdate(user));
     }
 
     @GetMapping(BASE_URL_PATH + "/edit.html")
@@ -65,29 +60,18 @@ public class SysDepartController {
     @PostMapping(BASE_URL_PATH + "/edit.json")
     @ResponseBody
     public Result edit(SysUser user) {
-        Boolean b = sysUserService.updateUser(user);
-        if (b) {
-            return Result.success();
-        } else {
-            return Result.fail();
-        }
+        return Result.bool(sysUserService.updateUser(user));
     }
 
     @PostMapping(BASE_URL_PATH + "/delete.json")
     @ResponseBody
     public Result delete(String id) {
-        Boolean b = sysUserService.deleteUser(id);
-        if (b) {
-            return Result.success();
-        } else {
-            return Result.fail();
-        }
+        return Result.bool(sysUserService.deleteUser(id));
     }
 
     @PostMapping(BASE_URL_PATH + "/list.json")
     public Result selectUserPage(SysUserQuery sysUserQuery) {
-        Page<SysUser> page = sysUserService.getUserList(sysUserQuery);
-        return Result.success(page);
+        return Result.success(sysUserService.getUserList(sysUserQuery));
     }
 
 }

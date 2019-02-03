@@ -73,12 +73,7 @@ public class SysRoleController {
         if (count > 0) {
             return Result.fail("编号重复!");
         }
-        Boolean b = sysRoleService.save(role);
-        if (b) {
-            return Result.success();
-        } else {
-            return Result.fail();
-        }
+        return Result.bool(sysRoleService.save(role));
     }
 
     /**
@@ -103,12 +98,7 @@ public class SysRoleController {
     @PostMapping(BASE_URL_PATH + "/edit.json")
     @ResponseBody
     public Result edit(SysRole role) {
-        Boolean b = sysRoleService.updateRole(role);
-        if (b) {
-            return Result.success();
-        } else {
-            return Result.fail();
-        }
+        return Result.bool(sysRoleService.updateRole(role));
     }
 
     /**
@@ -120,12 +110,7 @@ public class SysRoleController {
     @PostMapping(BASE_URL_PATH + "/delete.json")
     @ResponseBody
     public Result delete(String id) {
-        Boolean b = sysRoleService.deleteRole(id);
-        if (b) {
-            return Result.success();
-        } else {
-            return Result.fail();
-        }
+        return Result.bool(sysRoleService.deleteRole(id));
     }
 
 }

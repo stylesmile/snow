@@ -53,7 +53,7 @@ public class SysMenuController {
     @GetMapping(BASE_URL_PATH + "/add.html")
     public ModelAndView add(String parentId) {
         ModelAndView view = new ModelAndView(BASE_HTML_PATH + "/menu_add");
-        view.addObject("parentId",parentId);
+        view.addObject("parentId", parentId);
         return view;
     }
 
@@ -103,5 +103,4 @@ public class SysMenuController {
     public Result delete(String id) {
         return Result.bool(sysMenuService.deleteMenu(id));
     }
-
 }

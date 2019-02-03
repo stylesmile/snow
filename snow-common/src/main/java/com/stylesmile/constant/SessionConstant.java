@@ -1,4 +1,4 @@
-package com.stylesmile.system.constant;
+package com.stylesmile.constant;
 
 /**
  * 用户相关常量
@@ -6,9 +6,11 @@ package com.stylesmile.system.constant;
  * @author StyleSmile
  * @date 2019/01/20
  */
-public class UserConstant {
+public class SessionConstant {
     /**
      * session中的用户
      */
     public static final String LOGIN_USER = "LOGIN_USER";
+
+
 }

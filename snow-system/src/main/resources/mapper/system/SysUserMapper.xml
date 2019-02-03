@@ -4,7 +4,7 @@
     <resultMap id="user" type="com.stylesmile.system.entity.SysUser"/>
     <parameterMap id="user2" type="com.stylesmile.system.entity.SysUser"/>
     <select id="getSysUserByNameAndPassword" resultMap="user">
-        SELECT  * FROM sys_user WHERE  username=#{username} AND password=#{password} limit 1
+        SELECT  * FROM sys_user WHERE  username=#{username}limit 1
     </select>
     <select id="getUserList" resultMap="user">
         SELECT id,username,nickname,phone,email FROM sys_user

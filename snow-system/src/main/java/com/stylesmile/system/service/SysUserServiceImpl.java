@@ -2,15 +2,12 @@ package com.stylesmile.system.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.common.service.BaseServiceImpl;
-import com.stylesmile.system.constant.UserConstant;
+import com.stylesmile.constant.SessionConstant;
+import com.stylesmile.constant.UserConstant;
 import com.stylesmile.system.entity.SysUser;
-import com.stylesmile.system.entity.SysUserRole;
 import com.stylesmile.system.mapper.SysUserMapper;
-import com.stylesmile.system.mapper.SysUserRoleMapper;
 import com.stylesmile.system.query.SysUserQuery;
 import com.stylesmile.util.Result;
-import com.stylesmile.util.UUIDUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -23,8 +20,6 @@ import javax.servlet.http.HttpSession;
  */
 @Service("sysUserService")
 public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> implements SysUserService {
-    @Autowired
-    SysUserRoleMapper sysUserRoleMapper;
 
     /**
      * 通过用户名密码查询用户
@@ -35,12 +30,17 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
      */
     @Override
     public Result<String> getSysUserByNameAndPassword(String username, String password, HttpSession session) {
-        SysUser user = baseMapper.getSysUserByNameAndPassword(username, password);
-        if (user != null) {
-            session.setAttribute(UserConstant.LOGIN_USER, user);
-            return Result.success("登陆成功");
+        SysUser user = baseMapper.getSysUserByNameAndPassword(username);
+        if (null != user && password.equals(user.getPassword())) {
+            session.setAttribute(SessionConstant.LOGIN_USER, user);
+            return Result.successMessage("登陆成功");
         } else {
-            return Result.fail("用户名或者密码错误");
+            //数据库查不到超级管理员 用户，超级管理员用户就读取系统中写死的用户名，密码
+            if (null == user && UserConstant.SUPPER_ADMIN.equals(username) && UserConstant.SUPPER_ADMIN_PASSWORD.equals(password)) {
+                session.setAttribute(SessionConstant.LOGIN_USER, new SysUser(username));
+                return Result.successMessage("登陆成功");
+            }
+            return Result.failMessage("用户名或者密码错误");
         }
     }
 
