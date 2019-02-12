@@ -31,7 +31,7 @@ public class SysRoleMenuController {
      */
     @GetMapping(BASE_URL_PATH + "/roleMenu.html")
     @ResponseBody
-    public ModelAndView userRole(Long roleId) {
+    public ModelAndView userRole(Integer roleId) {
         ModelAndView view = new ModelAndView(BASE_HTML_PATH + "/role_menu");
         view.addObject("roleId", roleId);
         view.addObject("roleMenuList", sysRoleMenuService.getRoleMenuList(roleId));
@@ -45,7 +45,7 @@ public class SysRoleMenuController {
      */
     @PostMapping(BASE_URL_PATH + "/roleMenu.json")
     @ResponseBody
-    public Result<List<Long>> roleMenu(Long roleId) {
+    public Result<List<Integer>> roleMenu(Integer roleId) {
         return Result.success(sysRoleMenuService.getRoleMenuList(roleId));
     }
 
@@ -68,7 +68,7 @@ public class SysRoleMenuController {
      */
     @PostMapping(BASE_URL_PATH + "/saveRoleMenu.json")
     @ResponseBody
-    public Result saveRoleMenu(Long roleId, String menuIds) {
+    public Result saveRoleMenu(Integer roleId, String menuIds) {
         //增加
         return Result.bool(sysRoleMenuService.addRoleMenu(roleId, menuIds));
     }

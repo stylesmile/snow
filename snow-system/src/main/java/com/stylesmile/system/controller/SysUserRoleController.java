@@ -4,18 +4,15 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.system.entity.SysRole;
 import com.stylesmile.system.query.SysRoleQuery;
 import com.stylesmile.system.service.SysUserRoleService;
-import com.stylesmile.util.ConvertUtil;
 import com.stylesmile.util.Result;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 用户管理
@@ -28,7 +25,7 @@ public class SysUserRoleController {
 
     private final String BASE_URL_PATH = "/userRole";
     private final String BASE_HTML_PATH = "/system/sysUserRole";
-    @Autowired
+    @Resource
     private SysUserRoleService sysUserRoleService;
 
     /**
@@ -51,8 +48,8 @@ public class SysUserRoleController {
      */
     @GetMapping(BASE_URL_PATH + "/userRoleList.json")
     public Result selectRolePage(SysRoleQuery sysRoleQuery) {
-        Page<SysRole> ipage = sysUserRoleService.getUserRoleList(sysRoleQuery);
-        return Result.success(ipage);
+        Page<SysRole> page = sysUserRoleService.getUserRoleList(sysRoleQuery);
+        return Result.success(page);
     }
 
     /**

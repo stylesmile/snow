@@ -12,11 +12,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SysRoleMenu {
-    private Long id;
-    private Long roleId;
-    private Long menuId;
+    private Integer id;
+    private Integer roleId;
+    private Integer menuId;
 
-    public SysRoleMenu(Long roleId, Long menuId) {
+    public SysRoleMenu(Integer roleId, Integer menuId) {
         this.roleId = roleId;
         this.menuId = menuId;
     }

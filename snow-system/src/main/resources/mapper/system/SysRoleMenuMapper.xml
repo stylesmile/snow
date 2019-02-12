@@ -5,7 +5,7 @@
     <resultMap id="sysRoleMenu" type="com.stylesmile.system.entity.SysRoleMenu"/>
     <parameterMap id="sysRoleMenu2" type="com.stylesmile.system.entity.SysRoleMenu"/>
 
-    <select id="getRoleMenuList" parameterType="java.lang.Long" resultType="java.lang.Long">
+    <select id="getRoleMenuList" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         SELECT id FROM sys_role_menu WHERE role_id =#{roleId}
     </select>
 

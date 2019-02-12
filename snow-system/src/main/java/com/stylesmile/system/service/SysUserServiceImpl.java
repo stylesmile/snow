@@ -10,6 +10,7 @@ import com.stylesmile.system.query.SysUserQuery;
 import com.stylesmile.util.Result;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -20,7 +21,17 @@ import javax.servlet.http.HttpSession;
  */
 @Service("sysUserService")
 public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> implements SysUserService {
-
+    /**
+     * @param httpServletRequest
+     * @return SysUser
+     */
+    @Override
+    public SysUser getSessionUser(HttpServletRequest httpServletRequest){
+        HttpSession session = httpServletRequest.getSession();
+        //获取登录的session信息
+        Object user = session.getAttribute(SessionConstant.LOGIN_USER);
+        return (SysUser)user;
+    }
     /**
      * 通过用户名密码查询用户
      *

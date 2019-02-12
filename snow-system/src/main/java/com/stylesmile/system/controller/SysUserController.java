@@ -3,16 +3,15 @@ package com.stylesmile.system.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.system.entity.SysUser;
 import com.stylesmile.system.query.SysUserQuery;
-import com.stylesmile.system.service.SysRoleService;
 import com.stylesmile.system.service.SysUserService;
 import com.stylesmile.util.Result;
-import com.stylesmile.util.UUIDUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.annotation.Resource;
 
 /**
  * 用户管理
@@ -25,10 +24,8 @@ public class SysUserController {
 
     private final String BASE_URL_PATH = "/user";
     private final String BASE_HTML_PATH = "/system/sysUser";
-    @Autowired
+    @Resource
     private SysUserService sysUserService;
-    @Autowired
-    private SysRoleService sysRoleService;
 
     /**
      * 菜单管理
@@ -65,13 +62,7 @@ public class SysUserController {
     @PostMapping(BASE_URL_PATH + "/add.json")
     @ResponseBody
     public Result add(SysUser user) {
-        user.setId(UUIDUtil.getUUID());
-        Boolean b = sysUserService.saveOrUpdate(user);
-        if (b) {
-            return Result.success();
-        } else {
-            return Result.fail();
-        }
+        return Result.bool(sysUserService.saveOrUpdate(user));
     }
 
     /**

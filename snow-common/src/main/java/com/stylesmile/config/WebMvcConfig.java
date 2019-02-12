@@ -1,7 +1,5 @@
 package com.stylesmile.config;
 
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.stylesmile.constant.CacheConstant;
 import com.stylesmile.constant.SessionConstant;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -29,19 +27,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
         //addPathPattern后跟拦截地址，excludePathPatterns后跟排除拦截地址
         registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**")
                 //登录页面
-                .excludePathPatterns("/")
-                .excludePathPatterns("/login.html")
-                .excludePathPatterns("/login.json")
+                .excludePathPatterns("/").excludePathPatterns("/login.html").excludePathPatterns("/login.json")
                 //注册页面
                 .excludePathPatterns("/register.html")
                 //注册方法
                 .excludePathPatterns("/register.json")
                 //静态资源
-                .excludePathPatterns("/common/**")
-                .excludePathPatterns("/js/**")
-                .excludePathPatterns("/css/**")
-                .excludePathPatterns("/plugins/**");
-
+                .excludePathPatterns("/common/**").excludePathPatterns("/js/**").excludePathPatterns("/css/**").excludePathPatterns("/plugins/**");
     }
 
     class MyInterceptor implements HandlerInterceptor {
@@ -52,13 +44,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
         public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
             HttpSession session = httpServletRequest.getSession();
             //获取登录的session信息
-            String user =  session.getAttribute(SessionConstant.LOGIN_USER).toString();
-            if (StringUtils.isNotEmpty(user)) {
-                return true;
-            } else {
+            Object user = session.getAttribute(SessionConstant.LOGIN_USER);
+            if (null == user) {
                 //未登录自动跳转界面
                 httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.html");
                 return false;
+            } else {
+                return true;
             }
         }
 

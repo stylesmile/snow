@@ -15,16 +15,16 @@ public class ConvertUtil {
 	 * @param str
 	 * @return
 	 */
-	public static List<Long> strToLongList(String str){
+	public static List<Integer> strToLongList(String str){
 		if(str.length()==0){
 			return Collections.EMPTY_LIST;
 		}
 		String[] array = str.split(",");
-		List<Long> rets = new ArrayList(array.length);
+		List<Integer> rets = new ArrayList(array.length);
 		int i = 0;
 		for(String id:array){
 			try{
-				rets.add(Long.parseLong(id));
+				rets.add(Integer.parseInt(id));
 			}catch(Exception ex){
 				throw new RuntimeException("转化 "+str+ " 到Long数组出错");
 			}

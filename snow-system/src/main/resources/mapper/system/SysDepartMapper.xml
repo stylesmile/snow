@@ -3,14 +3,28 @@
 <mapper namespace="com.stylesmile.system.mapper.SysDepartMapper">
     <resultMap id="depart" type="com.stylesmile.system.entity.SysDepart"/>
     <parameterMap id="depart2" type="com.stylesmile.system.entity.SysDepart"/>
-    <select id="getSysDepartByNameAndPassword" resultMap="depart">
-        SELECT  * FROM sys_depart WHERE  login_name=#{loginName} AND password=#{password} limit 1
-    </select>
     <select id="getDepartList" resultMap="depart">
-        SELECT  * FROM sys_depart
+        SELECT * FROM sys_depart
+        where del_flag = 0
+        <if test="parentId!=null and parentId !=''">and parentId=#{parentId},</if>
+        <if test="name!=null and name !=''">and name=#{name},</if>
+        <if test="code!=null and code !=''">and code=#{code},</if>
+        <if test="parentCode!=null and parentCode !=''">and parentCode=#{parentCode},</if>
+        <if test="sort!=null and sort !=''">and sort=#{sort}</if>
+        order by sort desc
     </select>
-    <select id="selectPageVo" resultMap="depart" parameterMap="depart2">
-        SELECT  * FROM sys_depart
-    </select>
-
+    <update id="updateDepart" parameterMap="depart2">
+        UPDATE sys_depart
+        <set>
+            <if test="parentId!=null and parentId !=''">parentId=#{parentId},</if>
+            <if test="name!=null and name !=''">name=#{name},</if>
+            <if test="code!=null and code !=''">code=#{code},</if>
+            <if test="parentCode!=null and parentCode !=''">parentCode=#{parentCode},</if>
+            <if test="sort!=null and sort !=''">sort=#{sort}</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+    <update id="deleteDepart">
+        update sys_depart set del_flag=1 where id=#{id}
+    </update>
 </mapper>

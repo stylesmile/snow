@@ -15,11 +15,11 @@ public class SysDepart {
     /**
      * 主键
      */
-    private int id;
+    private Integer id;
     /**
      * 父级id
      */
-    private String parentId;
+    private Integer parentId;
     /**
      * 名称
      */

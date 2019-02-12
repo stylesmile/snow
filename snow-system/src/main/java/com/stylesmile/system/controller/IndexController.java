@@ -1,16 +1,22 @@
 package com.stylesmile.system.controller;
 
+import com.stylesmile.system.entity.SysMenu;
+import com.stylesmile.system.entity.SysUser;
+import com.stylesmile.system.service.SysMenuService;
 import com.stylesmile.system.service.SysUserService;
+import com.stylesmile.system.tree.MenuTree;
 import com.stylesmile.util.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * 首页
@@ -22,8 +28,11 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class IndexController {
 
-    @Autowired
+    @Resource
     SysUserService sysUserService;
+    @Resource
+    SysMenuService sysMenuService;
+
 
     /**
      * 登陆页面
@@ -47,12 +56,16 @@ public class IndexController {
     }
 
     /**
-     * 后台首页
+     * 后台管理系统首页
      */
     @GetMapping("/index.html")
-    public ModelAndView index() {
+    public ModelAndView index(HttpServletRequest httpServletRequest) {
         ModelAndView view = new ModelAndView("/index");
-        view.addObject("menu", "菜单");
+
+        //通过用户id获取当前用户的菜单
+        MenuTree menuTree = sysMenuService.getMenuListByUserId(httpServletRequest);
+        view.addObject("menuList", menuTree.getChildren());
         return view;
     }
+
 }

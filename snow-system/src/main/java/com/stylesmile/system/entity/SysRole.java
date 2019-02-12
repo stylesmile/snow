@@ -16,7 +16,7 @@ public class SysRole {
     /**
      * 主键
      */
-    private String id;
+    private Integer id;
     /**
      * 名称
      */

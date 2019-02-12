@@ -22,7 +22,7 @@ public interface SysRoleMenuService extends BaseService<SysRoleMenu> {
      * @param menuIds 以逗号分隔的菜单id
      * @return Boolean
      */
-    Boolean addRoleMenu(Long roleId, String menuIds);
+    Boolean addRoleMenu(Integer roleId, String menuIds);
 
     /**
      * 通过角色id 查询该用户拥有的菜单
@@ -30,5 +30,5 @@ public interface SysRoleMenuService extends BaseService<SysRoleMenu> {
      * @param roleId 角色id
      * @return List<SysRoleMenu>
      */
-    List<Long> getRoleMenuList(Long roleId);
+    List<Integer> getRoleMenuList(Integer roleId);
 }

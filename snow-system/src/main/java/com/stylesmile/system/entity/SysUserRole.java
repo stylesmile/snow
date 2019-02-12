@@ -18,15 +18,20 @@ public class SysUserRole implements java.io.Serializable {
     /**
      * 主键
      */
-    private String id;
+    private Integer id;
     /**
      * 用户id
      */
     @NotEmpty(message = "用户id不能为空")
-    private String userId;
+    private Integer userId;
     /**
      * 用户id
      */
     @NotEmpty(message = "用户id不能为空")
-    private String roleId;
+    private Integer roleId;
+
+    public SysUserRole(@NotEmpty(message = "用户id不能为空") Integer userId, @NotEmpty(message = "用户id不能为空") Integer roleId) {
+        this.userId = userId;
+        this.roleId = roleId;
+    }
 }

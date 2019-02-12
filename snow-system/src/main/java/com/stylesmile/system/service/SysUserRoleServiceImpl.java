@@ -8,7 +8,7 @@ import com.stylesmile.system.entity.SysUser;
 import com.stylesmile.system.entity.SysUserRole;
 import com.stylesmile.system.mapper.SysUserRoleMapper;
 import com.stylesmile.system.query.SysRoleQuery;
-import com.stylesmile.util.UUIDUtil;
+import com.stylesmile.util.ConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,12 +38,12 @@ public class SysUserRoleServiceImpl extends BaseServiceImpl<SysUserRoleMapper, S
      */
     @Override
     public Boolean addRole(String roleIds, HttpSession session) {
-        String[] roleIdss = roleIds.split(",");
+        List<Integer> roleIdss = ConvertUtil.strToLongList(roleIds);
         List<SysUserRole> sysUserRoleList = new ArrayList<>();
         SysUser user = (SysUser) session.getAttribute(SessionConstant.LOGIN_USER);
-        String userId = user.getId();
-        for (String roleId : roleIdss) {
-            SysUserRole userRole = new SysUserRole(UUIDUtil.getUUID(), userId, roleId);
+        Integer userId = user.getId();
+        for (Integer roleId : roleIdss) {
+            SysUserRole userRole = new SysUserRole(userId, roleId);
             sysUserRoleList.add(userRole);
         }
         if (sysUserRoleList.size() == 0) {

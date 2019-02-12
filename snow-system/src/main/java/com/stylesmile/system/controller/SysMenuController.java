@@ -29,7 +29,6 @@ public class SysMenuController {
      * 菜单首页
      */
     @GetMapping(BASE_URL_PATH + "/index.html")
-    @ResponseBody
     public ModelAndView index() {
         ModelAndView view = new ModelAndView(BASE_HTML_PATH + "/menu");
         return view;
@@ -43,8 +42,7 @@ public class SysMenuController {
     @GetMapping(BASE_URL_PATH + "/list.json")
     @ResponseBody
     public Result<List<SysMenu>> list() {
-        List<SysMenu> list = sysMenuService.geList();
-        return Result.success(list);
+        return Result.success(sysMenuService.getList());
     }
 
     /**
@@ -66,6 +64,7 @@ public class SysMenuController {
     @PostMapping(BASE_URL_PATH + "/add.json")
     @ResponseBody
     public Result add(SysMenu menu) {
+        menu.setId(null);
         return Result.bool(sysMenuService.save(menu));
     }
 

@@ -18,7 +18,7 @@ public class SysUser  {
     /**
      * 主键
      */
-    private String id;
+    private Integer id;
     /**
      * 登陆用户名
      */

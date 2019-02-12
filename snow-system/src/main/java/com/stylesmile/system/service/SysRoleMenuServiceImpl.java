@@ -25,17 +25,17 @@ public class SysRoleMenuServiceImpl extends BaseServiceImpl<SysRoleMenuMapper, S
      * @param menuIds 以逗号分隔的菜单id
      */
     @Override
-    public Boolean addRoleMenu(Long roleId, String menuIds) {
-        List<Long> all = ConvertUtil.strToLongList(menuIds);
+    public Boolean addRoleMenu(Integer roleId, String menuIds) {
+        List<Integer> all = ConvertUtil.strToLongList(menuIds);
         //待删除
-        List<Long> delIds = new ArrayList<>();
+        List<Integer> delIds = new ArrayList<>();
         //待新增的list
         List<SysRoleMenu> sysRoleMenuList = new ArrayList<>();
         //数据库中该角色的menuId 集合
-        List<Long> dbs = getRoleMenuList(roleId);
+        List<Integer> dbs = getRoleMenuList(roleId);
 
         //待删除
-        for (Long id : dbs) {
+        for (Integer id : dbs) {
             //如果新的集合中的数据，数据库没有
             if (!all.contains(id)) {
                 delIds.add(id);
@@ -46,7 +46,7 @@ public class SysRoleMenuServiceImpl extends BaseServiceImpl<SysRoleMenuMapper, S
             this.removeByIds(delIds);
         }
         //待新增
-        for (Long id : all) {
+        for (Integer id : all) {
             if (!dbs.contains(id)) {
                 SysRoleMenu sysRoleMenu = new SysRoleMenu(roleId, id);
                 sysRoleMenuList.add(sysRoleMenu);
@@ -66,7 +66,7 @@ public class SysRoleMenuServiceImpl extends BaseServiceImpl<SysRoleMenuMapper, S
      * @return List<SysRoleMenu>
      */
     @Override
-    public List<Long> getRoleMenuList(Long roleId) {
+    public List<Integer> getRoleMenuList(Integer roleId) {
         return baseMapper.getRoleMenuList(roleId);
     }
 }

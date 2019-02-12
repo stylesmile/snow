@@ -67,7 +67,6 @@ public class SysRoleController {
     @PostMapping(BASE_URL_PATH + "/add.json")
     @ResponseBody
     public Result add(SysRole role) {
-        role.setId(UUIDUtil.getUUID());
         //判断编号code是否重复
         Integer count = sysRoleService.checkDuplicate(role.getCode());
         if (count > 0) {

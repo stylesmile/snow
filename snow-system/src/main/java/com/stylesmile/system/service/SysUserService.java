@@ -2,11 +2,11 @@ package com.stylesmile.system.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.common.service.BaseService;
-import com.stylesmile.system.entity.SysRole;
 import com.stylesmile.system.entity.SysUser;
 import com.stylesmile.system.query.SysUserQuery;
 import com.stylesmile.util.Result;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -17,11 +17,14 @@ import javax.servlet.http.HttpSession;
  */
 public interface SysUserService extends BaseService<SysUser> {
 
+    public SysUser getSessionUser(HttpServletRequest httpServletRequest);
+
     /**
      * 通过用户名密码查询用户
      *
      * @param username 用户名
      * @param password 密码
+     * @param session  session
      * @return Result
      */
     Result<String> getSysUserByNameAndPassword(String username, String password, HttpSession session);

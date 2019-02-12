@@ -28,7 +28,7 @@
             </div>
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit lay-filter="*" id="login">登录</button>
+                    <button class="layui-btn" lay-submit lay-filter="*" id="login_button">登录</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
             </div>
@@ -40,24 +40,31 @@
 <script src="/plugins/jquery/jquery.min.js?v=1.12.4"></script>
 <script src="/plugins/layui/layui.js"></script>
 <script>
-    layui.use('form', function () {
-        var form = layui.form;
-        //各种基于事件的操作，下面会有进一步介绍
-    });
     $(function () {
-        $("#login").click(function () {
-            var username = $("#username").val();
-            var password = $("#password").val();
-            $.post("/login.json",
-                {username: username, password: password},
-                function (data) {
-                    if (200 == data.code) {
-                        location.href = "/index.html"
-                    } else {
-                        layer.msg(data.msg);
-                    }
-                }
-            );
+        $("#login_button").bind("click", function () {
+            login();
         })
+        //绑定 回车键（enter）
+        document.onkeyup = function(e){
+            if(e.keyCode==13){
+                login();
+            }
+        }
     });
+
+    function login() {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        $.post("/login.json",
+            {username: username, password: password},
+            function (data) {
+                if (200 == data.code) {
+                    location.href = "/index.html"
+                } else {
+                    layer.msg(data.msg);
+                }
+            }
+        );
+    }
+
 </script>

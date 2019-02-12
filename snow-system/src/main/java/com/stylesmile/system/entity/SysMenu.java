@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @author chenye
  * @date 2018/12/10
@@ -16,11 +18,12 @@ public class SysMenu {
     /**
      * 主键
      */
-    private Long id;
+    private Integer id;
     /**
      * 父级id
      */
-    private String parentId;
+    @NotNull(message="parentId不能为空")
+    private Integer parentId;
     /**
      * 名称
      */

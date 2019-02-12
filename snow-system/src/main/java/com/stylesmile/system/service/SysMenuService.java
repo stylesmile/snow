@@ -2,7 +2,9 @@ package com.stylesmile.system.service;
 
 import com.stylesmile.common.service.BaseService;
 import com.stylesmile.system.entity.SysMenu;
+import com.stylesmile.system.tree.MenuTree;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -18,7 +20,7 @@ public interface SysMenuService extends BaseService<SysMenu> {
      *
      * @return List<SysMenu>
      */
-    List<SysMenu> geList();
+    List<SysMenu> getList();
 
     /**
      * 修改菜单
@@ -36,4 +38,11 @@ public interface SysMenuService extends BaseService<SysMenu> {
      */
     Boolean deleteMenu(String id);
 
+    /**
+     * 通过用户id获取当前用户的菜单
+     *
+     * @param httpServletRequest request
+     * @return List<SysMenu>
+     */
+    MenuTree getMenuListByUserId(HttpServletRequest httpServletRequest);
 }
