@@ -64,7 +64,6 @@ public class SysMenuController {
     @PostMapping(BASE_URL_PATH + "/add.json")
     @ResponseBody
     public Result add(SysMenu menu) {
-        menu.setId(null);
         return Result.bool(sysMenuService.save(menu));
     }
 

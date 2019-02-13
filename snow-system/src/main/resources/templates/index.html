@@ -55,7 +55,6 @@
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-
             <ul class="layui-nav layui-nav-tree">
                 <!-- 导航 -->
                 <#list menuList as menu>
@@ -63,74 +62,11 @@
                         <a class="" href="javascript:;">${menu.name}</a>
                         <dl class="layui-nav-child">
                             <#list menu.children as child>
-                                <dd class="layui-this" url="${child.url}"><a href="javascript:;">${child.name}</a></dd>
+                                <dd  url="${child.url}"><a href="javascript:;">${child.name}</a></dd>
                             </#list>
                         </dl>
                     </li>
                 </#list>
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">系统管理test</a>
-                    <dl class="layui-nav-child">
-                        <dd class="layui-this" url="/user/index.html"><a href="javascript:;">用户管理</a></dd>
-                        <dd url="/menu/index.html"><a href="javascript:;">菜单管理</a></dd>
-                        <dd url="/role/index.html"><a href="javascript:;">角色管理</a></dd>
-                        <dd url="/depart/index.html"><a href="javascript:;">组织机构管理</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">解决方案</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
-                        <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="">超链接</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item layui-nav-itemed" datapid="8" style=""
-                    lay-id="271b1338-e1aa-464b-99ec-e67ce1a21b6e">
-                    <a href="javascript:;">基础管理<span class="layui-nav-more"></span></a>
-                    <dl class="layui-nav-child">
-                        <dd class="layui-this" lay-id="70570f0f-e443-4a1a-b62a-9f4102b4317c"><a href="javascript:;"
-                                                                                                menuid="10"
-                                                                                                dataurl="/user/index.do"><i
-                                class="layui-icon"></i>
-                            用户管理
-                        </a></dd>
-                        <dd class="" lay-id="e652408a-07f9-4824-9554-1950ffe53323"><a href="javascript:;" menuid="11"
-                                                                                      dataurl="/admin/org/index.do"><i
-                                class="layui-icon"></i>
-                            组织机构管理
-                        </a></dd>
-                        <dd class="" lay-id="aaae32de-425d-498b-9632-1414f64e6a76"><a href="javascript:;" menuid="12"
-                                                                                      dataurl="/admin/role/index.do"><i
-                                class="layui-icon"></i>
-                            角色管理
-                        </a></dd>
-                        <dd class=""><a href="javascript:;" menuid="13" dataurl="/admin/menu/index.do"><i
-                                class="layui-icon"></i>
-                            菜单项
-                        </a></dd>
-                        <dd class="">
-                            <a href="javascript:;" menuid="14" dataurl="/admin/function/index.do">
-                                <i class="layui-icon"></i>
-                                功能点管理
-                            </a>
-                        </dd>
-                        <dd class="">
-                            <a href="javascript:;" menuid="15" dataurl="/admin/dict/index.do">
-                                <i class="layui-icon"></i>
-                                字典数据管理
-                            </a>
-                        </dd>
-                        <dd class=""><a href="javascript:;" menuid="21" dataurl="/admin/role/function.do"><i
-                                class="layui-icon"></i>
-                            角色功能授权
-                        </a></dd>
-                        <dd class=""><a href="javascript:;" menuid="22" dataurl="/admin/role/data.do"><i
-                                class="layui-icon"></i>
-                            角色数据授权
-                        </a></dd>
-                    </dl>
-                </li>
             </ul>
         </div>
     </div>

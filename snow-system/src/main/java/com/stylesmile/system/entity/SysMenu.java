@@ -43,5 +43,5 @@ public class SysMenu {
     /**
      * 排序
      */
-    private String sort;
+    private Integer sort;
 }

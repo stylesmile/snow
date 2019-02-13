@@ -1,6 +1,7 @@
 package com.stylesmile.system.service;
 
 import com.stylesmile.common.service.BaseServiceImpl;
+import com.stylesmile.constant.UserConstant;
 import com.stylesmile.system.entity.SysMenu;
 import com.stylesmile.system.entity.SysUser;
 import com.stylesmile.system.mapper.SysMenuMapper;
@@ -59,14 +60,15 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenu> 
      * 通过用户id获取当前用户的菜单
      *
      * @param httpServletRequest request
-     * @return List<SysMenu>
+     * @return MenuTree
      */
     @Override
     public MenuTree getMenuListByUserId(HttpServletRequest httpServletRequest) {
         //获取session中的用户
         SysUser sysUser = sysUserService.getSessionUser(httpServletRequest);
-        //获取菜单list
-        List<SysMenu> sysMenuList =baseMapper.getMenuListByUserId(sysUser.getId());
+        Integer userId = sysUser.getUsername() == UserConstant.SUPPER_ADMIN ? sysUser.getId() : null;
+        //通过用户id获取菜单list
+        List<SysMenu> sysMenuList = baseMapper.getMenuListByUserId(userId);
         //list to tree
         return MenuTree.listToTree(sysMenuList);
     }

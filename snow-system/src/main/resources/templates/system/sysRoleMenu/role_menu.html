@@ -27,7 +27,7 @@
     </div>
 </div>
 <div class="layui-form-item" style="position:absolute;left:20px;bottom:0px;">
-    <button class="layui-btn layui-btn-danger" type="button" lay-submit lay-filter="form" id="submit">保存</button>
+    <button class="layui-btn layui-btn-danger" type="button" lay-submit lay-filter="form" id="save_button">保存</button>
 </div>
 <script>
 
@@ -44,7 +44,6 @@
             //加载该角色的菜单
             loadMenuByRole(curentRoleId);
         });
-
         //根据角色加载子菜单
         function loadMenuByRole(roleId) {
             queryMenuByRole(roleId, function (menuIds) {
@@ -68,7 +67,8 @@
             })
         }
         //保存
-        $("#save").click(function () {
+        $("#save_button").click(function () {
+            debugger;
             //获取已选择的树节点
             var nodes = zTreeObj.getCheckedNodes(true);
             //获取已选择的树节点 id
@@ -78,7 +78,7 @@
         });
         //保存
         function saveFunctions(roleId, ids) {
-            Common.post("/roleMenu/saveRoleMenu.json", {"roleId": this.roleId, "ids": ids}, function (data) {
+            Common.post("/roleMenu/saveRoleMenu.json", {"roleId": roleId, "menuIds": ids}, function (data) {
                 Common.info("保存功能成功")
             })
         }

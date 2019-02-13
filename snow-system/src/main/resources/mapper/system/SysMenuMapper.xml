@@ -15,13 +15,14 @@
     </select>
     <select id="getMenuListByUserId" resultMap="menu">
         SELECT sm.id,sm.name,sm.code,sm.url,sm.parent_id,sm.type FROM sys_menu sm
-        inner join sys_role_menu srm on srm.menu_id = sm.id
-        inner join sys_role sr on sr.id = srm.role_id
-        inner join sys_user_role sur on sur.role_id = sr.id
-        inner join sys_user su on su.id = sur.user_id
-        where su.del_flag = 0
-        <if test="userId!=null and userId != ''">and su.id=#{userId}</if>
-
+        <if test="userId!=null and userId != ''">
+            inner join sys_role_menu srm on srm.menu_id = sm.id
+            inner join sys_role sr on sr.id = srm.role_id
+            inner join sys_user_role sur on sur.role_id = sr.id
+            inner join sys_user su on su.id = sur.user_id
+            where su.del_flag = 0
+            and su.id=#{userId}
+        </if>
     </select>
     <update id="updateMenu" parameterMap="menu2">
         UPDATE sys_menu
