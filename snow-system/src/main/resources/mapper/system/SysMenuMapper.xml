@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.stylesmile.system.mapper.SysMenuMapper">
-    <resultMap id="menu" type="com.stylesmile.system.entity.SysMenu"/>
-    <parameterMap id="menu2" type="com.stylesmile.system.entity.SysMenu"/>
-    <select id="getMenuList" resultMap="menu">
+    <resultMap id="menu_result" type="com.stylesmile.system.entity.SysMenu"/>
+    <parameterMap id="menu_parameter" type="com.stylesmile.system.entity.SysMenu"/>
+    <select id="getMenuList" resultMap="menu_result" parameterMap="menu_parameter">
         SELECT * FROM sys_menu
         where del_flag = 0
         <if test="parentId!=null and parentId !=''">and parentId=#{parentId},</if>
@@ -13,7 +13,7 @@
         <if test="sort!=null and sort !=''">and sort=#{sort}</if>
         order by sort desc
     </select>
-    <select id="getMenuListByUserId" resultMap="menu">
+    <select id="getMenuListByUserId" resultMap="menu_result" parameterType="java.lang.Integer">
         SELECT sm.id,sm.name,sm.code,sm.url,sm.parent_id,sm.type FROM sys_menu sm
         <if test="userId!=null and userId != ''">
             inner join sys_role_menu srm on srm.menu_id = sm.id
@@ -24,7 +24,7 @@
             and su.id=#{userId}
         </if>
     </select>
-    <update id="updateMenu" parameterMap="menu2">
+    <update id="updateMenu" parameterMap="menu_parameter">
         UPDATE sys_menu
         <set>
             <if test="parentId!=null and parentId !=''">parentId=#{parentId},</if>

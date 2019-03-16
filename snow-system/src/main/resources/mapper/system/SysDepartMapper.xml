@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.stylesmile.system.mapper.SysDepartMapper">
-    <resultMap id="depart" type="com.stylesmile.system.entity.SysDepart"/>
-    <parameterMap id="depart2" type="com.stylesmile.system.entity.SysDepart"/>
-    <select id="getDepartList" resultMap="depart">
+    <resultMap id="depart_result" type="com.stylesmile.system.entity.SysDepart"/>
+    <parameterMap id="depart_parameter" type="com.stylesmile.system.entity.SysDepart"/>
+    <select id="getDepartList" resultMap="depart_result">
         SELECT * FROM sys_depart
         where del_flag = 0
         <if test="parentId!=null and parentId !=''">and parentId=#{parentId},</if>
@@ -13,7 +13,7 @@
         <if test="sort!=null and sort !=''">and sort=#{sort}</if>
         order by sort desc
     </select>
-    <update id="updateDepart" parameterMap="depart2">
+    <update id="updateDepart" parameterMap="depart_parameter">
         UPDATE sys_depart
         <set>
             <if test="parentId!=null and parentId !=''">parentId=#{parentId},</if>

@@ -1,5 +1,6 @@
 package com.stylesmile.system.controller;
 
+import com.stylesmile.log.aop.LogLoginAnnotation;
 import com.stylesmile.system.entity.SysMenu;
 import com.stylesmile.system.entity.SysUser;
 import com.stylesmile.system.service.SysMenuService;
@@ -58,6 +59,7 @@ public class IndexController {
     /**
      * 后台管理系统首页
      */
+    @LogLoginAnnotation("登陆日志")
     @GetMapping("/index.html")
     public ModelAndView index(HttpServletRequest httpServletRequest) {
         ModelAndView view = new ModelAndView("/index");

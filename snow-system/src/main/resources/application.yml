@@ -6,7 +6,10 @@ spring:
   profiles:
     active: dev
   aop:
-    proxy-target-class: true
+    # Whether subclass-based (CGLIB) proxies are to be created (true) asopposed to standard Java interface-based proxies (false).
+    proxy-target-class: false
+    #Add @EnableAspectJAutoProxy.
+    auto: true
 
 #mmybatis-plus   版本2和3用法有差别 此处为3
 mybatis-plus:
@@ -39,10 +42,4 @@ mybatis-plus:
 #logging:
 #  level: warn
 #beetl
-beetlsql:
-  enabled: false
-beetl:
-  enabled: true
-#,默认为true，即自动检查模板变化
-beetl-beetlsql:
-  dev: true
+
