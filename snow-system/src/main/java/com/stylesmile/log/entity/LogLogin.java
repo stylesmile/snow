@@ -34,15 +34,29 @@ public class LogLogin {
      */
     @NotEmpty(message = "用户名不能为空")
     private String username;
+    /**
+     * ip
+     */
+    @NotEmpty(message = "ip不能为空")
+    private String ip;
+    /**
+     * 状态，
+     * 0失败
+     * 1成功
+     */
+    @NotEmpty(message = "状态不能为空")
+    private int status;
     ;
     /**
      * 秘密啊
      */
     private Date createTime;
 
-    public LogLogin(String name,Integer userId, String username) {
+    public LogLogin(String name, Integer userId, String username, String ip,int status) {
         this.name = name;
         this.userId = userId;
         this.username = username;
+        this.ip = ip;
+        this.status = status;
     }
 }

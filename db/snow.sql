@@ -1,19 +1,41 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 192.168.141.128_3309
+Source Server         : 192.168.141.130_3309
 Source Server Version : 80013
-Source Host           : 192.168.141.129:3309
+Source Host           : 192.168.141.130:3309
 Source Database       : snow
 
 Target Server Type    : MYSQL
 Target Server Version : 80013
 File Encoding         : 65001
 
-Date: 2019-02-14 19:13:32
+Date: 2019-03-17 23:24:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for log_login
+-- ----------------------------
+DROP TABLE IF EXISTS `log_login`;
+CREATE TABLE `log_login` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `username` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ip` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `status` int(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of log_login
+-- ----------------------------
+INSERT INTO `log_login` VALUES ('1', '登陆日志', '1', 'admin', '1', '2019-03-17 15:05:52', '1');
+INSERT INTO `log_login` VALUES ('2', '登陆日志', '1', 'admin', '0:0:0:0:0:0:0:1', '2019-03-17 15:22:57', '1');
+INSERT INTO `log_login` VALUES ('3', '登陆日志', '1', 'admin', '0:0:0:0:0:0:0:1', '2019-03-17 15:23:13', '1');
 
 -- ----------------------------
 -- Table structure for sys_depart
@@ -84,7 +106,7 @@ CREATE TABLE `sys_menu` (
   `sort` int(3) DEFAULT '0',
   `del_flag` int(255) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -95,9 +117,10 @@ INSERT INTO `sys_menu` VALUES ('3', '0', '基础管理', '11', '1', '1', '2', '0
 INSERT INTO `sys_menu` VALUES ('4', '3', 'test', '11', 'test', '1', '0', '0');
 INSERT INTO `sys_menu` VALUES ('5', '1', '用户管理', '/user/index.html', 'userManage', '1', '1', '0');
 INSERT INTO `sys_menu` VALUES ('6', '1', '角色管理', '/role/index.html', 'roleManage', '1', '2', '0');
-INSERT INTO `sys_menu` VALUES ('7', '1', '组织机构管理', '/depart/index.html', 'departManage', '1', '4', '0');
-INSERT INTO `sys_menu` VALUES ('8', '2', '1', '1', '1', '1', '0', '1');
+INSERT INTO `sys_menu` VALUES ('7', '1', '部门管理', '/depart/index.html', 'departManage', '1', '4', '0');
+INSERT INTO `sys_menu` VALUES ('8', '2', '1', '1', '1', '1', '0', '0');
 INSERT INTO `sys_menu` VALUES ('9', '1', '字典数据管理', '', null, '1', '5', '0');
+INSERT INTO `sys_menu` VALUES ('10', '1', '用户部门', '/userDepart/index.html', '1', '1', '6', '0');
 
 -- ----------------------------
 -- Table structure for sys_role

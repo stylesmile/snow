@@ -1,8 +1,6 @@
 package com.stylesmile.system.controller;
 
 import com.stylesmile.log.aop.LogLoginAnnotation;
-import com.stylesmile.system.entity.SysMenu;
-import com.stylesmile.system.entity.SysUser;
 import com.stylesmile.system.service.SysMenuService;
 import com.stylesmile.system.service.SysUserService;
 import com.stylesmile.system.tree.MenuTree;
@@ -17,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 /**
  * 首页
@@ -38,7 +35,7 @@ public class IndexController {
     /**
      * 登陆页面
      */
-    @GetMapping(value = {"/","/login.html"})
+    @GetMapping(value = {"/", "/login.html"})
     public String login() {
         return "/login";
     }
@@ -49,17 +46,19 @@ public class IndexController {
      * @param username 登陆用户名称
      * @param password 密码
      * @return Result
+     * <p>
+     * LogLoginAnnotation 为登陆日志aop
      */
+    @LogLoginAnnotation("登陆日志")
     @PostMapping("/login.json")
     @ResponseBody
     public Result<String> login(String username, String password, HttpSession session) {
-        return sysUserService.getSysUserByNameAndPassword(username, password,session);
+        return sysUserService.getSysUserByNameAndPassword(username, password, session);
     }
 
     /**
      * 后台管理系统首页
      */
-    @LogLoginAnnotation("登陆日志")
     @GetMapping("/index.html")
     public ModelAndView index(HttpServletRequest httpServletRequest) {
         ModelAndView view = new ModelAndView("/index");
