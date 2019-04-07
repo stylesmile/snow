@@ -48,7 +48,7 @@
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">退了</a></li>
+            <li class="layui-nav-item"><a href="#" id="logOut">退了</a></li>
         </ul>
     </div>
     <!-- 左侧菜单导航 -->
@@ -97,6 +97,9 @@
             $("ul li dl dd").click(function () {
                 var url = $(this).attr("url");
                 $("#iframe-body").html("<iframe src='" + url + "' class='allwidth_height'></iframe>");
+            });
+            $("#logOut").on("click",function () {
+                location.href = "/logOut.do";
             })
         });
     });

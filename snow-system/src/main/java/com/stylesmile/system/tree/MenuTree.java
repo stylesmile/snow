@@ -37,7 +37,7 @@ public class MenuTree {
      * @param parent 父节点
      * @param sysMenuList list数据
      */
-    public static void buildMenuTree(MenuTree parent, List<SysMenu> sysMenuList) {
+    private static void buildMenuTree(MenuTree parent, List<SysMenu> sysMenuList) {
         Integer pid = parent.getId();
         //添加到子节点的待删除数据
         List<SysMenu> dels = new ArrayList<>();
@@ -58,11 +58,11 @@ public class MenuTree {
         }
     }
 
-    public MenuTree(Integer id) {
+    private MenuTree(Integer id) {
         this.id = id;
     }
 
-    public MenuTree(SysMenu sysMenu) {
+    private MenuTree(SysMenu sysMenu) {
         this.id = sysMenu.getId();
         this.parentId = sysMenu.getParentId();
         this.name = sysMenu.getName();

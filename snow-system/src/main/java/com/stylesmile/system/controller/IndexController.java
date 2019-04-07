@@ -57,6 +57,20 @@ public class IndexController {
     }
 
     /**
+     * 退出登陆
+     * 注销session，并跳转登陆页面
+     *
+     * @param httpSession session
+     */
+    @GetMapping("/logOut.do")
+    public ModelAndView logOut(HttpSession httpSession) {
+        //注销session
+        httpSession.invalidate();
+        //跳转登陆页面
+        return new ModelAndView("/login");
+    }
+
+    /**
      * 后台管理系统首页
      */
     @GetMapping("/index.html")
