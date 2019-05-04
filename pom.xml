@@ -62,20 +62,11 @@
     </dependencyManagement>
     <build>
         <plugins>
-<!--            <plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <fork>true</fork>
-                </configuration>
-            </plugin>-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <!--<parameters>true</parameters>-->
                 </configuration>
             </plugin>
         </plugins>
@@ -90,17 +81,6 @@
                 <enabled>true</enabled>
             </snapshots>
             <releases><!--正式版-->
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-        <repository>
-            <id>local-nexus</id>
-            <name>local-nexus</name>
-            <url>http://mvnrepository.com/repository/maven-public/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
                 <enabled>false</enabled>
             </releases>
         </repository>
