@@ -8,7 +8,7 @@
 软件架构说明
 springboot
 layui
-
+mybatisplus
 
 #### 安装教程
 
