@@ -5,7 +5,6 @@ import com.stylesmile.system.entity.SysRole;
 import com.stylesmile.system.query.SysRoleQuery;
 import com.stylesmile.system.service.SysRoleService;
 import com.stylesmile.util.Result;
-import com.stylesmile.util.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

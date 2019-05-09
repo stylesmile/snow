@@ -69,21 +69,21 @@ public class Result<T> {
         return ret;
     }
 
-    public static <T> Result<T> http404(T data) {
-        Result<T> ret = new Result<T>();
-        ret.setCode(ReturnCode.NOT_FOUND.getCode());
-        ret.setMsg(ReturnCode.NOT_FOUND.getDesc());
-        ret.setData(data);
-        return ret;
-    }
-
-    public static <T> Result<T> http403(T data) {
-        Result<T> ret = new Result<T>();
-        ret.setCode(ReturnCode.ACCESS_ERROR.getCode());
-        ret.setMsg(ReturnCode.ACCESS_ERROR.getDesc());
-        ret.setData(data);
-        return ret;
-    }
+//    public static <T> Result<T> http404(T data) {
+//        Result<T> ret = new Result<T>();
+//        ret.setCode(ReturnCode.NOT_FOUND.getCode());
+//        ret.setMsg(ReturnCode.NOT_FOUND.getDesc());
+//        ret.setData(data);
+//        return ret;
+//    }
+//
+//    public static <T> Result<T> http403(T data) {
+//        Result<T> ret = new Result<T>();
+//        ret.setCode(ReturnCode.ACCESS_ERROR.getCode());
+//        ret.setMsg(ReturnCode.ACCESS_ERROR.getDesc());
+//        ret.setData(data);
+//        return ret;
+//    }
 
     public static<T> Result<T> bool(Boolean b) {
         if (b) {

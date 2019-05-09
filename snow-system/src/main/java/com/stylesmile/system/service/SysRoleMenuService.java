@@ -2,9 +2,7 @@ package com.stylesmile.system.service;
 
 import com.stylesmile.common.service.BaseService;
 import com.stylesmile.system.entity.SysRoleMenu;
-import com.stylesmile.system.entity.SysUserRole;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**

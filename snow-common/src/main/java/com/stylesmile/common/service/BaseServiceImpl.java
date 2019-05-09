@@ -3,7 +3,6 @@ package com.stylesmile.common.service;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.stylesmile.constant.SessionConstant;
-import com.stylesmile.constant.UserConstant;
 
 import javax.servlet.http.HttpSession;
 
