@@ -97,7 +97,7 @@ public class SysUserController {
      */
     @PostMapping(BASE_URL_PATH + "/delete.json")
     @ResponseBody
-    public Result delete(String id) {
+    public Result delete(Integer id) {
         Boolean b = sysUserService.deleteUser(id);
         if (b) {
             return Result.success();

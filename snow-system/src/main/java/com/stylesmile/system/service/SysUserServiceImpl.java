@@ -84,8 +84,22 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
      * @return Boolean
      */
     @Override
-    public Boolean deleteUser(String id) {
+    public Boolean deleteUser(Integer id) {
         return baseMapper.deleteUser(id);
     }
+
+    /**
+     * 通过用户id ,请求路径判断是否有该路径的权限
+     *
+     * @param url    请求路径
+     * @param userId 用户id
+     * @return Integer
+     */
+    @Override
+    public Integer queryPermission(String url, Integer userId) {
+        return baseMapper.queryPermission(url,userId);
+    }
+
+
 
 }

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
  */
 public interface SysUserService extends BaseService<SysUser> {
 
-    public SysUser getSessionUser(HttpServletRequest httpServletRequest);
+    SysUser getSessionUser(HttpServletRequest httpServletRequest);
 
     /**
      * 通过用户名密码查询用户
@@ -51,6 +51,14 @@ public interface SysUserService extends BaseService<SysUser> {
      * @param id 主键
      * @return Boolean
      */
-    Boolean deleteUser(String id);
+    Boolean deleteUser(Integer id);
 
+    /**
+     * 通过用户id ,请求路径判断是否有该路径的权限
+     *
+     * @param url    请求路径
+     * @param userId 用户id
+     * @return Integer
+     */
+    Integer queryPermission(String url, Integer userId);
 }

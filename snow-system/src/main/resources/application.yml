@@ -14,7 +14,7 @@ spring:
   devtools:
     restart:
       #热部署，修改代码后不重启，默认为true重启
-      enabled: false
+      enabled: true
 
 #mmybatis-plus   版本2和3用法有差别 此处为3
 mybatis-plus:
