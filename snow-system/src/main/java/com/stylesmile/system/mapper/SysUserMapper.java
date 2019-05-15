@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.system.entity.SysUser;
 import com.stylesmile.system.query.SysUserQuery;
-import com.sun.org.glassfish.gmbal.ParameterNames;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -47,9 +46,10 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @return Page
      */
     Page<SysUser> getUserList(SysUserQuery sysUserQuery);
+
     /**
      * 根据url查询用户是否有该url的权限
-    *
+     *
      * @param url 路径
      * @return Page
      */
