@@ -1,7 +1,6 @@
 package com.stylesmile.aop.log;
 
 
-import com.stylesmile.log.entity.LogLogin;
 import com.stylesmile.log.service.LogLoginService;
 import com.stylesmile.system.entity.SysUser;
 import org.aspectj.lang.JoinPoint;
@@ -54,7 +53,7 @@ public class LogLoginAop {
      */
     //@After(("execution(public * com.stylesmile.system.controller..*.*(..)) && @annotation(LogLoginAnnotation)"))
     //@After("execution(public * com.stylesmile.system.controller..*.*(..))")
-    @Before("controllerLog()&& @annotation(LogLoginAnnotation)")
+    @Before("controllerLog()&& @annotation(LogLogin)")
     public void doAfterAdvice(JoinPoint joinPoint) {
         log.info("=========================================用户操作日志-后置通知开始执行......=========================================");
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
@@ -73,9 +72,8 @@ public class LogLoginAop {
             MethodSignature signature1 = (MethodSignature) joinPoint.getSignature();
             //获取切入点所在的方法
             Method method1 = signature1.getMethod();
-
             //获取操作
-            LogLoginAnnotation myLog = method1.getAnnotation(LogLoginAnnotation.class);
+            LogLogin myLog = method1.getAnnotation(LogLogin.class);
             if (myLog != null) {
                 String value = myLog.value();
                 //保存登陆日志信息入库
@@ -99,7 +97,7 @@ public class LogLoginAop {
         SysUser sysUser = (SysUser) logLoginService.getCurrentUser(request.getSession());
         if (null != sysUser) {
             //status = 1 登陆成功
-            LogLogin logLogin = new LogLogin(operationContent, sysUser.getId(), sysUser.getUsername(), ip, 1);
+            com.stylesmile.log.entity.LogLogin  logLogin = new com.stylesmile.log.entity.LogLogin(operationContent, sysUser.getId(), sysUser.getUsername(), ip, 1);
             logLoginService.save(logLogin);
         } else {
             //status = 0 登陆未成功

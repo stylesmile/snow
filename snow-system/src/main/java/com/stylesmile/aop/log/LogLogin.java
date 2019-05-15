@@ -13,6 +13,6 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface LogLoginAnnotation {
+public @interface LogLogin {
     String value();
 }

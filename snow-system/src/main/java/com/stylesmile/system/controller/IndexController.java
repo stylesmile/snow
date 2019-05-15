@@ -1,6 +1,6 @@
 package com.stylesmile.system.controller;
 
-import com.stylesmile.log.aop.LogLoginAnnotation;
+import com.stylesmile.aop.log.LogLogin;
 import com.stylesmile.system.service.SysMenuService;
 import com.stylesmile.system.service.SysUserService;
 import com.stylesmile.system.tree.MenuTree;
@@ -49,7 +49,7 @@ public class IndexController {
      * <p>
      * LogLoginAnnotation 为登陆日志aop
      */
-    @LogLoginAnnotation("登陆日志")
+    @LogLogin("登陆日志")
     @PostMapping("/login.json")
     @ResponseBody
     public Result<String> login(String username, String password, HttpSession session) {
