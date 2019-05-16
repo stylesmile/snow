@@ -75,10 +75,10 @@
             <name>aliyun-nexus</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public</url>
             <snapshots><!--快照-->
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </snapshots>
             <releases><!--正式版-->
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </releases>
         </repository>
     </repositories>
@@ -89,10 +89,10 @@
             <name>aliyun-nexus</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public</url>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </snapshots>
             <releases>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </releases>
         </pluginRepository>
     </pluginRepositories>
