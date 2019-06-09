@@ -28,7 +28,7 @@
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
-    <table id="table-list1" class="layui-table" lay-filter="table-bar"></table>
+    <table id="table-list" class="layui-table" lay-filter="table-bar"></table>
 </div>
 <!-- 头部工具栏模板： -->
 <script type="text/html" id="head-toolbar">
@@ -70,7 +70,7 @@
                 treePidName: 'parentId',
                 treeDefaultClose: true,
                 treeLinkage: false,  //父级展开时是否自动展开所有子级
-                elem: '#table-list1',
+                elem: '#table-list',
                 url: '/menu/list.json',
                 //response: {statusCode: 200},//200为成功状态码
                 // parseData: function (res) { //res 即为原始返回的数据
