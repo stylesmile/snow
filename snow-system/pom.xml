@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -10,7 +11,7 @@
     </parent>
     <groupId>com.stylesmile</groupId>
     <artifactId>snow-system</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>war</packaging>
 
     <name>snow-system</name>
@@ -31,5 +32,129 @@
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
+<!--    <build>-->
+<!--        <finalName>shiro-spring</finalName>-->
+<!--        &lt;!&ndash;使Maven打包时能打包src目录下的XML文件&ndash;&gt;-->
+<!--        <resources>-->
+<!--            <resource>-->
+<!--                <directory>src/main/java</directory>-->
+<!--                <includes>-->
+<!--                    <include>**/*.xml</include>-->
+<!--                </includes>-->
+<!--            </resource>-->
+<!--            <resource>-->
+<!--                <directory>src/main/resources</directory>-->
+<!--            </resource>-->
+<!--        </resources>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                <version>${maven-compiler.version}</version>-->
+<!--                <configuration>-->
+<!--                    <source>1.7</source>-->
+<!--                    <target>1.7</target>-->
+<!--                    <encoding>UTF-8</encoding>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--            <plugin>-->
+<!--                <groupId>org.eclipse.jetty</groupId>-->
+<!--                <artifactId>jetty-maven-plugin</artifactId>-->
+<!--                <version>${jetty.version}</version>-->
+<!--                <configuration>-->
+<!--                    <webApp>-->
+<!--                        <contextPath>/shiro-spring</contextPath>-->
+<!--                    </webApp>-->
+<!--                    <httpConnector>-->
+<!--                        &lt;!&ndash; 设置端口&ndash;&gt;-->
+<!--                        <port>8080</port>-->
+<!--                    </httpConnector>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
 
+<!--            &lt;!&ndash; MyBatis自动生成Mapper插件&ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <groupId>org.mybatis.generator</groupId>-->
+<!--                <artifactId>mybatis-generator-maven-plugin</artifactId>-->
+<!--                <version>${mybatis-generator.version}</version>-->
+<!--                <configuration>-->
+<!--                    <verbose>true</verbose>-->
+<!--                    <overwrite>true</overwrite>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+
+<!--            &lt;!&ndash; ProGuard混淆插件&ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <groupId>com.github.wvengen</groupId>-->
+<!--                <artifactId>proguard-maven-plugin</artifactId>-->
+<!--                <version>2.0.11</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        &lt;!&ndash; 混淆时刻，这里是打包的时候混淆&ndash;&gt;-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            &lt;!&ndash; 使用插件的什么功能，当然是混淆&ndash;&gt;-->
+<!--                            <goal>proguard</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash; 是否将生成的PG文件安装部署&ndash;&gt;-->
+<!--                    <attach>true</attach>-->
+<!--                    &lt;!&ndash; 是否混淆&ndash;&gt;-->
+<!--                    <obfuscate>true</obfuscate>-->
+<!--                    &lt;!&ndash; 指定生成文件分类 &ndash;&gt;-->
+<!--                    <attachArtifactClassifier>pg</attachArtifactClassifier>-->
+<!--                    <options>-->
+<!--                        &lt;!&ndash; JDK目标版本1.7&ndash;&gt;-->
+<!--                        <option>-target 1.7</option>-->
+<!--                        &lt;!&ndash; 不做收缩（删除注释、未被引用代码）&ndash;&gt;-->
+<!--                        <option>-dontshrink</option>-->
+<!--                        &lt;!&ndash; 不做优化（变更代码实现逻辑）&ndash;&gt;-->
+<!--                        <option>-dontoptimize</option>-->
+<!--                        &lt;!&ndash; 不路过非公用类文件及成员&ndash;&gt;-->
+<!--                        <option>-dontskipnonpubliclibraryclasses</option>-->
+<!--                        <option>-dontskipnonpubliclibraryclassmembers</option>-->
+<!--                        &lt;!&ndash; 优化时允许访问并修改有修饰符的类和类的成员 &ndash;&gt;-->
+<!--                        <option>-allowaccessmodification</option>-->
+<!--                        &lt;!&ndash; 确定统一的混淆类的成员名称来增加混淆&ndash;&gt;-->
+<!--                        <option>-useuniqueclassmembernames</option>-->
+<!--                        &lt;!&ndash; 不混淆所有包名，本人测试混淆后WEB项目问题实在太多，毕竟Spring配置中有大量固定写法的包名&ndash;&gt;-->
+<!--                        <option>-keeppackagenames</option>-->
+<!--                        &lt;!&ndash; 不混淆所有特殊的类&ndash;&gt;-->
+<!--                        <option>-keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,LocalVariable*Table,*Annotation*,Synthetic,EnclosingMethod</option>-->
+<!--                        &lt;!&ndash; 不混淆所有的set/get方法，毕竟项目中使用的部分第三方框架（例如Shiro）会用到大量的set/get映射&ndash;&gt;-->
+<!--                        <option>-keepclassmembers public class * {void set*(***);*** get*();}</option>-->
+
+<!--                        &lt;!&ndash; 不混淆job包下的所有类名，且类中的方法也不混淆&ndash;&gt;-->
+<!--                        <option>-keep class com.chinatelecom.gz.wy.zhukun.shiro_spring.job.** { &lt;methods&gt;; }</option>-->
+<!--                        &lt;!&ndash; 不混淆filter包下的所有类名，这里主要是对Shiro的路踢人过滤器混淆，对类的属性和方法进行了混淆&ndash;&gt;-->
+<!--                        <option>-keep class com.chinatelecom.gz.wy.zhukun.shiro_spring.filter.** </option>-->
+<!--                        &lt;!&ndash; 不混淆凭证包下的所有类名，但对类中的属性、方法进行混淆，原因是Spring配置中用到了这个类名&ndash;&gt;-->
+<!--                        <option>-keep class com.chinatelecom.gz.wy.zhukun.shiro_spring.credntials.** </option>-->
+<!--                        &lt;!&ndash; 混淆目的同上，这个是拦截器的包，包中有防止重复提交的拦截器&ndash;&gt;-->
+<!--                        <option>-keep class com.chinatelecom.gz.wy.zhukun.shiro_spring.interceptor.** </option>-->
+<!--                        &lt;!&ndash; 混淆目的同上，这个是域包，包中有用户登录域&ndash;&gt;-->
+<!--                        <option>-keep class com.chinatelecom.gz.wy.zhukun.shiro_spring.realm.** </option>-->
+<!--                        &lt;!&ndash; 不混淆model包中的所有类以及类的属性及方法，实体包，混淆了会导致ORM框架及前端无法识别&ndash;&gt;-->
+<!--                        <option>-keep class com.chinatelecom.gz.wy.zhukun.shiro_spring.model.** {*;}</option>-->
+<!--                        &lt;!&ndash; 以下两个包因为大部分是Spring管理的Bean，不对包类的类名进行混淆，但对类中的属性和方法混淆&ndash;&gt;-->
+<!--                        <option>-keep class com.chinatelecom.gz.wy.zhukun.shiro_spring.service.** </option>-->
+<!--                        <option>-keep class com.chinatelecom.gz.wy.zhukun.shiro_spring.dao.**</option>-->
+<!--                    </options>-->
+<!--                    <outjar>${project.build.finalName}-pg.jar</outjar>-->
+<!--                    &lt;!&ndash; 添加依赖，这里你可以按你的需要修改，这里测试只需要一个JRE的Runtime包就行了 &ndash;&gt;-->
+<!--                    <libs>-->
+<!--                        <lib>${java.home}/lib/rt.jar</lib>-->
+<!--                    </libs>-->
+<!--                    &lt;!&ndash; 加载文件的过滤器，就是你的工程目录了&ndash;&gt;-->
+<!--                    <inFilter>com/chinatelecom/gz/wy/zhukun/shiro_spring/**</inFilter>-->
+<!--                    &lt;!&ndash; 对什么东西进行加载，这里仅有classes成功，毕竟你也不可能对配置文件及JSP混淆吧&ndash;&gt;-->
+<!--                    <injar>classes</injar>-->
+<!--                    &lt;!&ndash; 输出目录&ndash;&gt;-->
+<!--                    <outputDirectory>${project.build.directory}</outputDirectory>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
 </project>

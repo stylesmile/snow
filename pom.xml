@@ -59,6 +59,23 @@
     </dependencyManagement>
     <build>
         <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <!--<plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>-->
             <!--<plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -66,13 +83,6 @@
                     <fork>true</fork>
                 </configuration>
             </plugin>-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <fork>true</fork>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
     <!-- maven 仓库 -->
@@ -82,24 +92,24 @@
             <name>aliyun-nexus</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public</url>
             <snapshots><!--快照-->
-                <enabled>true</enabled>
-            </snapshots>
-            <releases><!--正式版-->
                 <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
             </releases>
         </repository>
     </repositories>
-    <!--插件仓库-->
+    <!--maven插件仓库-->
     <pluginRepositories>
         <pluginRepository>
             <id>aliyun-nexus</id>
             <name>aliyun-nexus</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public</url>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </snapshots>
             <releases>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </releases>
         </pluginRepository>
     </pluginRepositories>
