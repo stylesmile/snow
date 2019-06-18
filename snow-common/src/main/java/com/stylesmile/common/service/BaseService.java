@@ -18,7 +18,4 @@ public interface BaseService<T> extends IService<T> {
      */
     Object getCurrentUser(HttpSession session);
 
-    static void main(String[] args) {
-        System.out.println(System.getProperty("user.dir"));
-    }
 }
