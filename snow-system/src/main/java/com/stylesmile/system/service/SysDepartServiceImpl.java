@@ -1,8 +1,11 @@
 package com.stylesmile.system.service;
 
 import com.stylesmile.common.service.BaseServiceImpl;
+import com.stylesmile.constant.CacheConstant;
 import com.stylesmile.system.entity.SysDepart;
 import com.stylesmile.system.mapper.SysDepartMapper;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +23,7 @@ public class SysDepartServiceImpl extends BaseServiceImpl<SysDepartMapper, SysDe
      *
      * @return List<SysDepart>
      */
+    @Cacheable(value = CacheConstant.DEPART_LIST_CACHE)
     @Override
     public List<SysDepart> getList() {
         return baseMapper.getDepartList();
@@ -33,7 +37,10 @@ public class SysDepartServiceImpl extends BaseServiceImpl<SysDepartMapper, SysDe
      */
     @Override
     public Boolean updateDepart(SysDepart sysDepart) {
-        return baseMapper.updateDepart(sysDepart);
+        boolean b = baseMapper.updateDepart(sysDepart);
+        //清除缓存
+        this.clearDepartListCache();
+        return b;
     }
 
     /**
@@ -44,7 +51,18 @@ public class SysDepartServiceImpl extends BaseServiceImpl<SysDepartMapper, SysDe
      */
     @Override
     public Boolean deleteDepart(String id) {
-        return baseMapper.deleteDepart(id);
+        Boolean b = baseMapper.deleteDepart(id);
+        //清除缓存
+        this.clearDepartListCache();
+        return b;
+    }
+
+    /**
+     * 清除部门缓存
+     */
+    @CacheEvict(value = CacheConstant.DEPART_LIST_CACHE)
+    @Override
+    public void clearDepartListCache() {
     }
 
 }

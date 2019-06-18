@@ -36,4 +36,9 @@ public interface SysDepartService extends BaseService<SysDepart> {
      */
     Boolean deleteDepart(String id);
 
+    /**
+     * 清除部门缓存
+     */
+    void clearDepartListCache();
+
 }
