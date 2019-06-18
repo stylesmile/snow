@@ -19,10 +19,11 @@ public interface SysUserRoleService extends BaseService<SysUserRole> {
     /**
      * 用户增加角色
      *
-     * @param id
+     * @param useId 用户id
+     * @param roleIds 角色id
      * @return Boolean
      */
-    Boolean addRole(String id, HttpSession session);
+    Boolean addRole(Integer useId, String roleIds, HttpSession session);
 
     /**
      * 删除角色
@@ -30,7 +31,7 @@ public interface SysUserRoleService extends BaseService<SysUserRole> {
      * @param id 主键
      * @return Boolean
      */
-    Boolean deleteRole(String id);
+    Boolean deleteRole(Integer id);
 
     /**
      * 通过用户id 查询该用户拥有的角色

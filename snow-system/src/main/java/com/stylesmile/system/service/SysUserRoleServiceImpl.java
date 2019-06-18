@@ -28,20 +28,18 @@ public class SysUserRoleServiceImpl extends BaseServiceImpl<SysUserRoleMapper, S
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     SysUserRoleMapper sysUserRoleMapper;
-
     /**
      * 用户添加角色
      *
+     * @param userId 用户id
      * @param roleIds 以逗号分隔的角色id字符串
      * @param session session
      * @return Boolean
      */
     @Override
-    public Boolean addRole(String roleIds, HttpSession session) {
+    public Boolean addRole(Integer userId, String roleIds, HttpSession session) {
         List<Integer> roleIdss = ConvertUtil.strToLongList(roleIds);
         List<SysUserRole> sysUserRoleList = new ArrayList<>();
-        SysUser user = (SysUser) session.getAttribute(SessionConstant.LOGIN_USER);
-        Integer userId = user.getId();
         for (Integer roleId : roleIdss) {
             SysUserRole userRole = new SysUserRole(userId, roleId);
             sysUserRoleList.add(userRole);
@@ -54,7 +52,7 @@ public class SysUserRoleServiceImpl extends BaseServiceImpl<SysUserRoleMapper, S
     }
 
     @Override
-    public Boolean deleteRole(String id) {
+    public Boolean deleteRole(Integer id) {
         return sysUserRoleMapper.deleteById(id) > 0 ? true : false;
     }
 

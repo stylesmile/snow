@@ -31,6 +31,7 @@
 
 
 <script>
+    var userId = ${userId}
     layui.use(['laydate', 'layer', 'table', 'carousel', 'upload', 'form'], function () {
         table = layui.table //表格
             , form = layui.form;//表单
@@ -85,7 +86,7 @@
                     $.ajax({
                         url: url,
                         type: 'POST',
-                        data: {roleIds: ids},
+                        data: {userId: userId, roleIds: ids},
                         success(data) {
                             if (data.code == 200) {
                                 layer.msg(data.msg);

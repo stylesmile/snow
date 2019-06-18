@@ -57,8 +57,9 @@ public class SysUserRoleController {
      */
     @GetMapping(BASE_URL_PATH + "/userRoleAdd.html")
     @ResponseBody
-    public ModelAndView userRoleAdd() {
+    public ModelAndView userRoleAdd(Integer userId) {
         ModelAndView view = new ModelAndView(BASE_HTML_PATH + "/user_role_add");
+        view.addObject("userId", userId);
         return view;
     }
 
@@ -67,8 +68,8 @@ public class SysUserRoleController {
      */
     @PostMapping(BASE_URL_PATH + "/addRole.json")
     @ResponseBody
-    public Result addRole(String roleIds, HttpSession session) {
-        return Result.bool(sysUserRoleService.addRole(roleIds, session));
+    public Result addRole(Integer userId, String roleIds, HttpSession session) {
+        return Result.bool(sysUserRoleService.addRole(userId, roleIds, session));
     }
 
     /**
@@ -76,7 +77,7 @@ public class SysUserRoleController {
      */
     @PostMapping(BASE_URL_PATH + "/deleteRole.json")
     @ResponseBody
-    public Result deleteRole(String id) {
+    public Result deleteRole(Integer id) {
         return Result.bool(sysUserRoleService.deleteRole(id));
     }
 
