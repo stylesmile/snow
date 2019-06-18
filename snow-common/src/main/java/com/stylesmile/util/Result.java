@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 描述: json格式数据返回对象，使用CustomResultSerializer 来序列化
  *
- * @author : lijiazhi
+ * @author : chenye
  */
 @Data
 public class Result<T> {
@@ -32,7 +32,7 @@ public class Result<T> {
     }
 
     public static <T> Result<T> fail() {
-        Result<T> ret = new Result<T>();
+        Result<T> ret = new Result<>();
         ret.setCode(ReturnCode.FAIL.getCode());
         ret.setMsg(ReturnCode.FAIL.getDesc());
         return ret;
@@ -57,7 +57,7 @@ public class Result<T> {
     }
 
     public static <T> Result<T> success() {
-        Result<T> ret = new Result<T>();
+        Result<T> ret = new Result<>();
         ret.setCode(ReturnCode.SUCCESS.getCode());
         ret.setMsg(ReturnCode.SUCCESS.getDesc());
         return ret;

@@ -5,27 +5,27 @@
     <parent>
         <groupId>com.stylesmile</groupId>
         <artifactId>snow</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${snow.version}</version>
         <relativePath>../pom.xml</relativePath><!-- lookup parent from repository -->
     </parent>
     <groupId>com.stylesmile</groupId>
     <artifactId>snow-system</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${snow.system.version}</version>
     <name>snow-system</name>
     <description>Demo project for Spring Boot</description>
-    <build>
+    <!--<build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
     <dependencies>
         <dependency>
             <groupId>com.stylesmile</groupId>
             <artifactId>snow-common</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${snow.common.version}</version>
         </dependency>
     </dependencies>
 

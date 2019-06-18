@@ -5,13 +5,13 @@
     <parent>
         <groupId>com.stylesmile</groupId>
         <artifactId>snow</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${snow.version}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <groupId>com.stylesmile</groupId>
     <artifactId>snow-common</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${snow.common.version}</version>
     <packaging>jar</packaging>
 
     <name>snow-common</name>
