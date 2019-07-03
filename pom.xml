@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.5.RELEASE</version>
+        <version>2.1.6.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -74,6 +74,17 @@
     <!-- maven 仓库 -->
     <repositories>
         <repository>
+            <id>Nexus</id>
+            <name>Releases</name>
+            <url>http://localhost:8081/repository/maven-public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+        <repository>
             <id>aliyun-nexus</id>
             <name>aliyun-nexus</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public</url>
@@ -87,6 +98,17 @@
     </repositories>
     <!--插件仓库-->
     <pluginRepositories>
+        <pluginRepository>
+            <id>Nexus</id>
+            <name>Releases</name>
+            <url>http://localhost:8081/repository/maven-public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </pluginRepository>
         <pluginRepository>
             <id>aliyun-nexus</id>
             <name>aliyun-nexus</name>
