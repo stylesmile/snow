@@ -10,19 +10,14 @@
     </parent>
 
     <groupId>com.stylesmile</groupId>
-    <artifactId>snow-common</artifactId>
-    <version>${snow.common.version}</version>
+    <artifactId>snow-util</artifactId>
+    <version>${snow.util.version}</version>
     <packaging>jar</packaging>
 
-    <name>snow-common</name>
-    <description>Demo project for Spring Boot</description>
+    <name>snow-util</name>
+    <description>snow-util project for Spring Boot</description>
 
     <dependencies>
-        <dependency>
-            <groupId>com.stylesmile</groupId>
-            <artifactId>snow-util</artifactId>
-            <version>${snow.util.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

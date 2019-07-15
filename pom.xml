@@ -14,6 +14,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <snow.version>1.2.1-SNAPSHOT</snow.version>
+        <snow.util.version>1.2.1-SNAPSHOT</snow.util.version>
         <snow.common.version>1.2.1-SNAPSHOT</snow.common.version>
         <snow.console.version>1.2.1-SNAPSHOT</snow.console.version>
         <!-- 打包时忽略测试 -->
@@ -30,6 +31,7 @@
 
     <description>Demo project for Spring Boot</description>
     <modules>
+        <module>snow-util</module>
         <module>snow-common</module>
         <module>snow-system</module>
     </modules>

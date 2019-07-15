@@ -2,9 +2,7 @@ package com.stylesmile.system.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.common.service.BaseServiceImpl;
-import com.stylesmile.constant.SessionConstant;
 import com.stylesmile.system.entity.SysRole;
-import com.stylesmile.system.entity.SysUser;
 import com.stylesmile.system.entity.SysUserRole;
 import com.stylesmile.system.mapper.SysUserRoleMapper;
 import com.stylesmile.system.query.SysRoleQuery;
@@ -25,13 +23,13 @@ import java.util.List;
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @Service("sysUserRoleService")
 public class SysUserRoleServiceImpl extends BaseServiceImpl<SysUserRoleMapper, SysUserRole> implements SysUserRoleService {
-    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     SysUserRoleMapper sysUserRoleMapper;
+
     /**
      * 用户添加角色
      *
-     * @param userId 用户id
+     * @param userId  用户id
      * @param roleIds 以逗号分隔的角色id字符串
      * @param session session
      * @return Boolean
