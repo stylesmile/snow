@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.stylesmile.system.mapper.SysRoleMapper">
-    <resultMap id="role" type="com.stylesmile.system.entity.SysRole"/>
-    <parameterMap id="role2" type="com.stylesmile.system.entity.SysRole"/>
+<mapper namespace="com.stylesmile.modules.system.mapper.SysRoleMapper">
+    <resultMap id="role" type="com.stylesmile.modules.system.entity.SysRole"/>
+    <parameterMap id="role2" type="com.stylesmile.modules.system.entity.SysRole"/>
     <select id="getRoleList" resultMap="role">
         SELECT * FROM sys_role
         WHERE del_flag = 0

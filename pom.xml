@@ -75,17 +75,18 @@
     </build>
     <!-- maven 仓库 -->
     <repositories>
-        <repository>
+        <!--<repository>
             <id>Nexus</id>
             <name>Releases</name>
-            <url>http://localhost:8081/repository/maven-public/</url>
+            &lt;!&ndash;<url>http://localhost:8081/repository/maven-public/</url>&ndash;&gt;
+            <url>http://localhost:8081/repository/ali-repo/</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
             <releases>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </releases>
-        </repository>
+        </repository>-->
         <repository>
             <id>aliyun-nexus</id>
             <name>aliyun-nexus</name>
@@ -94,23 +95,24 @@
                 <enabled>false</enabled>
             </snapshots>
             <releases><!--正式版-->
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </releases>
         </repository>
     </repositories>
     <!--插件仓库-->
     <pluginRepositories>
-        <pluginRepository>
+       <!-- <pluginRepository>
             <id>Nexus</id>
             <name>Releases</name>
-            <url>http://localhost:8081/repository/maven-public/</url>
+            &lt;!&ndash;<url>http://localhost:8081/repository/maven-public/</url>&ndash;&gt;
+            <url>http://localhost:8081/repository/ali-repo/</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
             <releases>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </releases>
-        </pluginRepository>
+        </pluginRepository>-->
         <pluginRepository>
             <id>aliyun-nexus</id>
             <name>aliyun-nexus</name>
@@ -119,7 +121,7 @@
                 <enabled>false</enabled>
             </snapshots>
             <releases>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </releases>
         </pluginRepository>
     </pluginRepositories>

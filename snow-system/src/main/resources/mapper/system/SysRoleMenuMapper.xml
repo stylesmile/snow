@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.stylesmile.system.mapper.SysRoleMenuMapper">
-    <resultMap id="menu" type="com.stylesmile.system.entity.SysMenu"/>
-    <resultMap id="sysRoleMenu" type="com.stylesmile.system.entity.SysRoleMenu"/>
-    <parameterMap id="sysRoleMenu2" type="com.stylesmile.system.entity.SysRoleMenu"/>
+<mapper namespace="com.stylesmile.modules.system.mapper.SysRoleMenuMapper">
+    <resultMap id="menu" type="com.stylesmile.modules.system.entity.SysMenu"/>
+    <resultMap id="sysRoleMenu" type="com.stylesmile.modules.system.entity.SysRoleMenu"/>
+    <parameterMap id="sysRoleMenu2" type="com.stylesmile.modules.system.entity.SysRoleMenu"/>
 
     <select id="getRoleMenuList" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         SELECT id FROM sys_role_menu WHERE role_id =#{roleId}

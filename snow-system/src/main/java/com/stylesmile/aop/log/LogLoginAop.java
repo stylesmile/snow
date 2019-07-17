@@ -1,8 +1,8 @@
 package com.stylesmile.aop.log;
 
 
-import com.stylesmile.log.service.LogLoginService;
-import com.stylesmile.system.entity.SysUser;
+import com.stylesmile.modules.log.service.LogLoginService;
+import com.stylesmile.modules.system.entity.SysUser;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -40,7 +40,7 @@ public class LogLoginAop {
     /**
      * 切入点描述 这个是controller包的切入点
      */
-    @Pointcut("execution(public * com.stylesmile.system.controller..*.*(..))")
+    @Pointcut("execution(public * com.stylesmile.modules.system.controller..*.*(..))")
     public void controllerLog() {
         //签名，可以理解成这个切入点的一个名称
     }
@@ -97,7 +97,7 @@ public class LogLoginAop {
         SysUser sysUser = (SysUser) logLoginService.getCurrentUser(request.getSession());
         if (null != sysUser) {
             //status = 1 登陆成功
-            com.stylesmile.log.entity.LogLogin  logLogin = new com.stylesmile.log.entity.LogLogin(operationContent, sysUser.getId(), sysUser.getUsername(), ip, 1);
+            com.stylesmile.modules.log.entity.LogLogin logLogin = new com.stylesmile.modules.log.entity.LogLogin(operationContent, sysUser.getId(), sysUser.getUsername(), ip, 1);
             logLoginService.save(logLogin);
         } else {
             //status = 0 登陆未成功

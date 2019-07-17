@@ -2,6 +2,8 @@ package com.stylesmile.common.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -18,4 +20,17 @@ public interface BaseService<T> extends IService<T> {
      */
     Object getCurrentUser(HttpSession session);
 
+    /**
+     * 获取 HttpRequest
+     *
+     * @return HttpRequest
+     */
+    HttpServletRequest getRequest();
+
+    /**
+     * 获取 HttpServletResponse
+     *
+     * @return HttpServletResponse
+     */
+    HttpServletResponse getResponse();
 }
