@@ -13,14 +13,17 @@
     <version>${snow.system.version}</version>
     <name>snow-system</name>
     <description>Demo project for Spring Boot</description>
-    <!--<build>
+    <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
             </plugin>
         </plugins>
-    </build>-->
+    </build>
     <dependencies>
         <dependency>
             <groupId>com.stylesmile</groupId>
