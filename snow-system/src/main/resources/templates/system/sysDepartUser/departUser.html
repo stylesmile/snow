@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tree-table</title>
+    <!--<link rel="stylesheet" href="assets/common.css"/>-->
+    <link rel="stylesheet" href="/plugins/layui/css/layui.css" media="all">
+    <script src="/plugins/layui/layui.js"></script>
+    <script src="/plugins/layui/layui.all.js"></script>
+    <script src="/plugins/jquery/jquery.min.js?v=1.12.4"></script>
+    <script src="/plugins/ztree/js/jquery.ztree.all.min.js?v=1.12.4"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/page.js?v=3.5.29"></script>
+</head>
+<body>
+<!--<include src="/common/container.html"></include>-->
+
+<div style="width: 100%;float: left;">
+
+    <div id="depart-table-list"
+         style="border: 1px solid red;float: left;width:10%;height: 200px;">
+    </div>
+    <div id="user-table-list"
+         style="border: 1px solid red;float: left;width:10%;height: 200px;">
+    </div>
+</div>
+
+<script>
+    layui.config({
+        base: '/plugins/layui/'
+    }).extend({
+        treetable: '/treetable-lay/treetable'
+    }).use(['layer', 'table', 'treetable'], function () {
+        var $ = layui.jquery
+            , table = layui.table
+            , layer = layui.layer
+            , treetable = layui.treetable
+            , renderTable = null
+            , form = layui.form;//表单
+        window.dataReload = function () {
+            Page.initSearchForm($("#btn-refresh"), null, renderTable, form)
+        };
+        // 渲染表格
+        renderTable = function () {
+            //layer.load(2);
+            treetable.render({
+                treeColIndex: 1, //树形图标显示在第几列
+                treeSpid: 0,    //最上级的父级id
+                treeIdName: 'id',
+                treePidName: 'parentId',
+                treeDefaultClose: false, //初始化是否关闭树
+                treeLinkage: false,  //父级展开时是否自动展开所有子级
+                elem: '#depart-table-list',
+                url: '/depart/list.json',
+                page: false,
+                cols: [[
+                    {type: 'numbers'},
+                    {field: 'name', title: 'name'}
+                ]],
+                done: function () {
+                    layer.closeAll('loading');
+                }
+            });
+        };
+        renderTable();
+    });
+</script>
+
+<script>
+    layui.use(['laydate', 'layer', 'table', 'carousel', 'upload', 'form'], function () {
+        var laydate = layui.laydate //日期
+            , table = layui.table //表格
+            , form = layui.form;//表单
+        var usertTable = null;
+        window.dataReload = function () {
+            Page.initSearchForm($("#searchButton"), $("#searchForm"), usertTable, form);
+        };
+        //执行一个 table 实例
+        usertTable = table.render({
+            elem: '#user-table-list'
+            , height: 620
+            , url: '/user/list.json' //数据接口
+            //, where: $("#form").serializeJson() //参数
+            , response: {statusCode: 200}//200为成功状态码
+            , parseData: function (res) { //res 即为原始返回的数据
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": res.data.total, //解析数据长度
+                    "data": res.data.records //解析数据列表
+                };
+            }
+            , request: {
+                pageName: 'current' //页码的参数名称，默认：page
+                , limitName: 'size' //每页数据量的参数名，默认：limit
+            }
+            , title: '用户表'
+            , page: true //开启分页
+            //, page: {"layout": ['count', 'prev', 'page', 'next']} //开启分页
+            , toolbar: '#head-toolbar' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            , defaultToolbar: []
+            //, totalRow: true //开启合计行
+            , limit: 10
+            , cols: [[ //表头
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'username', title: '用户名', width: 120}
+            ]]
+        });
+    });
+</script>
+</body>
+</html>
