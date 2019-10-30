@@ -2,7 +2,7 @@ package com.stylesmile.common.service;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.stylesmile.constant.SessionConstant;
+import com.stylesmile.common.constant.SessionConstant;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 

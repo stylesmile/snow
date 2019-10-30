@@ -1,6 +1,6 @@
 package com.stylesmile.config;
 
-import com.stylesmile.constant.SessionConstant;
+import com.stylesmile.common.constant.SessionConstant;
 import com.stylesmile.modules.system.entity.SysUser;
 import com.stylesmile.modules.system.service.SysUserService;
 import org.springframework.context.annotation.Configuration;

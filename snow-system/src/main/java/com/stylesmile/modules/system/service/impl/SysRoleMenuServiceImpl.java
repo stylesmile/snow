@@ -4,7 +4,7 @@ import com.stylesmile.common.service.BaseServiceImpl;
 import com.stylesmile.modules.system.entity.SysRoleMenu;
 import com.stylesmile.modules.system.mapper.SysRoleMenuMapper;
 import com.stylesmile.modules.system.service.SysRoleMenuService;
-import com.stylesmile.util.ConvertUtil;
+import com.stylesmile.common.util.ConvertUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

@@ -2,13 +2,13 @@ package com.stylesmile.modules.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.common.service.BaseServiceImpl;
-import com.stylesmile.constant.SessionConstant;
-import com.stylesmile.constant.UserConstant;
+import com.stylesmile.common.constant.SessionConstant;
+import com.stylesmile.common.constant.UserConstant;
 import com.stylesmile.modules.system.entity.SysUser;
 import com.stylesmile.modules.system.mapper.SysUserMapper;
 import com.stylesmile.modules.system.query.SysUserQuery;
 import com.stylesmile.modules.system.service.SysUserService;
-import com.stylesmile.util.Result;
+import com.stylesmile.common.util.Result;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;

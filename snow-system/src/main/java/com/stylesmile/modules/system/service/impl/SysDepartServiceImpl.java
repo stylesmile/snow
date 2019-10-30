@@ -1,7 +1,7 @@
 package com.stylesmile.modules.system.service.impl;
 
 import com.stylesmile.common.service.BaseServiceImpl;
-import com.stylesmile.constant.CacheConstant;
+import com.stylesmile.common.constant.CacheConstant;
 import com.stylesmile.modules.system.entity.SysDepart;
 import com.stylesmile.modules.system.mapper.SysDepartMapper;
 import com.stylesmile.modules.system.service.SysDepartService;

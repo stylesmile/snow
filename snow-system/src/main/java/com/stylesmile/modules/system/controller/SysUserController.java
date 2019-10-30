@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.modules.system.entity.SysUser;
 import com.stylesmile.modules.system.query.SysUserQuery;
 import com.stylesmile.modules.system.service.SysUserService;
-import com.stylesmile.util.Result;
+import com.stylesmile.common.util.Result;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

@@ -1,4 +1,4 @@
-package com.stylesmile.util;
+package com.stylesmile.common.util;
 
 import lombok.Data;
 

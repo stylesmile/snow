@@ -1,7 +1,7 @@
 package com.stylesmile.modules.system.service.impl;
 
 import com.stylesmile.common.service.BaseServiceImpl;
-import com.stylesmile.constant.UserConstant;
+import com.stylesmile.common.constant.UserConstant;
 import com.stylesmile.modules.system.entity.SysMenu;
 import com.stylesmile.modules.system.entity.SysUser;
 import com.stylesmile.modules.system.mapper.SysMenuMapper;

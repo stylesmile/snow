@@ -1,8 +1,8 @@
 package com.stylesmile.modules.system.controller;
 
 import com.stylesmile.modules.system.service.SysRoleMenuService;
-import com.stylesmile.util.ConvertUtil;
-import com.stylesmile.util.Result;
+import com.stylesmile.common.util.ConvertUtil;
+import com.stylesmile.common.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

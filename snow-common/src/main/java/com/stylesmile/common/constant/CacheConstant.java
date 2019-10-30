@@ -1,4 +1,4 @@
-package com.stylesmile.constant;
+package com.stylesmile.common.constant;
 
 /**
  * 缓存相关常量

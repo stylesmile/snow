@@ -7,7 +7,7 @@ import com.stylesmile.modules.system.entity.SysUserRole;
 import com.stylesmile.modules.system.mapper.SysUserRoleMapper;
 import com.stylesmile.modules.system.query.SysRoleQuery;
 import com.stylesmile.modules.system.service.SysUserRoleService;
-import com.stylesmile.util.ConvertUtil;
+import com.stylesmile.common.util.ConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

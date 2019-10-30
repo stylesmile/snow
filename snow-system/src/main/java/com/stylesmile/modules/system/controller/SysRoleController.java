@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.modules.system.entity.SysRole;
 import com.stylesmile.modules.system.query.SysRoleQuery;
 import com.stylesmile.modules.system.service.SysRoleService;
-import com.stylesmile.util.Result;
+import com.stylesmile.common.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
