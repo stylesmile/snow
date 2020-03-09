@@ -12,11 +12,6 @@ import java.util.Map;
 public class AopUtil {
     /**
      * 获取参数列表
-     *
-     * @param joinPoint
-     * @return
-     * @throws ClassNotFoundException
-     * @throws NoSuchMethodException
      */
     private static Map<String, Object> getFieldsName(ProceedingJoinPoint joinPoint) {
         // 参数值
