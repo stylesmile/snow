@@ -88,21 +88,29 @@
                 <enabled>true</enabled>
             </releases>
         </repository>
-    </repositories>
-    <!--插件仓库-->
-    <pluginRepositories>
-       <!-- <pluginRepository>
-            <id>Nexus</id>
-            <name>Releases</name>
-            &lt;!&ndash;<url>http://localhost:8081/repository/maven-public/</url>&ndash;&gt;
-            <url>http://localhost:8081/repository/ali-repo/</url>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/libs-milestone</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </pluginRepository>-->
+        </repository>
+    </repositories>
+    <!--插件仓库-->
+    <pluginRepositories>
+        <!-- <pluginRepository>
+             <id>Nexus</id>
+             <name>Releases</name>
+             &lt;!&ndash;<url>http://localhost:8081/repository/maven-public/</url>&ndash;&gt;
+             <url>http://localhost:8081/repository/ali-repo/</url>
+             <snapshots>
+                 <enabled>false</enabled>
+             </snapshots>
+             <releases>
+                 <enabled>true</enabled>
+             </releases>
+         </pluginRepository>-->
         <pluginRepository>
             <id>aliyun-nexus</id>
             <name>aliyun-nexus</name>
@@ -113,6 +121,14 @@
             <releases>
                 <enabled>true</enabled>
             </releases>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/libs-milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </pluginRepository>
     </pluginRepositories>
     <build>
