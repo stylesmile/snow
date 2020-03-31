@@ -1,4 +1,4 @@
-# snow
+snow
 
 #### 介绍
 基于springboot的精简的后台权限管理系统。
@@ -18,17 +18,20 @@ mybatisplus
 
 #### 安装教程
 
-1. git 导出项目
-2. 安装数据库 数据库sql在db文件夹下
-2. maven install
-3. 运行，SnowApplication.java
-
+#1. git 导出项目
+#2. 安装数据库 数据库sql在/db文件夹下
+#2. 编译
+maven install
+#3. 运行
+打开snow-system\src\main\java\com\stylesmile\SnowApplication.java
+右键 点击run SnowApplication.main()运行，
 #### 使用说明
 需要安装lombox插件
 
 默认密码 admin 123456
 
-技术说明
-springboot2 
-druid数据源
-mybatis
+#### 技术说明
+springboot2 最流行的java技术
+druid数据源 强大的监控特性,多维度的统计和分析功能
+mybatis  灵活，学习成本低
+spring-cache 减少数据库查询操作，大幅度降低服务器压力
