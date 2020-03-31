@@ -19,8 +19,12 @@ mybatisplus
 
 #### 安装教程
 
-#1. git 导出项目
-#2. 安装数据库 数据库sql在/db文件夹下
+1. git 导出项目
+git clone git@gitee.com:stylesmile/snow.git
+
+2. 安装数据库 数据库sql在/db文件夹下
+创建数据库，用utf8mb4
+
 #2. 编译
 最外层的pom.xml编译一下，会编译所有之项目
 
