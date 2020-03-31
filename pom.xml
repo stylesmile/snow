@@ -65,18 +65,6 @@
 
     <!-- maven 仓库 -->
     <repositories>
-        <!--<repository>
-            <id>Nexus</id>
-            <name>Releases</name>
-            &lt;!&ndash;<url>http://localhost:8081/repository/maven-public/</url>&ndash;&gt;
-            <url>http://localhost:8081/repository/ali-repo/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>-->
         <repository>
             <id>aliyun-nexus</id>
             <name>aliyun-nexus</name>
@@ -99,18 +87,6 @@
     </repositories>
     <!--插件仓库-->
     <pluginRepositories>
-        <!-- <pluginRepository>
-             <id>Nexus</id>
-             <name>Releases</name>
-             &lt;!&ndash;<url>http://localhost:8081/repository/maven-public/</url>&ndash;&gt;
-             <url>http://localhost:8081/repository/ali-repo/</url>
-             <snapshots>
-                 <enabled>false</enabled>
-             </snapshots>
-             <releases>
-                 <enabled>true</enabled>
-             </releases>
-         </pluginRepository>-->
         <pluginRepository>
             <id>aliyun-nexus</id>
             <name>aliyun-nexus</name>
