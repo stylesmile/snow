@@ -1,10 +1,10 @@
 package com.stylesmile.modules.system.controller;
 
 import com.stylesmile.aop.log.LogLogin;
+import com.stylesmile.common.util.Result;
 import com.stylesmile.modules.system.service.SysMenuService;
 import com.stylesmile.modules.system.service.SysUserService;
 import com.stylesmile.modules.system.tree.MenuTree;
-import com.stylesmile.common.util.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -80,6 +80,7 @@ public class IndexController {
         //通过用户id获取当前用户的菜单
         MenuTree menuTree = sysMenuService.getMenuListByUserId(httpServletRequest);
         view.addObject("menuList", menuTree.getChildren());
+        view.addObject("user", sysUserService.getSessionUser(httpServletRequest));
         return view;
     }
 
