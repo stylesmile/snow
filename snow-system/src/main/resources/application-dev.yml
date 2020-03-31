@@ -4,9 +4,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.3.2:3307/snow?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT
+    url: jdbc:mysql://192.168.233.130:3306/snow?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT
     username: root
-    password: root
+    password: 123456
     druid:
       initial-size: 1
       max-active: 20
