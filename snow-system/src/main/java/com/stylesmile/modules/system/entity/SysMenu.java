@@ -1,19 +1,11 @@
 package com.stylesmile.modules.system.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.validation.constraints.NotNull;
 
 /**
  * @author chenye
  * @date 2018/12/10
  */
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class SysMenu {
     /**
      * 主键
@@ -22,7 +14,7 @@ public class SysMenu {
     /**
      * 父级id
      */
-    @NotNull(message="parentId不能为空")
+    @NotNull(message = "parentId不能为空")
     private Integer parentId;
     /**
      * 名称
@@ -44,4 +36,63 @@ public class SysMenu {
      * 排序
      */
     private Integer sort;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
+
+    public SysMenu() {
+    }
 }

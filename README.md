@@ -27,7 +27,7 @@ maven install
 打开snow-system\src\main\java\com\stylesmile\SnowApplication.java
 右键 点击run SnowApplication.main()运行，
 #### 使用说明
-需要安装lombox插件
+需要安装lombok插件
 
 默认密码 admin 123456
 

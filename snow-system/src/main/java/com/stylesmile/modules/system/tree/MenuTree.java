@@ -1,9 +1,6 @@
 package com.stylesmile.modules.system.tree;
 
 import com.stylesmile.modules.system.entity.SysMenu;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +9,6 @@ import java.util.List;
  * @author StyleSmile
  * @date 2019/02/12
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class MenuTree {
     private Integer id;
     private Integer parentId;
@@ -34,7 +28,7 @@ public class MenuTree {
     /**
      * 构建树节点
      *
-     * @param parent 父节点
+     * @param parent      父节点
      * @param sysMenuList list数据
      */
     private static void buildMenuTree(MenuTree parent, List<SysMenu> sysMenuList) {
@@ -67,5 +61,56 @@ public class MenuTree {
         this.parentId = sysMenu.getParentId();
         this.name = sysMenu.getName();
         this.url = sysMenu.getUrl();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public List<MenuTree> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<MenuTree> children) {
+        this.children = children;
+    }
+
+    public MenuTree getParent() {
+        return parent;
+    }
+
+    public void setParent(MenuTree parent) {
+        this.parent = parent;
+    }
+
+    public MenuTree() {
     }
 }

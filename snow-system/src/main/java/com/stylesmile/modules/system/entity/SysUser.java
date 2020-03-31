@@ -1,8 +1,5 @@
 package com.stylesmile.modules.system.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotEmpty;
@@ -11,10 +8,7 @@ import javax.validation.constraints.NotEmpty;
  * @author chenye
  * @date 2018/12/10
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class SysUser  {
+public class SysUser {
     /**
      * 主键
      */
@@ -47,12 +41,72 @@ public class SysUser  {
      * 删除标识 0.未删除，1.删除
      */
     private Integer delFlag;
+
     public SysUser(String username, String password) {
         this.username = username;
         this.password = password;
     }
+
     public SysUser(String username) {
         this.username = username;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getDelFlag() {
+        return delFlag;
+    }
+
+    public void setDelFlag(Integer delFlag) {
+        this.delFlag = delFlag;
+    }
+
+    public SysUser() {
+    }
 }

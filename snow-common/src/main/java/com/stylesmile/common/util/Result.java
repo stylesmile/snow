@@ -1,7 +1,5 @@
 package com.stylesmile.common.util;
 
-import lombok.Data;
-
 import java.util.List;
 
 /**
@@ -9,7 +7,6 @@ import java.util.List;
  *
  * @author : chenye
  */
-@Data
 public class Result<T> {
 
     private String code;
@@ -85,7 +82,7 @@ public class Result<T> {
 //        return ret;
 //    }
 
-    public static<T> Result<T> bool(Boolean b) {
+    public static <T> Result<T> bool(Boolean b) {
         if (b) {
             return Result.success();
         } else {
@@ -93,4 +90,35 @@ public class Result<T> {
         }
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public Long getCount() {
+        return count;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
+    }
+
+    public List<T> getList() {
+        return list;
+    }
+
+    public void setList(List<T> list) {
+        this.list = list;
+    }
 }
