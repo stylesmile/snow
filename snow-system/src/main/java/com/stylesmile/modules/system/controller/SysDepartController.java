@@ -3,6 +3,7 @@ package com.stylesmile.modules.system.controller;
 import com.stylesmile.modules.system.entity.SysDepart;
 import com.stylesmile.modules.system.service.SysDepartService;
 import com.stylesmile.common.util.Result;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,10 +19,12 @@ import java.util.List;
  * @author chenye
  * @date 2018/11/24
  */
-@RestController
+@Controller
 public class SysDepartController {
+
     private final String BASE_URL_PATH = "/depart";
     private final String BASE_HTML_PATH = "/system/sysDepart";
+
     @Resource
     private SysDepartService sysDepartService;
 
@@ -98,7 +101,7 @@ public class SysDepartController {
      */
     @PostMapping(BASE_URL_PATH + "/delete.json")
     @ResponseBody
-    public Result delete(String id) {
+    public Result delete(int id) {
         return Result.bool(sysDepartService.deleteDepart(id));
     }
 }

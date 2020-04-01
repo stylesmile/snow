@@ -5,6 +5,7 @@ import com.stylesmile.modules.system.entity.SysUser;
 import com.stylesmile.modules.system.query.SysUserQuery;
 import com.stylesmile.modules.system.service.SysUserService;
 import com.stylesmile.common.util.Result;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,11 +20,12 @@ import javax.annotation.Resource;
  * @author StyleSmile
  * @date 2018/12/08
  */
-@RestController
+@Controller
 public class SysUserController {
 
     private final String BASE_URL_PATH = "/user";
     private final String BASE_HTML_PATH = "/system/sysUser";
+
     @Resource
     private SysUserService sysUserService;
 
@@ -31,7 +33,6 @@ public class SysUserController {
      * 菜单管理
      */
     @GetMapping(BASE_URL_PATH + "/index.html")
-    @ResponseBody
     public ModelAndView index() {
         ModelAndView view = new ModelAndView(BASE_HTML_PATH + "/user");
         return view;
@@ -41,6 +42,7 @@ public class SysUserController {
      * 首页数据
      */
     @GetMapping(BASE_URL_PATH + "/list.json")
+    @ResponseBody
     public Result selectUserPage(SysUserQuery sysUserQuery) {
         Page<SysUser> page = sysUserService.getUserList(sysUserQuery);
         return Result.success(page);
@@ -50,7 +52,6 @@ public class SysUserController {
      * 进入新增用户页面
      */
     @GetMapping(BASE_URL_PATH + "/add.html")
-    @ResponseBody
     public ModelAndView add() {
         ModelAndView view = new ModelAndView(BASE_HTML_PATH + "/user_add");
         return view;

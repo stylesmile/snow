@@ -5,6 +5,7 @@ import com.stylesmile.modules.system.entity.SysRole;
 import com.stylesmile.modules.system.query.SysRoleQuery;
 import com.stylesmile.modules.system.service.SysUserRoleService;
 import com.stylesmile.common.util.Result;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpSession;
  * @author StyleSmile
  * @date 2018/12/08
  */
-@RestController
+@Controller
 public class SysUserRoleController {
 
     private final String BASE_URL_PATH = "/userRole";

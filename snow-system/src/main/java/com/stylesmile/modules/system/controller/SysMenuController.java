@@ -4,6 +4,7 @@ import com.stylesmile.modules.system.entity.SysMenu;
 import com.stylesmile.modules.system.service.SysMenuService;
 import com.stylesmile.common.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,7 +19,7 @@ import java.util.List;
  * @author chenye
  * @date 2018/11/24
  */
-@RestController
+@Controller
 public class SysMenuController {
     private final String BASE_URL_PATH = "/menu";
     private final String BASE_HTML_PATH = "/system/sysMenu";

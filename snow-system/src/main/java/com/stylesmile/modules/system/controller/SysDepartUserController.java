@@ -1,6 +1,7 @@
 package com.stylesmile.modules.system.controller;
 
 import com.stylesmile.modules.system.service.SysDepartService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,7 +14,7 @@ import javax.annotation.Resource;
  * @author chenye
  * @date 2019/08/07
  */
-@RestController
+@Controller
 public class SysDepartUserController {
 
     private final String BASE_URL_PATH = "/departUser";
