@@ -41,6 +41,7 @@ public class SysDepartServiceImpl extends BaseServiceImpl<SysDepartMapper, SysDe
         boolean b = baseMapper.updateDepart(sysDepart);
         //清除缓存
         this.clearDepartListCache();
+        this.clearDept(sysDepart.getId());
         return b;
     }
 
@@ -55,7 +56,7 @@ public class SysDepartServiceImpl extends BaseServiceImpl<SysDepartMapper, SysDe
         Boolean b = baseMapper.deleteDepart(id);
         //清除缓存
         this.clearDepartListCache();
-        this.chearOne(id);
+        this.clearDept(id);
         return b;
     }
 
@@ -82,7 +83,7 @@ public class SysDepartServiceImpl extends BaseServiceImpl<SysDepartMapper, SysDe
      */
     @CacheEvict(value = CacheConstant.deptCache.DEPART_CACHE, key = "#id")
     @Override
-    public void chearOne(Integer id) {
+    public void clearDept(Integer id) {
     }
 
 }

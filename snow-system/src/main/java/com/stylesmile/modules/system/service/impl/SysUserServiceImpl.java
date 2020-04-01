@@ -1,14 +1,18 @@
 package com.stylesmile.modules.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.stylesmile.common.service.BaseServiceImpl;
+import com.stylesmile.common.constant.CacheConstant;
 import com.stylesmile.common.constant.SessionConstant;
 import com.stylesmile.common.constant.UserConstant;
+import com.stylesmile.common.service.BaseServiceImpl;
+import com.stylesmile.common.util.Result;
+import com.stylesmile.modules.system.entity.SysDepart;
 import com.stylesmile.modules.system.entity.SysUser;
 import com.stylesmile.modules.system.mapper.SysUserMapper;
 import com.stylesmile.modules.system.query.SysUserQuery;
 import com.stylesmile.modules.system.service.SysUserService;
-import com.stylesmile.common.util.Result;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,16 +29,18 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
 
     /**
      * 获取session中的用户
+     *
      * @param httpServletRequest request
      * @return SysUser
      */
     @Override
-    public SysUser getSessionUser(HttpServletRequest httpServletRequest){
+    public SysUser getSessionUser(HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
         //获取登录的session信息
         Object user = session.getAttribute(SessionConstant.LOGIN_USER);
-        return (SysUser)user;
+        return (SysUser) user;
     }
+
     /**
      * 通过用户名密码查询用户
      *
@@ -64,6 +70,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
      * @param sysUserQuery 条件
      * @return Page
      */
+    @Cacheable(value = CacheConstant.userCache.USER_LIST_CACHE)
     @Override
     public Page<SysUser> getUserList(SysUserQuery sysUserQuery) {
         return baseMapper.getUserList(sysUserQuery);
@@ -77,7 +84,10 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
      */
     @Override
     public Boolean updateUser(SysUser user) {
-        return baseMapper.updateUser(user);
+        Boolean bool = baseMapper.updateUser(user);
+        this.clearUserListCache();
+        this.clearUserCache(user.getId());
+        return bool;
     }
 
     /**
@@ -88,7 +98,10 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
      */
     @Override
     public Boolean deleteUser(Integer id) {
-        return baseMapper.deleteUser(id);
+        Boolean bool = baseMapper.deleteUser(id);
+        this.clearUserListCache();
+        this.clearUserCache(id);
+        return bool;
     }
 
     /**
@@ -100,9 +113,24 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
      */
     @Override
     public Integer queryPermission(String url, Integer userId) {
-        return baseMapper.queryPermission(url,userId);
+        return baseMapper.queryPermission(url, userId);
     }
 
 
+    @CacheEvict(value = CacheConstant.userCache.USER_LIST_CACHE, key = "#id")
+    @Override
+    public void clearUserListCache() {
+    }
+
+    @Cacheable(value = CacheConstant.userCache.USER_CACHE, key = "#id")
+    @Override
+    public SysDepart getUserByIdCache(Integer id) {
+        return null;
+    }
+
+    @CacheEvict(value = CacheConstant.userCache.USER_CACHE, key = "#id")
+    @Override
+    public void clearUserCache(Integer id) {
+    }
 
 }

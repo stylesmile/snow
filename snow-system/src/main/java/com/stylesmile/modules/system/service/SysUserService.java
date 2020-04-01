@@ -2,6 +2,7 @@ package com.stylesmile.modules.system.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.common.service.BaseService;
+import com.stylesmile.modules.system.entity.SysDepart;
 import com.stylesmile.modules.system.entity.SysUser;
 import com.stylesmile.modules.system.query.SysUserQuery;
 import com.stylesmile.common.util.Result;
@@ -66,4 +67,22 @@ public interface SysUserService extends BaseService<SysUser> {
      * @return Integer
      */
     Integer queryPermission(String url, Integer userId);
+
+    /**
+     * 清除部门缓存
+     */
+    void clearUserListCache();
+
+    /**
+     * 通过id 获取部门信息
+     *
+     * @param id 主键
+     * @return SysDepart
+     */
+    SysDepart getUserByIdCache(Integer id);
+
+    /**
+     * 清理单个部门缓存
+     */
+    void clearUserCache(Integer id);
 }
