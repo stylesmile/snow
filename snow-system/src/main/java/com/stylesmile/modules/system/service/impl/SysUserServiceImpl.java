@@ -22,8 +22,10 @@ import javax.servlet.http.HttpSession;
  */
 @Service("sysUserService")
 public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> implements SysUserService {
+
     /**
-     * @param httpServletRequest
+     * 获取session中的用户
+     * @param httpServletRequest request
      * @return SysUser
      */
     @Override

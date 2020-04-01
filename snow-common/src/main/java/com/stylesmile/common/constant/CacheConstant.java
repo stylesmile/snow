@@ -10,5 +10,9 @@ public class CacheConstant {
     /**
      * 用户
      */
-    public static final String DEPART_LIST_CACHE = "DEPART_LIST_CACHE";
+    public interface deptCache {
+        String DEPART_LIST_CACHE = "DEPART_LIST_CACHE";
+        String DEPART_CACHE = "DEPART_CACHE";
+    }
+
 }

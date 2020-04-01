@@ -17,6 +17,11 @@ import javax.servlet.http.HttpSession;
  */
 public interface SysUserService extends BaseService<SysUser> {
 
+    /**
+     * 获取session中的用户
+     * @param httpServletRequest request
+     * @return SysUser
+     */
     SysUser getSessionUser(HttpServletRequest httpServletRequest);
 
     /**

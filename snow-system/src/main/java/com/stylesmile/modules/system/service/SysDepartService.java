@@ -34,11 +34,24 @@ public interface SysDepartService extends BaseService<SysDepart> {
      * @param id 主键
      * @return Boolean
      */
-    Boolean deleteDepart(String id);
+    Boolean deleteDepart(int id);
 
     /**
      * 清除部门缓存
      */
     void clearDepartListCache();
+
+    /**
+     * 通过id 获取部门信息
+     *
+     * @param id 主键
+     * @return SysDepart
+     */
+    SysDepart getDeptById(Integer id);
+
+    /**
+     * 清理单个部门缓存
+     */
+    void clearDept(Integer id);
 
 }

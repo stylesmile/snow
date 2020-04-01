@@ -1,7 +1,7 @@
 package com.stylesmile.modules.system.service.impl;
 
-import com.stylesmile.common.service.BaseServiceImpl;
 import com.stylesmile.common.constant.CacheConstant;
+import com.stylesmile.common.service.BaseServiceImpl;
 import com.stylesmile.modules.system.entity.SysDepart;
 import com.stylesmile.modules.system.mapper.SysDepartMapper;
 import com.stylesmile.modules.system.service.SysDepartService;
@@ -24,7 +24,7 @@ public class SysDepartServiceImpl extends BaseServiceImpl<SysDepartMapper, SysDe
      *
      * @return List<SysDepart>
      */
-    @Cacheable(value = CacheConstant.DEPART_LIST_CACHE)
+    @Cacheable(value = CacheConstant.deptCache.DEPART_LIST_CACHE)
     @Override
     public List<SysDepart> getList() {
         return baseMapper.getDepartList();
@@ -51,19 +51,38 @@ public class SysDepartServiceImpl extends BaseServiceImpl<SysDepartMapper, SysDe
      * @return Boolean
      */
     @Override
-    public Boolean deleteDepart(String id) {
+    public Boolean deleteDepart(int id) {
         Boolean b = baseMapper.deleteDepart(id);
         //清除缓存
         this.clearDepartListCache();
+        this.chearOne(id);
         return b;
     }
 
     /**
      * 清除部门缓存
      */
-    @CacheEvict(value = CacheConstant.DEPART_LIST_CACHE)
+    @CacheEvict(value = CacheConstant.deptCache.DEPART_LIST_CACHE)
     @Override
     public void clearDepartListCache() {
+    }
+
+    /**
+     * 通过id 获取部门信息
+     */
+
+    @Cacheable(value = CacheConstant.deptCache.DEPART_CACHE, key = "#id")
+    @Override
+    public SysDepart getDeptById(Integer id) {
+        return baseMapper.selectById(id);
+    }
+
+    /**
+     * 清理单个部门缓存
+     */
+    @CacheEvict(value = CacheConstant.deptCache.DEPART_CACHE, key = "#id")
+    @Override
+    public void chearOne(Integer id) {
     }
 
 }

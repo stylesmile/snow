@@ -33,5 +33,5 @@ public interface SysDepartMapper  extends BaseMapper<SysDepart> {
      * @param id 主键
      * @return Boolean
      */
-    Boolean deleteDepart(String id);
+    Boolean deleteDepart(int id);
 }
