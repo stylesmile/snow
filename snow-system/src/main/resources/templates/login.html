@@ -7,11 +7,11 @@
 </head>
 <body>
 <div style="width:100%;">
-    <div style="margin: 200px auto;width:600px;height:500px;border:1px #E0E0E0 solid;">
+    <div style="margin: 200px auto;width:500px;height:400px;border:1px #E0E0E0 solid;">
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
             <legend>用户登录</legend>
         </fieldset>
-        <div class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+        <div class="layui-form" style="margin:50px;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
             <div class="layui-form-item">
                 <label class="layui-form-label">用户名</label>
                 <div class="layui-input-inline">
@@ -68,3 +68,10 @@
     }
 
 </script>
+<style>
+    .layui-form-item {
+    margin-bottom: 30px;
+    clear: both;
+    *zoom: 1;
+}
+</style>

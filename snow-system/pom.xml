@@ -30,6 +30,11 @@
             <artifactId>snow-common</artifactId>
             <version>${snow.common.version}</version>
         </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
 </project>
