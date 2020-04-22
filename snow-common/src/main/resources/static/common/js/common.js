@@ -28,7 +28,7 @@ var Common = {
         Common.openConfirm(info)
     },
     deleteData: function (url, paras, nextUrl) {
-        Common.openConfirm("确认要删除这个用户?", function () {
+        Common.openConfirm("确认要删除这条数据?", function () {
             $.ajax({
                 url: Common.ctxPath + url,
                 type: "POST",
