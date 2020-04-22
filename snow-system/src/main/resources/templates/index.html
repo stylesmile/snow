@@ -64,13 +64,11 @@
                     <a class="" href="javascript:;">${menu.name}</a>
                     <dl class="layui-nav-child">
                         <#list menu.children as child>
-                        <dd url="${child.url}"><a href="javascript:;">${child.name}</a></dd>
-                    </
-                    #list>
+                        <dd  url="${child.url}"><a href="javascript:;">${child.name}</a></dd>
+                    </#list>
                     </dl>
                 </li>
-            </
-            #list>
+            </#list>
             </ul>
         </div>
     </div>
@@ -107,7 +105,6 @@
             })
         });
     });
-
 </script>
 </body>
 </html>
