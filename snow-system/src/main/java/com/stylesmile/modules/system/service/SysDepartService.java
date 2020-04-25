@@ -18,7 +18,7 @@ public interface SysDepartService extends BaseService<SysDepart> {
      *
      * @return List<SysDepart>
      */
-    List<SysDepart> getList();
+    List<SysDepart> getList(String source);
 
     /**
      * 修改部门

@@ -2,14 +2,13 @@ package com.stylesmile.modules.system.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.modules.system.entity.SysRole;
-import com.stylesmile.modules.system.query.SysRoleQuery;
+import com.stylesmile.modules.system.vo.query.SysRoleQuery;
 import com.stylesmile.modules.system.service.SysUserRoleService;
 import com.stylesmile.common.util.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;

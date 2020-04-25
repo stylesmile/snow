@@ -3,7 +3,7 @@ package com.stylesmile.modules.system.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.modules.system.entity.SysUser;
-import com.stylesmile.modules.system.query.SysUserQuery;
+import com.stylesmile.modules.system.vo.query.SysUserQuery;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

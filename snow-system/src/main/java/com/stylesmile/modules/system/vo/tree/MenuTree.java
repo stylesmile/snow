@@ -1,4 +1,4 @@
-package com.stylesmile.modules.system.tree;
+package com.stylesmile.modules.system.vo.tree;
 
 import com.stylesmile.modules.system.entity.SysMenu;
 

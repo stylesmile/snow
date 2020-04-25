@@ -2,7 +2,7 @@ package com.stylesmile.modules.system.service;
 
 import com.stylesmile.common.service.BaseService;
 import com.stylesmile.modules.system.entity.SysMenu;
-import com.stylesmile.modules.system.tree.MenuTree;
+import com.stylesmile.modules.system.vo.tree.MenuTree;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

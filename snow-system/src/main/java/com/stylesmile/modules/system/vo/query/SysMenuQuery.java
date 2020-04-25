@@ -1,4 +1,4 @@
-package com.stylesmile.modules.system.query;
+package com.stylesmile.modules.system.vo.query;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.modules.system.entity.SysUser;

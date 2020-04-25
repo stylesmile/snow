@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.common.service.BaseService;
 import com.stylesmile.modules.system.entity.SysRole;
 import com.stylesmile.modules.system.entity.SysUserRole;
-import com.stylesmile.modules.system.query.SysRoleQuery;
+import com.stylesmile.modules.system.vo.query.SysRoleQuery;
 
 import javax.servlet.http.HttpSession;
 

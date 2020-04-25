@@ -7,7 +7,7 @@ import com.stylesmile.modules.system.entity.SysUser;
 import com.stylesmile.modules.system.mapper.SysMenuMapper;
 import com.stylesmile.modules.system.service.SysMenuService;
 import com.stylesmile.modules.system.service.SysUserService;
-import com.stylesmile.modules.system.tree.MenuTree;
+import com.stylesmile.modules.system.vo.tree.MenuTree;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

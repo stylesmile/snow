@@ -9,7 +9,7 @@ import com.stylesmile.common.util.Result;
 import com.stylesmile.modules.system.entity.SysDepart;
 import com.stylesmile.modules.system.entity.SysUser;
 import com.stylesmile.modules.system.mapper.SysUserMapper;
-import com.stylesmile.modules.system.query.SysUserQuery;
+import com.stylesmile.modules.system.vo.query.SysUserQuery;
 import com.stylesmile.modules.system.service.SysUserService;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;

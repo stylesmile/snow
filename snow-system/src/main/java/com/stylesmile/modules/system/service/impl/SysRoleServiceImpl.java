@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.common.service.BaseServiceImpl;
 import com.stylesmile.modules.system.entity.SysRole;
 import com.stylesmile.modules.system.mapper.SysRoleMapper;
-import com.stylesmile.modules.system.query.SysRoleQuery;
+import com.stylesmile.modules.system.vo.query.SysRoleQuery;
 import com.stylesmile.modules.system.service.SysRoleService;
 import org.springframework.stereotype.Service;
 

@@ -29,7 +29,7 @@ public class SysDepartUserController {
     @GetMapping(BASE_URL_PATH + "/index.html")
     public ModelAndView index() {
         ModelAndView view = new ModelAndView(BASE_HTML_PATH + "/departUser");
-        view.addObject("data", sysDepartService.getList());
+        view.addObject("data", sysDepartService.getList(""));
         return view;
     }
 

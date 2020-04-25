@@ -44,8 +44,8 @@ public class SysDepartController {
      */
     @GetMapping(BASE_URL_PATH + "/list.json")
     @ResponseBody
-    public Result<List<SysDepart>> list() {
-        return Result.success(sysDepartService.getList());
+    public Result<List<SysDepart>> list(String source) {
+        return Result.success(sysDepartService.getList(source));
     }
 
     /**

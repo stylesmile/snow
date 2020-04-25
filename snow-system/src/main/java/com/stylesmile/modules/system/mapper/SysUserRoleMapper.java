@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.modules.system.entity.SysRole;
 import com.stylesmile.modules.system.entity.SysUserRole;
-import com.stylesmile.modules.system.query.SysRoleQuery;
+import com.stylesmile.modules.system.vo.query.SysRoleQuery;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

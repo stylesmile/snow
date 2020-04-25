@@ -26,8 +26,14 @@ public class SysDepartServiceImpl extends BaseServiceImpl<SysDepartMapper, SysDe
      */
     @Cacheable(value = CacheConstant.deptCache.DEPART_LIST_CACHE)
     @Override
-    public List<SysDepart> getList() {
-        return baseMapper.getDepartList();
+    public List<SysDepart> getList(String source) {
+        List<SysDepart> sysDepartList = baseMapper.getDepartList();
+        if("user_dept".equals(source)){
+            for (SysDepart dept :sysDepartList) {
+
+            }
+        }
+        return sysDepartList;
     }
 
     /**

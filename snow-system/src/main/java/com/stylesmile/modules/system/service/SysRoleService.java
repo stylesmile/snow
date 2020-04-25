@@ -3,7 +3,7 @@ package com.stylesmile.modules.system.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.common.service.BaseService;
 import com.stylesmile.modules.system.entity.SysRole;
-import com.stylesmile.modules.system.query.SysRoleQuery;
+import com.stylesmile.modules.system.vo.query.SysRoleQuery;
 
 /**
  * @Description: 角色管理
