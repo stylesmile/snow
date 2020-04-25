@@ -9,19 +9,11 @@ import com.stylesmile.modules.system.entity.SysUser;
  */
 public class SysUserQuery extends Page<SysUser> {
 
-    private String id;
     private String username;
     private String nickname;
     private String phone;
     private String email;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    private String departId;
 
     public String getUsername() {
         return username;
@@ -53,5 +45,13 @@ public class SysUserQuery extends Page<SysUser> {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getDepartId() {
+        return departId;
+    }
+
+    public void setDepartId(String departId) {
+        this.departId = departId;
     }
 }

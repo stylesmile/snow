@@ -8,8 +8,12 @@
     <!--<link rel="stylesheet" href="//res.layui.com/layui/dist/css/layui.css?t=1542630986927" media="all">-->
     <link rel="stylesheet" href="/plugins/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="/common/css/fs.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="/plugins/ztree/css/zTreeStyle.css" media="all"/>
+
     <script src="/plugins/layui/layui.js"></script>
     <script src="/plugins/jquery/jquery.min.js?v=1.12.4"></script>
+    <script src="/plugins/ztree/js/jquery.ztree.all.min.js"></script>
+    <script src="/plugins/ztree/js/tree.js"></script>
     <script src="/common/js/my-jquery.js?v=1.12.4"></script>
     <script src="/common/js/common.js?v=1.12.4"></script>
     <script src="/common/js/page.js?v=1.12.4"></script>
@@ -17,26 +21,28 @@
         body {
             margin: 10px;
         }
-
     </style>
 </head>
 <body>
 <!-- 左边部门结构 -->
-<div style="border:1px solid red;width:25%;height:665px;float:left;">
+<div style="border:1px solid #dcdcdc;width:25%;height:665px;float:left;">
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
         <legend>常规用法</legend>
     </fieldset>
     <div id="test1"></div>
+    <div>
+        <ul id="treeDemo" class="ztree"></ul>
+    </div>
 </div>
 
-
 <!-- 右边用户管理table -->
-<div style="border:1px solid red;width:74%;height:665px;float:left;">
+<div style="width:74%;height:665px;float:left;">
     <form class="layui-form" action="" id="searchForm">
         <div class="layui-row">
             <div class="layui-inline">
                 <div class="layui-input-inline">
                     <input type="tel" name="username" autocomplete="off" class="layui-input" placeholder="用户名">
+                    <input type="tel" name="departId" id="departId" autocomplete="off" class="layui-input" placeholder="部门id">
                 </div>
             </div>
             <div class="layui-inline">
@@ -66,8 +72,6 @@
         <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="userRole">用户角色管理</a>
     </script>
 </div>
-
-
 <script>
     layui.use(['laydate', 'layer', 'table', 'carousel', 'upload', 'form', 'tree'], function () {
         var laydate = layui.laydate //日期
@@ -143,7 +147,6 @@
                     break;
             }
         });
-
         //监听行工具事件
         table.on('tool(table-bar)', function (obj) { //注：tool 是工具条事件名，barDemo 是 table 原始容器的属性 lay-filter="对应的值"
             var data = obj.data //获得当前行数据
@@ -158,34 +161,30 @@
                 Common.topOpenDlg(url, "用户管理>用户角色管理", '40%', '60%');
             }
         });
-
+        $.get('/depart/list.json', {}, function (data) {
+            var dataList = data.data;
+            var treeData = simpleListToTree(dataList)
+            var zTreeObj;
+            // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
+            var setting = {
+                callback:{
+                    // 单击事件
+                    onClick:zTreeOnClick,
+                }
+            };
+            // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
+            $(document).ready(function(){
+               zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, treeData);
+            });
+        });
+        // 树结构单击事件
+        function zTreeOnClick(event, treeId, treeNode) {
+            //alert(treeNode.tId + ", " + treeNode.id);
+            $("#departId").val(treeNode.id)
+            $('#searchButton').click();
+            //$('#searchForm').trigger("click");
+        }
     });
 </script>
-
-<script>
-  layui.use('tree', function(){
-    var tree = layui.tree;
-
-    //渲染
-    var inst1 = tree.render({
-      elem: '#test1'  //绑定元素
-      ,data: [{
-        title: '江西' //一级菜单
-        ,children: [{
-          title: '南昌' //二级菜单
-          ,children: [{
-            title: '高新区' //三级菜单
-            //…… //以此类推，可无限层级
-          }]
-        }]
-      },{
-        title: '陕西' //一级菜单
-        ,children: [{
-          title: '西安' //二级菜单
-        }]
-      }]
-    });
-  });
-  </script>
 </body>
 </html>

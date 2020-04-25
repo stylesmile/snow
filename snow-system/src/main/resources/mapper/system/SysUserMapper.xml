@@ -29,12 +29,19 @@
 
     <!-- 查询用户list -->
     <select id="getUserList" resultMap="user">
-        SELECT id,username,nickname,phone,email FROM sys_user
-        WHERE del_flag = 0
-        <if test="username!=null and username !=''">and username like"%"#{username}"%"</if>
-        <if test="nickname!=null and nickname !=''">and nickname like concat(concat(#{nickname},'%'),'%')</if>
-        <if test="phone!=null and phone !=''">and phone like '%${phone}%'</if>
-        <if test="email!=null and email !=''">and email=#{email}</if>
+        SELECT su.id,su.username,su.nickname,su.phone,su.email
+        FROM sys_user su
+            left join sys_user_depart sud on su.id = sud.user_id
+            left join sys_depart sd on sd.id = sud.depart_id
+        WHERE su.del_flag = 0
+        <if test="username!=null and username !=''">and su.username like"%"#{username}"%"</if>
+        <if test="nickname!=null and nickname !=''">and su.nickname like concat(concat(#{nickname},'%'),'%')</if>
+        <if test="phone!=null and phone !=''">and su.phone like '%${phone}%'</if>
+        <if test="email!=null and email !=''">and su.email=#{email}</if>
+        <if test="departId!=null and departId !=''">
+            and depart_id=#{departId}
+        </if>
+
     </select>
 
     <!-- 根据url查询用户是否有该url的权限 -->
