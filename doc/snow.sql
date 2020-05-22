@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 192.168.233.130_3306
+ Source Server         : localhost_3306
  Source Server Type    : MySQL
- Source Server Version : 80019
- Source Host           : 192.168.233.130:3306
+ Source Server Version : 80020
+ Source Host           : localhost:3306
  Source Schema         : snow
 
  Target Server Type    : MySQL
- Target Server Version : 80019
+ Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 31/03/2020 20:41:50
+ Date: 22/05/2020 16:36:57
 */
 
 SET NAMES utf8mb4;
@@ -30,7 +30,7 @@ CREATE TABLE `log_login`  (
   `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `status` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of log_login
@@ -78,7 +78,7 @@ CREATE TABLE `sys_dict`  (
   `tips` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '提示',
   `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '值',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 69 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '字典表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 59 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '字典表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dict
@@ -122,7 +122,6 @@ INSERT INTO `sys_menu` VALUES (6, 1, '角色管理', '/role/index.html', 'roleMa
 INSERT INTO `sys_menu` VALUES (7, 1, '部门管理', '/depart/index.html', 'departManage', '1', 4, 0);
 INSERT INTO `sys_menu` VALUES (8, 2, '1', '1', '1', '1', 0, 0);
 INSERT INTO `sys_menu` VALUES (9, 1, '字典数据管理', '', NULL, '1', 5, 0);
-INSERT INTO `sys_menu` VALUES (10, 1, '用户部门', '/userDepart/index.html', '1', '1', 6, 0);
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -194,8 +193,8 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 'admin', '管理员', '123456', '1abc11', '1abc', 0);
-INSERT INTO `sys_user` VALUES (2, 'test2', '测试2', '123456', NULL, NULL, 0);
+INSERT INTO `sys_user` VALUES (1, 'admin', '1111c111', '123456', '1abc11', '1abc', 0);
+INSERT INTO `sys_user` VALUES (2, '2', '11', '123456', NULL, NULL, 0);
 INSERT INTO `sys_user` VALUES (3, 'zhangsan', '张三', '123456', NULL, NULL, 0);
 INSERT INTO `sys_user` VALUES (4, '4', '4', '123456', NULL, NULL, 0);
 INSERT INTO `sys_user` VALUES (5, '5', '4', '123456', NULL, NULL, 0);
