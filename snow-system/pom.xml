@@ -13,6 +13,10 @@
     <version>${snow.system.version}</version>
     <name>snow-system</name>
     <description>Demo project for Spring Boot</description>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.build.timestamp.format>yyyy-MMdd-HHmm</maven.build.timestamp.format>
+    </properties>
     <build>
         <plugins>
             <plugin>
@@ -23,6 +27,9 @@
                 </configuration>
             </plugin>
         </plugins>
+        <!--<finalName>${project.name}-${project.version}</finalName>-->
+        <finalName>${project.artifactId}-${maven.build.timestamp}</finalName>
+
     </build>
     <dependencies>
         <dependency>
