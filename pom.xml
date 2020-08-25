@@ -68,7 +68,7 @@
         <repository>
             <id>aliyun-nexus</id>
             <name>aliyun-nexus</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <url>https://maven.aliyun.com/repository/public</url>
             <snapshots><!--快照-->
                 <enabled>false</enabled>
             </snapshots>
@@ -79,7 +79,7 @@
         <repository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
-            <url>https://repo.spring.io/libs-milestone</url>
+            <url>https://maven.aliyun.com/repository/spring</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -90,7 +90,7 @@
         <pluginRepository>
             <id>aliyun-nexus</id>
             <name>aliyun-nexus</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <url>https://maven.aliyun.com/repository/public</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -101,7 +101,7 @@
         <pluginRepository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
-            <url>https://repo.spring.io/libs-milestone</url>
+            <url>https://maven.aliyun.com/repository/spring</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
