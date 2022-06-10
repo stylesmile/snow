@@ -61,7 +61,10 @@
                 if (200 == data.code) {
                     location.href = "/index.html"
                 } else {
-                    layer.msg(data.msg);
+                    layui.use('layer', function(){
+                        const layer = layui.layer;
+                        layer.msg(data.msg);
+                    });
                 }
             }
         );
