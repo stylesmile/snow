@@ -1,16 +1,17 @@
 package com.stylesmile.modules.system.service.impl;
 
+import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.common.constant.CacheConstant;
 import com.stylesmile.common.constant.SessionConstant;
-import com.stylesmile.common.constant.UserConstant;
 import com.stylesmile.common.service.BaseServiceImpl;
 import com.stylesmile.common.util.Result;
 import com.stylesmile.modules.system.entity.SysDepart;
 import com.stylesmile.modules.system.entity.SysUser;
 import com.stylesmile.modules.system.mapper.SysUserMapper;
-import com.stylesmile.modules.system.vo.query.SysUserQuery;
 import com.stylesmile.modules.system.service.SysUserService;
+import com.stylesmile.modules.system.vo.LoginVo;
+import com.stylesmile.modules.system.vo.query.SysUserQuery;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -41,27 +42,36 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
         return (SysUser) user;
     }
 
+    public static void main(String[] args) {
+        String pwd = SecureUtil.md5("admin" + 1);
+        System.out.println(pwd);
+    }
+
     /**
      * 通过用户名密码查询用户
      *
-     * @param username 用户名
-     * @param password 密码
+     * @param loginVo 用户名 密码
      * @return Result
      */
     @Override
-    public Result<String> getSysUserByNameAndPassword(String username, String password, HttpSession session) {
-        SysUser user = baseMapper.getSysUserByNameAndPassword(username);
-        if (null != user && password.equals(user.getPassword())) {
+    public Result<String> getSysUserByNameAndPassword(LoginVo loginVo, HttpSession session) {
+        SysUser user = baseMapper.getSysUserByName(loginVo.getUsername());
+        if (null == user) {
+            Result.failMessage("用户不存在");
+        }
+        String pwd = SecureUtil.md5(loginVo.getPassword() + user.getId());
+        if (user.getPassword().equals(pwd)) {
             session.setAttribute(SessionConstant.LOGIN_USER, user);
             return Result.successMessage("登陆成功");
-        } else {
-            //数据库查不到超级管理员 用户，超级管理员用户就读取系统中写死的用户名，密码
-            if (null == user && UserConstant.SUPPER_ADMIN.equals(username) && UserConstant.SUPPER_ADMIN_PASSWORD.equals(password)) {
-                session.setAttribute(SessionConstant.LOGIN_USER, new SysUser(username));
-                return Result.successMessage("登陆成功");
-            }
-            return Result.failMessage("用户名或者密码错误");
         }
+        //数据库查不到超级管理员 用户，超级管理员用户就读取系统中写死的用户名，密码
+//        if (null == user && UserConstant.SUPPER_ADMIN.equals(loginVo.getUsername())
+//                && UserConstant.SUPPER_ADMIN_PASSWORD.equals(loginVo.getUsername())) {
+//            session.setAttribute(SessionConstant.LOGIN_USER, new SysUser(loginVo.getUsername()));
+//            return Result.successMessage("登陆成功");
+//        }
+        return Result.failMessage("用户名或者密码错误");
+
     }
 
     /**

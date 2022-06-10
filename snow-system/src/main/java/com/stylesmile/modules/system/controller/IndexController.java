@@ -4,6 +4,7 @@ import com.stylesmile.aop.log.LogLogin;
 import com.stylesmile.common.util.Result;
 import com.stylesmile.modules.system.service.SysMenuService;
 import com.stylesmile.modules.system.service.SysUserService;
+import com.stylesmile.modules.system.vo.LoginVo;
 import com.stylesmile.modules.system.vo.tree.MenuTree;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -52,8 +53,8 @@ public class IndexController {
     @LogLogin("登陆日志")
     @PostMapping("/login.json")
     @ResponseBody
-    public Result<String> login(String username, String password, HttpSession session) {
-        return sysUserService.getSysUserByNameAndPassword(username, password, session);
+    public Result<String> login(LoginVo loginVo, HttpSession session) {
+        return sysUserService.getSysUserByNameAndPassword(loginVo, session);
     }
 
     /**

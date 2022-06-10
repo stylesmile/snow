@@ -5,8 +5,8 @@
     <parameterMap id="user2" type="com.stylesmile.modules.system.entity.SysUser"/>
 
     <!-- 通过用户名密码查询用户 -->
-    <select id="getSysUserByNameAndPassword" resultMap="user">
-        SELECT  * FROM sys_user WHERE  username=#{username}limit 1
+    <select id="getSysUserByName" resultMap="user">
+        SELECT  * FROM sys_user WHERE  username=#{username} limit 1
     </select>
 
     <!-- 编辑用户 -->

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.common.service.BaseService;
 import com.stylesmile.modules.system.entity.SysDepart;
 import com.stylesmile.modules.system.entity.SysUser;
+import com.stylesmile.modules.system.vo.LoginVo;
 import com.stylesmile.modules.system.vo.query.SysUserQuery;
 import com.stylesmile.common.util.Result;
 
@@ -33,7 +34,7 @@ public interface SysUserService extends BaseService<SysUser> {
      * @param session  session
      * @return Result
      */
-    Result<String> getSysUserByNameAndPassword(String username, String password, HttpSession session);
+    Result<String> getSysUserByNameAndPassword(LoginVo loginVo, HttpSession session);
 
     /**
      * 查询用户

@@ -21,7 +21,7 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @param username 用户名
      * @return SysUser
      */
-    SysUser getSysUserByNameAndPassword(@Param("username") String username);
+    SysUser getSysUserByName(@Param("username") String username);
 
     /**
      * 编辑用户
