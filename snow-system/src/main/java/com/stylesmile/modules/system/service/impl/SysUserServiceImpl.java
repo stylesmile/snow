@@ -60,7 +60,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
             Result.failMessage("用户不存在");
         }
         String pwd = SecureUtil.md5(loginVo.getPassword() + user.getId());
-        if (user.getPassword().equals(pwd)) {
+        if (user.getPassword().equals(loginVo.getPassword())) {
             session.setAttribute(SessionConstant.LOGIN_USER, user);
             return Result.successMessage("登陆成功");
         }
