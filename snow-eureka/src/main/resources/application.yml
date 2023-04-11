@@ -1,0 +1,16 @@
+server:
+  port: 8761
+
+eureka:
+  client:
+    #false表示不向注册中心注册自
+    registerWithEureka: true
+    # git config 获取配置（做消费者）
+    fetchRegistry: true
+    #设置与eurekaServer交互的地址查询服务和注册服务都需要依赖这个地址
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+spring:
+  application:
+    name: eureka-server
+
