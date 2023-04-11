@@ -3,10 +3,13 @@ package com.stylesmile.modules.system.service.impl;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.common.util.Result;
 import com.stylesmile.modules.system.entity.SysUser;
+import com.stylesmile.modules.system.mapper.SysUserMapper;
 import com.stylesmile.modules.system.vo.LoginVo;
 import com.stylesmile.modules.system.vo.query.SysUserQuery;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +20,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 class SysUserServiceImplTest {
 
     private SysUserServiceImpl sysUserServiceImplUnderTest;
+    @Mock
+    SysUserMapper baseMapper;
 
     @BeforeEach
     void setUp() {
