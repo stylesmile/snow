@@ -1,6 +1,6 @@
 package com.stylesmile.modules.system.entity;
 
-import javax.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotEmpty;
 
 /**
  * @author chenye

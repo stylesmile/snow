@@ -4,7 +4,7 @@ import com.stylesmile.common.service.BaseService;
 import com.stylesmile.modules.system.entity.SysMenu;
 import com.stylesmile.modules.system.vo.tree.MenuTree;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**

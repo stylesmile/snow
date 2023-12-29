@@ -1,7 +1,7 @@
 package com.stylesmile.modules.log.entity;
 
 
-import javax.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotEmpty;
 import java.util.Date;
 
 /**

@@ -10,8 +10,8 @@ import com.stylesmile.modules.system.service.SysUserService;
 import com.stylesmile.modules.system.vo.tree.MenuTree;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**

@@ -8,8 +8,8 @@ import com.stylesmile.modules.system.vo.LoginVo;
 import com.stylesmile.modules.system.vo.query.SysUserQuery;
 import com.stylesmile.common.util.Result;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * 用户管理

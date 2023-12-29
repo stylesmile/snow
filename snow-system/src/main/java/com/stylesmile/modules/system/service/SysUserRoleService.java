@@ -6,7 +6,7 @@ import com.stylesmile.modules.system.entity.SysRole;
 import com.stylesmile.modules.system.entity.SysUserRole;
 import com.stylesmile.modules.system.vo.query.SysRoleQuery;
 
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * 用户管理

@@ -1,12 +1,11 @@
 package com.stylesmile.modules.system.controller;
 
 import com.stylesmile.modules.system.service.SysDepartService;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 
 /**
  * 部门用户管理
