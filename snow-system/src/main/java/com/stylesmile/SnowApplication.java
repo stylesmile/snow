@@ -1,5 +1,6 @@
 package com.stylesmile;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author StyleSmile
  * @date 2019/1/16
  */
+@MapperScan("com.stylesmile.modules.*.mapper")
 @SpringBootApplication
 public class SnowApplication {
 

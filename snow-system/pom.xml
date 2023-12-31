@@ -23,7 +23,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <fork>true</fork>
+<!--                    <fork>true</fork>-->
                 </configuration>
             </plugin>
         </plugins>
@@ -37,6 +37,12 @@
             <artifactId>snow-common</artifactId>
             <version>${snow.common.version}</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-properties-migrator</artifactId>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

@@ -10,12 +10,14 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
+
 import java.lang.reflect.Method;
 import java.util.Enumeration;
 
@@ -34,7 +36,7 @@ public class LogLoginAop {
 
     private static final Logger log = LoggerFactory.getLogger(LogLoginAop.class);
 
-    @Resource
+    @Autowired(required = false)
     private LogLoginService logLoginService;
 
     /**
