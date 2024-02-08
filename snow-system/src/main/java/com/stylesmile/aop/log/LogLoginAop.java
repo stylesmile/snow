@@ -93,10 +93,8 @@ public class LogLoginAop {
      * @param operationContent 操作内容
      */
     public void addSystemLog(String operationContent, String ip) {
-        // 获取此次请求的request对象
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         // 获取当前登录人的信息
-        SysUser sysUser = (SysUser) logLoginService.getCurrentUser(request.getSession());
+        SysUser sysUser = (SysUser) logLoginService.getCurrentUser();
         if (null != sysUser) {
             //status = 1 登陆成功
             com.stylesmile.modules.log.entity.LogLogin logLogin = new com.stylesmile.modules.log.entity.LogLogin(operationContent, sysUser.getId(), sysUser.getUsername(), ip, 1);

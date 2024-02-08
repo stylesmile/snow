@@ -21,12 +21,11 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
     /**
      * get session中的用户
      *
-     * @param session 会话
      * @return Object
      */
     @Override
-    public Object getCurrentUser(HttpSession session) {
-        return session.getAttribute(SessionConstant.LOGIN_USER);
+    public Object getCurrentUser() {
+        return this.getRequest().getSession().getAttribute(SessionConstant.LOGIN_USER);
     }
 
     /**

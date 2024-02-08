@@ -17,7 +17,7 @@ public interface BaseService<T> extends IService<T> {
      *
      * @return
      */
-    Object getCurrentUser(HttpSession session);
+    Object getCurrentUser();
 
     /**
      * 获取 HttpRequest
